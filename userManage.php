@@ -7,6 +7,10 @@ $menuAction = 'user';
 
 <head>
 <?php include( __DIR__."/head.php"); ?>
+
+    <link href="plugins/dataTable/jquery.bootgrid.css" rel="stylesheet">
+
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -18,54 +22,24 @@ $menuAction = 'user';
     <div class="container-fluid">
           <!-- Card Columns Example Social Feed-->
           <div class="mb-0 mt-4">
-            <i class="fa fa-newspaper-o"></i>ข้อมูลสมาชิก</div>
+            <i class="fa fa-user"></i> ข้อมูลสมาชิก</div>
           <hr class="mt-2">
-          <div class="card-columns">
-		  
-            <!-- row1 column1-->
-            <div class="card mb-3 col-12">
-                <img class="card-img-top img-fluid w-100" src="./pictures/pic1.jpg" alt="">
-              <div class="card-body">
-                <h6 class="card-title mb-1">column1</h6>
-                <p class="card-text small">detail
-                </p>
-              </div>
-              <hr class="my-0">
-            </div>
-			
-            <!-- column1 row2-->
-            <div class="card mb-3">
-                <img class="card-img-top img-fluid w-100" src="./pictures/pic2.jpg" alt="">
 
-              <div class="card-body">
-                <h6 class="card-title mb-1">column1 row2</h6>
-                <p class="card-text small">detail
-                </p>
-              </div>
-              <hr class="my-0">
-            </div>
-			
-            <!-- column2 row1-->
-            <div class="card mb-3">
-                <img class="card-img-top img-fluid w-100" src="./pictures/pic3.jpg" alt="">
-              <div class="card-body">
-                <h6 class="card-title mb-1">column2 row1</h6>
-                <p class="card-text small">detail
-                </p>
-              </div>
-              <hr class="my-0">
-			</div>
-	  
-	   <!-- column2 row1-->
-            <div class="card mb-3">
-                <img class="card-img-top img-fluid w-100" src="./pictures/pic4.jpg" alt="">
-              <div class="card-body">
-                <h6 class="card-title mb-1">column2 row2</h6>
-                <p class="card-text small">detail
-                </p>
-              </div>
-              <hr class="my-0">
-			</div>
+          <div class="">
+
+              <table id="grid-data" class="table table-condensed table-hover table-striped">
+                  <thead>
+                  <tr>
+                      <th data-column-id="id" data-type="numeric">ID</th>
+                      <th data-column-id="sender">Sender</th>
+                      <th data-column-id="received" data-order="desc">Received</th>
+                      <th data-column-id="link" data-formatter="link" data-sortable="false">Link</th>
+                  </tr>
+                  </thead>
+              </table>
+
+          </div>
+
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
