@@ -1,10 +1,9 @@
 <?php
-require_once __DIR__."/controller/userManage.php";
 
 $menuAction = 'user';
 $USERS = [];
 
-
+require_once __DIR__."/controller/userManage.php";
 
 ?>
 
@@ -27,8 +26,8 @@ $USERS = [];
 
           <div class="">
 
-              <table id="example" class="table table-striped table-bordered" style="width:100%">
-                  <thead>
+              <table id="example" class="table table-striped table-bordered" style="width:100%;font-size: 12px;">
+                  <thead style="font-size: 12px;">
                   <tr>
                       <th>Username</th>
                       <th>ID.Card</th>
@@ -43,29 +42,33 @@ $USERS = [];
                   <tbody>
                     <?php foreach ($USERS as $item): ?>
                         <tr>
-                            <td><?php echo $item['id'];?></td>
-                            <td><?php echo $item['id'];?></td>
-                            <td><?php echo $item['id'];?></td>
-                            <td><?php echo $item['id'];?></td>
-                            <td><?php echo $item['id'];?></td>
-                            <td><?php echo $item['id'];?></td>
-                            <td><?php echo $item['id'];?></td>
-                            <td><?php echo $item['id'];?></td>
+                            <td><?php echo $item['username'];?></td>
+                            <td><?php echo $item['id_card'];?></td>
+                            <td><?php echo $item['name'].' '.$item['surname'];?></td>
+                            <td><?php echo ($item['gender']=='f')?'หญิง':'ชาย';?></td>
+                            <td><?php echo $item['birthday'];?></td>
+                            <td><?php echo $item['phone'];?></td>
+                            <td><?php echo $item['address'];?></td>
+                            <td>
+                                <a href="/register.php?fn=edit&id=<?php echo $item['id'];?>">
+                                    <i class="fa fa-pencil"></i> edit
+                                </a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                   </tbody>
-                  <tfoot>
-                  <tr>
-                      <th>Username</th>
-                      <th>ID.Card</th>
-                      <th>Name Surname</th>
-                      <th>Gender</th>
-                      <th>Birthday</th>
-                      <th>Phone</th>
-                      <th>Address</th>
-                      <th>Action</th>
-                  </tr>
-                  </tfoot>
+<!--                  <tfoot>-->
+<!--                  <tr style="font-size: 10px;">-->
+<!--                      <th>Username</th>-->
+<!--                      <th>ID.Card</th>-->
+<!--                      <th>Name Surname</th>-->
+<!--                      <th>Gender</th>-->
+<!--                      <th>Birthday</th>-->
+<!--                      <th>Phone</th>-->
+<!--                      <th>Address</th>-->
+<!--                      <th>Action</th>-->
+<!--                  </tr>-->
+<!--                  </tfoot>-->
               </table>
 
           </div>

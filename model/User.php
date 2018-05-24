@@ -122,4 +122,19 @@ class User extends _DBPDO
         return $result;
     }
 
+    function selectById($id=''){
+        //set parameter
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT * FROM user WHERE id=:id";
+        $params= array(':id'=> $id);
+        $result = $this->query($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+    }
+
 }
