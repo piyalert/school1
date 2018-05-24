@@ -1,15 +1,15 @@
 <?php
-require_once __DIR__."/controller/register.php";
+require_once __DIR__."/controller/userManage.php";
 
 $menuAction = 'user';
+$USERS = [];
+
+
 
 ?>
 
 <head>
 <?php include( __DIR__."/head.php"); ?>
-
-    <link href="plugins/dataTable/jquery.bootgrid.css" rel="stylesheet">
-
 
 </head>
 
@@ -27,15 +27,45 @@ $menuAction = 'user';
 
           <div class="">
 
-              <table id="grid-data" class="table table-condensed table-hover table-striped">
+              <table id="example" class="table table-striped table-bordered" style="width:100%">
                   <thead>
                   <tr>
-                      <th data-column-id="id" data-type="numeric">ID</th>
-                      <th data-column-id="sender">Sender</th>
-                      <th data-column-id="received" data-order="desc">Received</th>
-                      <th data-column-id="link" data-formatter="link" data-sortable="false">Link</th>
+                      <th>Username</th>
+                      <th>ID.Card</th>
+                      <th>Name Surname</th>
+                      <th>Gender</th>
+                      <th>Birthday</th>
+                      <th>Phone</th>
+                      <th>Address</th>
+                      <th>Action</th>
                   </tr>
                   </thead>
+                  <tbody>
+                    <?php foreach ($USERS as $item): ?>
+                        <tr>
+                            <td><?php echo $item['id'];?></td>
+                            <td><?php echo $item['id'];?></td>
+                            <td><?php echo $item['id'];?></td>
+                            <td><?php echo $item['id'];?></td>
+                            <td><?php echo $item['id'];?></td>
+                            <td><?php echo $item['id'];?></td>
+                            <td><?php echo $item['id'];?></td>
+                            <td><?php echo $item['id'];?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                      <th>Username</th>
+                      <th>ID.Card</th>
+                      <th>Name Surname</th>
+                      <th>Gender</th>
+                      <th>Birthday</th>
+                      <th>Phone</th>
+                      <th>Address</th>
+                      <th>Action</th>
+                  </tr>
+                  </tfoot>
               </table>
 
           </div>
@@ -51,3 +81,10 @@ $menuAction = 'user';
 <footer class="sticky-footer">
 <?php include( __DIR__."/footer.php"); ?>
 </footer>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+
+</script>

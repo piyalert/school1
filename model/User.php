@@ -114,7 +114,7 @@ class User extends _DBPDO
         $this->connect();
         $sql = "SELECT * FROM user WHERE status=:status";
         $params= array(':status'=> $status);
-        $result = $this->update($sql,$params);
+        $result = $this->queryAll($sql,$params);
         //close DB
         $this->close();
 
