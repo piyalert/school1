@@ -1,20 +1,42 @@
+<?php
+require_once __DIR__."/controller/register.php";
+
+$menuAction = 'user';
+
+?>
+
 <head>
 <?php include( __DIR__."/head.php"); ?>
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="fixed-nav sticky-footer bg-dark pb-5" id="page-top">
   <!-- Navigation-->
   //<?php include( __DIR__."/memu.php"); ?>
     
   <div class="container">
-    <div class="card card-register mx-auto mt-5">
-      <div class="card-header">สมัครสมาชิก</div>
+    <div class="card card-register mx-auto mt-1">
+      <div class="card-header">เพิ่มสมาชิก</div>
       <div class="card-body">
         <form>
+
 		  <div class="form-group">
             <label for="username">ชื่อผู้ใช้งาน</label>
-            <input class="form-control" id="username" type="text" aria-describedby="nameHelp" placeholder="ชื่อผู้ใช้งาน">
+            <input class="form-control" name="username" type="text" aria-describedby="nameHelp" placeholder="ชื่อผู้ใช้งาน" required>
           </div>
+
+          <div class="form-group">
+              <div class="form-row">
+                  <div class="col-md-6">
+                      <label for="exampleInputPassword1">รหัสผ่าน</label>
+                      <input class="form-control" name="password" type="password" placeholder="รหัสผ่าน" required>
+                  </div>
+                  <div class="col-md-6">
+                      <label for="exampleConfirmPassword">ยืนยันรหัสผ่าน</label>
+                      <input class="form-control" name="confirmPassword" type="password" placeholder="ยืนยันรหัสผ่าน" required>
+                  </div>
+              </div>
+          </div>
+
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
@@ -27,23 +49,37 @@
               </div>
             </div>
           </div>
+
           <div class="form-group">
-            <label for="exampleInputEmail1">อีเมล์</label>
-            <input class="form-control" id="email" type="email" aria-describedby="emailHelp" placeholder="อีเมล์">
+            <label for="exampleInputIdCard">รหัสบัตรประจำตัวประชาชน</label>
+            <input class="form-control" name="id_card" type="text"  placeholder="รหัสบัตรประจำตัวประชาชน" required>
           </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <label for="exampleInputPassword1">รหัสผ่าน</label>
-                <input class="form-control" id="password" type="password" placeholder="รหัสผ่าน">
-              </div>
-              <div class="col-md-6">
-                <label for="exampleConfirmPassword">ยืนยันรหัสผ่าน</label>
-                <input class="form-control" id="password1" type="password" placeholder="ยืนยันรหัสผ่าน">
-              </div>
+
+            <div class="form-group">
+                <label for="exampleInputPhone">เบอร์โทร</label>
+                <input class="form-control" name="phone" type="text"  placeholder="เบอร์โทร">
             </div>
-          </div>
-          <a class="btn btn-primary btn-block" href="login.php">Register</a>
+
+            <div class="form-group">
+                <label for="exampleInputAddress">ที่อยู่</label>
+                <textarea class="form-control" name="address" type="text" placeholder="ที่อยู่"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputGender">เพศ</label>
+                <div>
+                    <input type="radio" name="gander" id="gender1" value="m" checked> ชาย
+                    <input type="radio" name="gander" id="gender2" value="f"> หญิง
+                </div>
+            </div>
+
+<!--            <div class="form-group">-->
+<!--                <label for="exampleInputEmail1">อีเมล์</label>-->
+<!--                <input class="form-control" id="email" type="email" aria-describedby="emailHelp" placeholder="อีเมล์">-->
+<!--            </div>-->
+
+
+          <button class="btn btn-primary btn-block mt-5" type="submit">Register</button>
         </form>
       </div>
     </div>
@@ -52,5 +88,5 @@
 </body>
 
 <footer class="sticky-footer">
-<?php include( __DIR__."/footer.php"); ?>
+    <?php include( __DIR__."/footer.php"); ?>
 </footer>

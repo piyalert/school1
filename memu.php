@@ -77,12 +77,15 @@
             <i class="fa fa-user-o"></i>
             <span class="nav-link-text">จัดการสมาชิก</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+          <ul class="sidenav-second-level collapse <?php if($menuAction=='user')echo 'show'; ?>" id="collapseExamplePages">
             <li>
               <a href="login.php">เข้าสู่ระบบ</a>
             </li>
             <li>
-              <a href="register.php">สมัครสมาชิก</a>
+                <a href="/userManage.php">ข้อมูลสมาชิก</a>
+            </li>
+            <li>
+              <a href="/register.php">เพิ่มสมาชิก</a>
             </li>
           </ul>
         </li>
