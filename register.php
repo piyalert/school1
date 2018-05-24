@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__."/controller/register.php";
 
 $menuAction = 'user';
@@ -14,6 +15,16 @@ $menuAction = 'user';
   //<?php include( __DIR__."/memu.php"); ?>
     
   <div class="container">
+
+      <?php if (isset($_SESSION['error'])){ ?>
+      <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Warning!</strong>
+          <p><?php echo $_SESSION['error'];?></p>
+      </div>
+      <?php unset($_SESSION['error']); } ?>
+
+
     <div class="card card-register mx-auto mt-1">
       <div class="card-header">เพิ่มสมาชิก</div>
       <div class="card-body">
@@ -41,11 +52,11 @@ $menuAction = 'user';
             <div class="form-row">
               <div class="col-md-6">
                 <label for="exampleInputName">ชื่อ</label>
-                <input class="form-control" id="name" type="text" aria-describedby="nameHelp" placeholder="ชื่อ">
+                <input class="form-control" id="name" type="text" aria-describedby="nameHelp" placeholder="ชื่อ" required>
               </div>
               <div class="col-md-6">
                 <label for="exampleInputLastName">นามสกุล</label>
-                <input class="form-control" id="lastname" type="text" aria-describedby="nameHelp" placeholder="นามสกุล">
+                <input class="form-control" id="lastname" type="text" aria-describedby="nameHelp" placeholder="นามสกุล" required>
               </div>
             </div>
           </div>
@@ -54,6 +65,11 @@ $menuAction = 'user';
             <label for="exampleInputIdCard">รหัสบัตรประจำตัวประชาชน</label>
             <input class="form-control" name="id_card" type="text"  placeholder="รหัสบัตรประจำตัวประชาชน" required>
           </div>
+
+            <div class="form-group">
+                <label for="exampleInputBirthday">วันเกิด</label>
+                <input class="form-control" name="birthday" type="date" required>
+            </div>
 
             <div class="form-group">
                 <label for="exampleInputPhone">เบอร์โทร</label>
@@ -77,8 +93,7 @@ $menuAction = 'user';
 <!--                <label for="exampleInputEmail1">อีเมล์</label>-->
 <!--                <input class="form-control" id="email" type="email" aria-describedby="emailHelp" placeholder="อีเมล์">-->
 <!--            </div>-->
-
-
+            <input class="text-hide" name="fn" value="insert">
           <button class="btn btn-primary btn-block mt-5" type="submit">Register</button>
         </form>
       </div>
