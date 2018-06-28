@@ -39,26 +39,25 @@
             <i class="fa fa-money"></i>
             <span class="nav-link-text">ทะเบียนนักเรียน</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseMulti2">
-            <li>
-              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 1</a>
+          <ul class="sidenav-second-level collapse <?php if($menuAction=='class')echo 'show'; ?>" id="collapseMulti2">
+            <li class="<?PHP echo ($menuClass=='1')?'active':''; ?>">
+              <a href="teacher_class.php?class=1">ประถมศึกษาปีที่ 1</a>
             </li>
-            <li>
-              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 2</a>
+            <li class="<?PHP echo ($menuClass=='2')?'active':''; ?>">
+              <a href="teacher_class.php?class=2">ประถมศึกษาปีที่ 2</a>
+              </li>
+            <li class="<?PHP echo ($menuClass=='3')?'active':''; ?>">
+              <a href="teacher_class.php?class=3">ประถมศึกษาปีที่ 3</a>
+              </li>
+            <li class="<?PHP echo ($menuClass=='4')?'active':''; ?>">
+                <a href="teacher_class.php?class=4">ประถมศึกษาปีที่ 4</a>
             </li>
-            <li>
-              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 3</a>
+            <li class="<?PHP echo ($menuClass=='5')?'active':''; ?>">
+                <a href="teacher_class.php?class=5">ประถมศึกษาปีที่ 5</a>
             </li>
-            <li>
-              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 4</a>
+            <li class="<?PHP echo ($menuClass=='6')?'active':''; ?>">
+                <a href="teacher_class.php?class=6">ประถมศึกษาปีที่ 6</a>
             </li>
-            <li>
-              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 5</a>
-            </li>
-            <li>
-              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 6</a>
-            </li>
-
           </ul>
         </li>
 
