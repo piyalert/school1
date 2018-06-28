@@ -13,7 +13,10 @@ $fn = isset($_REQUEST['fn'])?$_REQUEST['fn']:'';
 
 $NEWSLIST = [];
 
-
+if($fn=='delete'){
+    $id = isset($_REQUEST['id'])?$_REQUEST['id']:'';
+    $MNews->deleteNews($id);
+}
 
 //select default
 $result = $MNews->selectAll();

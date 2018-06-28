@@ -46,7 +46,7 @@ require_once __DIR__."/controller/newsController.php";
                             <a href="news_edit.php?id=<?php echo $item['id'];?>">
                                 <i class="fa fa-pencil"></i> edit
                             </a>
-                            <a href="/school/userManage.php?fn=delete&id=<?php echo $item['id'];?>" style="padding-left: 20px; color: red;">
+                            <a href="news.php?fn=delete&id=<?php echo $item['id'];?>" style="padding-left: 20px; color: red;">
                                 <i class="fa fa-pencil"></i> delete
                             </a>
                         </td>
