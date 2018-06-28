@@ -14,7 +14,7 @@
 		
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti1" data-parent="#exampleAccordion">
-            <i class="fa fa-address-card"></i>
+            <i class="fa fa-share"></i>
             <span class="nav-link-text">ข้อมูลทั่วไป</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMulti1">
@@ -36,37 +36,74 @@
 		
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2" data-parent="#exampleAccordion">
-            <i class="fa fa-address-card"></i>
-            <span class="nav-link-text">ทะเบียนเงินออม</span>
+            <i class="fa fa-money"></i>
+            <span class="nav-link-text">ทะเบียนนักเรียน</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMulti2">
             <li>
-              <a href="#">พ.ศ.2550</a>
+              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 1</a>
             </li>
             <li>
-              <a href="#">พ.ศ.2551</a>
+              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 2</a>
             </li>
             <li>
-              <a href="#">พ.ศ.2552</a>
+              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 3</a>
+            </li>
+            <li>
+              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 4</a>
+            </li>
+            <li>
+              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 5</a>
+            </li>
+            <li>
+              <a href="teacher_deposit.php">ประถมศึกษาปีที่ 6</a>
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti3" data-parent="#exampleAccordion">
+            <i class="fa fa-money"></i>
+            <span class="nav-link-text">เงินออม</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseMulti3">
+            <li>
+              <a href="teacher_deposit.php">ฝากเงิน</a>
+            </li>
+            <li>
+              <a href="teacher_withdraw.php">ถอนเงิน</a>
+            </li>
+            <li>
+              <a href="teacher_databalance.php">ดูข้อมูล</a>
             </li>
 
           </ul>
         </li>
 		
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti3" data-parent="#exampleAccordion">
-            <i class="fa fa-address-card"></i>
-            <span class="nav-link-text">ทะเบียนนักเรียน</span>
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti4" data-parent="#exampleAccordion">
+            <i class="fa fa-user-secret"></i>
+            <span class="nav-link-text">จัดการรายวิชา</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseMulti3">
+          <ul class="sidenav-second-level collapse" id="collapseMulti4">
             <li>
-              <a href="#">พ.ศ.2550</a>
+              <a href="teacher_createcourse.php">สร้างรายวิชา</a>
             </li>
             <li>
-              <a href="#">พ.ศ.2551</a>
+              <a href="teacher_managestudent.php">จัดการผู้เรียน</a>
             </li>
             <li>
-              <a href="#">พ.ศ.2552</a>
+              <a href="teacher_checkname.php">เช็คชื่อเข้าเรียน</a>
+            </li>
+            <li>
+              <a href="teacher_inputscore.php">กรอกคะแนน</a>
+            </li>
+            <li>
+              <a href="teacher_name.php">ข้อมูลการเข้าเรียน</a>
+            </li>
+            <li>
+              <a href="teacher_score.php">ผลการเรียน</a>
             </li>
 
           </ul>
@@ -79,13 +116,10 @@
           </a>
           <ul class="sidenav-second-level collapse <?php if($menuAction=='user')echo 'show'; ?>" id="collapseExamplePages">
             <li>
-              <a href="login.php">เข้าสู่ระบบ</a>
+                <a href="userManage.php">ข้อมูลสมาชิก</a>
             </li>
             <li>
-                <a href="/userManage.php">ข้อมูลสมาชิก</a>
-            </li>
-            <li>
-              <a href="/register.php">เพิ่มสมาชิก</a>
+              <a href="register.php">เพิ่มสมาชิก</a>
             </li>
           </ul>
         </li>
@@ -101,6 +135,13 @@
           <a class="nav-link" href="link.php">
             <i class="fa fa-fw fa-link"></i>
             <span class="nav-link-text">เว็บไซต์ที่เกี่ยวข้อง </span>
+          </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+          <a class="nav-link" href="news.php">
+            <i class="fa fa-list-alt"></i>
+            <span class="nav-link-text">เพิ่มข่าวประกาศ </span>
           </a>
         </li>
 
@@ -120,6 +161,15 @@
             <i class="fa fa-fw fa-sign-out"></i>ออกจากระบบ</a>
         </li>
       </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal2">
+            <i class="fa fa-key"></i>เข้าสู่ระบบ</a>
+        </li>
+      </ul>
+
+      
     </div>
     </nav>
 
@@ -128,15 +178,33 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">ต้องการออกจากระบบ?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-body">ถ้าต้องการออกจากระบบให้กดที่ Logout</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.php">Logout</a>
+            <a class="btn btn-primary" href="index.php">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">คุณมีรหัสแล้วหรือยัง?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">ถ้ายังไม่มีกรุณาสมัครสมาชิกก่อน</div>
+          <div class="modal-footer">
+            <a class="btn btn-primary" href="login.php">เข้าสู่ระบบ</a>
+            <a class="btn btn-primary" href="register.php">สมัครสมาชิก</a>
           </div>
         </div>
       </div>

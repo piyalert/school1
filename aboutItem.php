@@ -6,7 +6,7 @@
   <!-- Navigation-->
   <?php include( __DIR__."/memu.php"); ?>
 
-  <center><div class="card mb-3"> 
+  <center><div class="card mb-3" style="width: 40rem"> 
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tbody><tr>
                 <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -17,39 +17,7 @@
 .style40 {font-family: Tahoma; font-size: 12px; }
 -->
 </style>
-<table width="200" border="0" cellpadding="0" cellspacing="3" bgcolor="#DDEBFF">
-  <tbody><tr>
-    <td bgcolor="#333333"><div align="center" class="style37">เมนูหลัก</div></td>
-  </tr>
-  <tr>
-    <td><div align="left"><span class="style40"><img src="images/sema.gif" width="19" height="26" align="absmiddle"> <a href="index_area.php?Area_CODE=3404">หน้าหลักเขตพื้นที่</a></span></div></td>
-  </tr>
-  <tr>
-    <td><div align="left"><span class="style40"><img src="images/sema.gif" width="19" height="26" align="absmiddle"> <a href="schooldata-view.php?School_ID=1034710761&amp;Area_CODE=3404">ข้อมูลพื้นฐานโรงเรียน</a></span></div></td>
-  </tr>
-  <tr>
-    <td><div align="left"><span class="style40"><img src="images/sema.gif" width="19" height="26" align="absmiddle"> <a href="schooldata-view_student.php?School_ID=1034710761&amp;Area_CODE=3404">ข้อมูลนักเรียน</a></span></div></td>
-  </tr>
-  <tr>
-    <td><div align="left"><span class="style40"><img src="images/sema.gif" width="19" height="26" align="absmiddle"> <a href="schooldata-view_techer.php?School_ID=1034710761&amp;Area_CODE=3404">ข้อมูลครูบุคลากร</a></span></div></td>
-  </tr>
-  <tr>
-    <td><div align="left"><span class="style40"><img src="images/sema.gif" width="19" height="26" align="absmiddle"> <a href="schooldata-view_com-internet.php?School_ID=1034710761&amp;Area_CODE=3404">ข้อมูลคอมพิวเตอร์ อินเทอร์เน็ต</a></span></div></td>
-  </tr>
-  <tr>
-    <td><div align="left"><span class="style40"><img src="images/sema.gif" width="19" height="26" align="absmiddle"> <a href="schooldata-view_bobec.php?School_ID=1034710761&amp;Area_CODE=3404">ข้อมูลสิ่งก่อสร้าง</a></span></div></td>
-  </tr>
-  <tr>
-    <td><div align="left"><span class="style40"><img src="images/sema.gif" width="19" height="26" align="absmiddle"> <a href="schooldata-view_mobec.php?School_ID=1034710761&amp;Area_CODE=3404">ข้อมูลครุภัณฑ์</a></span></div></td>
-  </tr>
-  <tr>
-    <td><div align="left"><span class="style40"><img src="images/sema.gif" width="19" height="26" align="absmiddle"> <a href="school_area_service.php?School_ID=1034710761&amp;Area_CODE=3404">เขตพื้นที่บริการ</a></span></div></td>
-  </tr>
-  <tr>
-    <td><div align="left"><span class="style40"><img src="images/sema.gif" width="19" height="26" align="absmiddle"> <a href="school_news.php?School_ID=1034710761&amp;Area_CODE=3404">ข่าวประชาสัมพันธ์</a></span></div></td>
-  </tr>
-</tbody></table>
-</td>
+
                    
                           <br>
                       </u></div></td>

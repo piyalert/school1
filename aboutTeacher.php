@@ -6,7 +6,7 @@
   <!-- Navigation-->
   <?php include( __DIR__."/memu.php"); ?>
 
-  <center><div class="card mb-3">
+  <center><div class="card mb-3" style="width: 60rem">
 
     <table width="80%" border="0">
      <tbody><tr>

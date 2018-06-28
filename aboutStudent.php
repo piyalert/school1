@@ -5,7 +5,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <?php include( __DIR__."/memu.php"); ?>
-  <center><div class="card mb-3">
+  <center><div class="card mb-3" style="width: 40rem">
   <form name="form" id="form">
                       <div align="center"> <br>
                       <select name="jumpMenu" id="jumpMenu">
@@ -116,87 +116,7 @@
                               <td bgcolor="#CCCCCC"><div align="center" class="style58">53</div></td>
                               <td bgcolor="#CCCCCC"><div align="center" class="style58">6</div></td>
                           </tr>
-                          <tr>
-                            <td bgcolor="#CCCCCC"><div align="center" class="style58">ม.1</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                          </tr>
-                          <tr>
-                            <td bgcolor="#CCCCCC"><div align="center" class="style58">ม.2</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                          </tr>
-                          <tr>
-                            <td bgcolor="#CCCCCC"><div align="center" class="style58">ม.3</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                          </tr>
-                          <tr>
-                            <td bgcolor="#CCCCCC"><div align="right" class="style58">
-                              <div align="center"><strong>รวมมัธยมต้น</strong></div>
-                              </div></td>
-                              <td bgcolor="#CCCCCC"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#CCCCCC"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#CCCCCC"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#CCCCCC"><div align="center" class="style58">0</div></td>
-                          </tr>
-						   <tr>
-                            <td bgcolor="#CCCCCC"><div align="center" class="style58">ม.4</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                          </tr>
-                          <tr>
-                            <td bgcolor="#CCCCCC"><div align="center" class="style58">ม.5</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                          </tr>
-                          <tr>
-                            <td bgcolor="#CCCCCC"><div align="center" class="style58">ม.6</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                          </tr>
-						   <tr>
-                            <td bgcolor="#CCCCCC"><div align="center" class="style58">ปวช.1</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                          </tr>
-                          <tr>
-                            <td bgcolor="#CCCCCC"><div align="center" class="style58">ปวช.2</div></td>
-                             <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                          </tr>
-                          <tr>
-                            <td bgcolor="#CCCCCC"><div align="center" class="style58">ปวช.3</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#F2F2F2"><div align="center" class="style58">0</div></td>
-                          </tr>
-                          <tr>
-                            <td bgcolor="#CCCCCC"><div align="right" class="style58">
-                              <div align="center"><strong>รวมมัธยมปลายและเทียบเท่า</strong></div>
-                              </div></td>
-                              <td bgcolor="#CCCCCC"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#CCCCCC"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#CCCCCC"><div align="center" class="style58">0</div></td>
-                              <td bgcolor="#CCCCCC"><div align="center" class="style58">0</div></td>
-                          </tr>
+                         
                           <tr>
                             <td bgcolor="#999999"><div align="center" class="style58"><strong>รวมทั้งหมด</strong></div></td>
                               <td bgcolor="#999999"><div align="center" class="style58">39</div></td>

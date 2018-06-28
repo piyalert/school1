@@ -27,7 +27,7 @@ $menuAction = 'user';
 
       <div class="card-header"><?php if($passwordCheck)echo'เพิ่มสมาชิก';else echo'แก้ไขสมาชิก'; ?></div>
       <div class="card-body">
-        <form action="/register.php" method="post">
+        <form action="/school/register.php" method="post">
 
 		  <div class="form-group">
             <label for="username">ชื่อผู้ใช้งาน</label>
