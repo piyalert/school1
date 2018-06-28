@@ -1,9 +1,12 @@
 <?php
+date_default_timezone_set("Asia/Bangkok");
+
 
 $menuAction = 'class';
 $menuClass = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
 $UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : 2561;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
+$year = date("Y");
 
 $className = "ประถมศึกษาปีที่ " . $menuClass;
 
@@ -29,7 +32,14 @@ require_once __DIR__."/controller/teacherClassController.php";
     </ol>
 
     <div class="text-right mr-5" style="padding-bottom: 20px;">
-        <button type="button" class="btn btn-success"  data-toggle="modal" data-target=".bd-example-modal-lg">
+        ปีการศึกษา:
+        <select id="input_year" name="year">
+            <?php for ($i=$year;$i>($year-10);$i--): ?>
+                <option value="<?php echo ($i);?>"> <?php echo ($i+543); ?></option>
+            <?php endfor; ?>
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg">
             <i class="fa fa-plus"></i> เพิ่มนักเรียน
         </button>
     </div>
@@ -71,6 +81,12 @@ require_once __DIR__."/controller/teacherClassController.php";
         </table>
 
 
+    </div>
+
+
+    <div class="value-attr" hidden>
+        <input id="input_year" value="<?php echo $UrlYear;?>">
+        <input id="input_class" value="<?php echo $menuClass;?>">
     </div>
 
 
