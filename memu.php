@@ -138,7 +138,7 @@
           </a>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+        <li class="nav-item <?PHP echo ($menuAction=='news')?'active':''; ?>" data-toggle="tooltip" data-placement="right" title="Link">
           <a class="nav-link" href="news.php">
             <i class="fa fa-list-alt"></i>
             <span class="nav-link-text">เพิ่มข่าวประกาศ </span>

@@ -10,8 +10,8 @@ class _DBPDO
 {
     private $servername = "localhost";
     private $username = "root";
-    private $password = "";
-    private $dbname = "school";
+    private $password = "1234";
+    private $dbname = "db_school_ton";
     private $conn = null;
     private $stmt = null;
 
@@ -109,6 +109,88 @@ class _DBPDO
             echo $e->getMessage();
         }
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function convertArrayToInsert($input){
+        if(count($input)<=0){
+            return [];
+        }else{
+            $check_first = true;
+            $params = [];
+            $v = "(";
+            $a = "(";
+            foreach ($input as $k=>$item){
+                if($item!=""){
+                    $params[':'.$k]=$item;
+                    if($check_first){
+                        $check_first = !$check_first;
+                        $v.=':'.$k;
+                        $a.=''.$k;
+                    }else{
+                        $v.=', :'.$k;
+                        $a.=', '.$k;
+                    }
+                }
+            }
+
+            $v.= ")";
+            $a.= ")";
+            $value = $a." VALUES ".$v;
+            if(count($params) > 0){
+                return ["value"=>$value,"params"=>$params];
+            }else{
+                return [];
+            }
+
+
+        }
+    }
+
+    function convertArrayToUpdate($input, $where){
+        if(count($input)<=0 || count($where)<=0){
+            return [];
+        }else{
+            $check_first = true;
+            $params = [];
+            $value = " SET ";
+            foreach ($input as $k=>$item){
+                if($item!=""){
+                    $params[':'.$k]=$item;
+                    if($check_first){
+                        $check_first = !$check_first;
+                        $value.=" ".$k."=:".$k;
+                    }else{
+                        $value.=", ".$k."=:".$k;
+                    }
+                }
+            }
+
+            $check_first = true;
+            $value.= " WHERE ";
+            foreach ($where as $k=>$item){
+                if($item!=""){
+                    $params[':'.$k]=$item;
+                    if($check_first){
+                        $check_first = !$check_first;
+                        $value.=" ".$k."=:".$k;
+                    }else{
+                        $value.=" AND ".$k."=:".$k;
+                    }
+                }
+            }
+
+            if(count($params) > 0 && !$check_first){
+                return ["value"=>$value,"params"=>$params];
+            }else{
+                return [];
+            }
+
+
+        }
+    }
+
+    function input($attr , $default=''){
+        return isset($_REQUEST[$attr])?$_REQUEST[$attr]:$default;
     }
 
 }
