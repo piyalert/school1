@@ -36,22 +36,23 @@ class Student extends _DBPDO
 
     function insertStudentList($student_list_id,$class,$year){
         $this_db = $this->DB;
+        $this_fk = $this->FKDB;
         //set parameter
         $count = 0;
 
         //connect DB
         $this->connect();
 
-        $sql = "SELECT * FROM $this_db WHERE id IN ($student_list_id)";
+        $sql = "SELECT * FROM $this_fk WHERE id IN ($student_list_id)";
         $result = $this->queryNoParams($sql);
         foreach ($result as $item){
             $sql = "INSERT INTO $this_db (user_id,class,year,parent)
              VALUES (:user_id,:class,:year,:parent)";
             $params = [
-                ':user_id'=>$item['user_id'],
+                ':user_id'=>$item['id'],
                 ':class'=>$class,
                 ':year'=>$year,
-                ':parent'=>$item['parent']
+                ':parent'=>""
             ];
             $lastId = $this->insert($sql,$params);
             if($lastId>0){

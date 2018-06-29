@@ -114,10 +114,10 @@
             <span class="nav-link-text">จัดการสมาชิก</span>
           </a>
           <ul class="sidenav-second-level collapse <?php if($menuAction=='user')echo 'show'; ?>" id="collapseExamplePages">
-            <li>
+            <li  class="<?PHP echo ($menuSub=='list')?'active':''; ?>">
                 <a href="userManage.php">ข้อมูลสมาชิก</a>
             </li>
-            <li>
+            <li  class="<?PHP echo ($menuSub=='register')?'active':''; ?>">
               <a href="register.php">เพิ่มสมาชิก</a>
             </li>
           </ul>

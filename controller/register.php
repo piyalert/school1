@@ -82,11 +82,11 @@ elseif ($fn==='insert'){
     ];
     $result = $modelUser->insertUser($input);
     if($result>0){
-        header("Location: /userManage.php");
+        header("Location: /school/userManage.php");
         exit();
     }else{
         $_SESSION['error']="Unable to Save User!!!!";
-        header("Location: /register.php");
+        header("Location: /school/register.php");
         exit();
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 $menuAction = 'user';
+$menuSub = 'list';
+
 $USERS = [];
 
 require_once __DIR__."/controller/userManage.php";

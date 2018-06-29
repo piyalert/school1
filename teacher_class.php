@@ -117,7 +117,9 @@ require_once __DIR__."/controller/teacherClassController.php";
                     <tbody>
                     <?php foreach ($USERLISTS as $item): ?>
                         <tr>
-                            <td><input type="radio" aria-label="select"></td>
+                            <td>
+                                <input type="checkbox" aria-label="select" value="<?php echo $item['id'];?>" onchange="selectUser(this)">
+                            </td>
                             <td><?php echo $item['gender'];?></td>
                             <td><?php echo $item['name'].' '.$item['surname'];?></td>
                             <td><?php echo $item['id_card'];?></td>
@@ -129,8 +131,9 @@ require_once __DIR__."/controller/teacherClassController.php";
             </div>
 
             <div class="modal-footer">
+                <input id="input_list_user_id" attr_list=""  hidden>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal">เพิ่มนักเรียน</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addStudent();">เพิ่มนักเรียน</button>
             </div>
 
         </div>
@@ -150,5 +153,61 @@ require_once __DIR__."/controller/teacherClassController.php";
         $('#table_student').DataTable();
         $('#table_user').DataTable();
     } );
+
+    function selectUser(res) {
+        var user_id = res.value;
+        var list_user = $('#input_list_user_id').attr("attr_list");
+        if(list_user.length <= 0){
+            $('#input_list_user_id').attr("attr_list",user_id);
+        }else{
+
+            var arr_user = list_user.split(",");
+            var check = true;
+            list_user = "";
+            for (var i=0;i<arr_user.length;i++){
+                if( user_id == arr_user[i] ){
+                    check = false;
+                }else {
+                    if(list_user.length==0){
+                        list_user = arr_user[i];
+                    }else{
+                        list_user = list_user+","+arr_user[i];
+                    }
+                }
+            }
+            if(check){
+                list_user = list_user+","+user_id;
+            }
+
+            $('#input_list_user_id').attr("attr_list",list_user);
+        }
+
+    }
+
+    function addStudent() {
+        var list_user_id  = $('#input_list_user_id').attr("attr_list");
+        var input_year = $('#input_year').val();
+        var input_class = $('#input_class').val();
+
+        var req = $.ajax({
+            type: 'POST',
+            url: './controller/service.php',
+            data: {
+                fn: 'insertStudent',
+                list_user_id: list_user_id,
+                class: input_class,
+                year: input_year,
+            },
+            dataType: 'JSON'
+        });
+        req.done(function (res) {
+            if(res.status){
+                alert('save data complete...');
+                document.location = "teacher_class.php?class="+input_class+"&year="+input_year;
+            }else{
+                alert('save data false!!!!');
+            }
+        });
+    }
 
 </script>
