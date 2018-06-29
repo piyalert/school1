@@ -67,6 +67,36 @@ elseif ($fn=='insertStudent'){
     }
 }
 
+//insert data list course ad to class
+elseif ($fn=='insertCourseList'){
+    require_once __DIR__.'/../model/Course.php';
+    $MC = new Course();
+
+    $list = $MC->input('list_sub_id');
+    $class = $MC->input('class');
+    $year = $MC->input('year');
+    if ($year!='')
+        $year = $year>2500?$year-543:$year;
+
+
+    $result = $MC->insertCourseList($list,$class,$year);
+    if($result > 0){
+        echo json_encode([
+            'status'=> true,
+            'message'=> 'Success',
+            'data'=>[]
+        ]);
+        exit;
+    }else{
+        echo json_encode([
+            'status'=> false,
+            'message'=> 'Error',
+            'data'=>[]
+        ]);
+        exit;
+    }
+}
+
 //insert news by froala
 elseif ($fn=='insertNews'){
     require_once __DIR__.'/../model/News.php';

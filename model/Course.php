@@ -3,17 +3,19 @@
 /**
  * Created by PhpStorm.
  * User: EPOP
- * Date: 6/14/2018
- * Time: 3:07 PM
+ * Date: 6/29/2018
+ * Time: 4:14 PM
  */
+
 require_once __DIR__."/_DBPDO.php";
 
-class Student extends _DBPDO
+class Course extends _DBPDO
 {
-    private $DB = 'student';
-    private $FKDB = 'user';
 
-    function insertStudent($input){
+    private $DB = 'course';
+    private $FK = 'subject';
+
+    function insertCourse($input){
         $this_db = $this->DB;
 
         $data_sql = $this->convertArrayToInsert($input);
@@ -34,25 +36,24 @@ class Student extends _DBPDO
         }
     }
 
-    function insertStudentList($student_list_id,$class,$year){
+    function insertCourseList($list_id,$class,$year){
         $this_db = $this->DB;
-        $this_fk = $this->FKDB;
+        $this_fk = $this->FK;
         //set parameter
         $count = 0;
 
         //connect DB
         $this->connect();
 
-        $sql = "SELECT * FROM $this_fk WHERE id IN ($student_list_id)";
+        $sql = "SELECT * FROM $this_fk WHERE id IN ($list_id)";
         $result = $this->queryNoParams($sql);
         foreach ($result as $item){
-            $sql = "INSERT INTO $this_db (user_id,class,year,parent)
-             VALUES (:user_id,:class,:year,:parent)";
+            $sql = "INSERT INTO $this_db (subject_id,classroom,year)
+             VALUES (:subject_id,:class,:year)";
             $params = [
-                ':user_id'=>$item['id'],
+                ':subject_id'=>$item['id'],
                 ':class'=>$class,
-                ':year'=>$year,
-                ':parent'=>""
+                ':year'=>$year
             ];
             $lastId = $this->insert($sql,$params);
             if($lastId>0){
@@ -67,7 +68,7 @@ class Student extends _DBPDO
         return $count;
     }
 
-    function editStudent($input , $condition){
+    function editCourse($input , $condition){
         $this_db = $this->DB;
 
         $data_sql = $this->convertArrayToUpdate($input,$condition);;
@@ -87,7 +88,7 @@ class Student extends _DBPDO
         }
     }
 
-    function deleteStudent($id){
+    function deleteCourse($id){
         $this_db = $this->DB;
         //set parameter
 
@@ -103,17 +104,19 @@ class Student extends _DBPDO
         return $rowUpdate;
     }
 
-    function selectStudentByClassAndYear($class , $year){
+    function selectCourseByRoomAndYear($class,$year){
         //set parameter
         $this_db = $this->DB;
-        $this_user = $this->FKDB;
+        $this_fk = $this->FK;
+
+        $year = $year>2500?$year-543:$year;
 
         //connect DB
         $this->connect();
-        $sql = "SELECT $this_db.id as student_id, $this_db.`status` as student_status, $this_db.parent ,  $this_user.* FROM $this_db
-LEFT JOIN $this_user ON $this_db.user_id = $this_user.id
-WHERE $this_db.class = :class AND $this_db.year = :year";
-        $params= array(':class'=> $class , ':year'=>$year);
+        $sql = "SELECT c.`*` , s.name , s.detail FROM $this_db AS c
+        LEFT JOIN $this_fk AS s ON c.subject_id = s.id
+        WHERE c.classroom =:class AND c.year =:year ";
+        $params= array(':class'=>$class , ':year'=>$year);
         $result = $this->queryAll($sql,$params);
         //close DB
         $this->close();
@@ -122,7 +125,6 @@ WHERE $this_db.class = :class AND $this_db.year = :year";
         return $result;
 
     }
-
 
 
 

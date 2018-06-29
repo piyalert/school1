@@ -91,7 +91,6 @@ require_once __DIR__."/controller/teacherClassController.php";
             </tbody>
         </table>
 
-
     </div>
 
 

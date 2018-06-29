@@ -3,6 +3,7 @@ session_start();
 require_once __DIR__."/controller/register.php";
 
 $menuAction = 'user';
+$menuSub = 'register';
 
 ?>
 
