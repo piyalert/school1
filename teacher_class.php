@@ -33,9 +33,9 @@ require_once __DIR__."/controller/teacherClassController.php";
 
     <div class="text-right mr-5" style="padding-bottom: 20px;">
         ปีการศึกษา:
-        <select id="input_year" name="year">
+        <select id="input_year" name="year" onchange="selectYear(this);">
             <?php for ($i=$year;$i>($year-10);$i--): ?>
-                <option value="<?php echo ($i);?>"> <?php echo ($i+543); ?></option>
+                <option value="<?php echo ($i);?>"  <?php echo $UrlYear==$i?'selected':'' ?>> <?php echo ($i+543); ?></option>
             <?php endfor; ?>
         </select>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -68,12 +68,23 @@ require_once __DIR__."/controller/teacherClassController.php";
                     <td><?php echo $item['birthday'];?></td>
                     <td><?php echo $item['parent'];?></td>
                     <td>
-                        <a href="news_edit.php?id=<?php echo $item['id'];?>">
-                            <i class="fa fa-pencil"></i> edit
-                        </a>
-                        <a href="news.php?fn=delete&id=<?php echo $item['id'];?>" style="padding-left: 20px; color: red;">
-                            <i class="fa fa-pencil"></i> delete
-                        </a>
+                        <div class="form-inline">
+                            <div class="mb-2">
+                                <button class="btn btn-link" data-toggle="modal" data-target=".bd-modal-parent"
+                                        attr_parent="<?php echo $item['parent'];?>" attr_student_id="<?php echo $item['student_id'];?>"
+                                        onclick="editParent(this);" >
+                                    <i class="fa fa-pencil"></i> edit
+                                </button>
+                            </div>
+                            <form class="mb-2" method="post">
+                                <input name="student_id" value="<?php echo $item['student_id'];?>" hidden>
+                                <input name="fn" value="deleteStudent" hidden>
+                                <button class="btn btn-link" style="color: red;" type="submit">
+                                    <i class="fa fa-pencil"></i> delete
+                                </button>
+                            </form>
+
+                        </div>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -140,7 +151,28 @@ require_once __DIR__."/controller/teacherClassController.php";
     </div>
 </div>
 
+<div class="modal fade bd-modal-parent" tabindex="-1" role="dialog" aria-labelledby="myModalParent" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title">ผู้ปกครอง</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+            <div class="modal-body">
+                <input id="input_parent" class="form-control" name="parent" value="">
+            </div>
+
+            <div class="modal-footer">
+                <input id="input_student_id" name="student_id" value="" hidden>
+                <input name="fn" value="editParent" hidden>
+                <button type="submit" class="btn btn-success">บันทึก</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 </body>
 
@@ -208,6 +240,19 @@ require_once __DIR__."/controller/teacherClassController.php";
                 alert('save data false!!!!');
             }
         });
+    }
+
+    function selectYear(res) {
+        var input_year = res.value;
+        var input_class = $('#input_class').val();
+        document.location = "teacher_class.php?class="+input_class+"&year="+input_year;
+    }
+
+    function editParent(res) {
+        var parent = $(res).attr("attr_parent");
+        var student_id = $(res).attr("attr_student_id");
+        $('#input_student_id').attr("value",student_id);
+        $('#input_parent').val(parent);
     }
 
 </script>

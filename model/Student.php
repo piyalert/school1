@@ -70,7 +70,7 @@ class Student extends _DBPDO
     function editStudent($input , $condition){
         $this_db = $this->DB;
 
-        $data_sql = $this->convertArrayToUpdate($input,$condition);
+        $data_sql = $this->convertArrayToUpdate($input,$condition);;
         if(count($data_sql)<=0){
             return 0;
         }else {

@@ -16,6 +16,15 @@ $fn = isset($_REQUEST['fn'])?$_REQUEST['fn']:'';
 $STUDENTLISTS = [];
 $USERLISTS = [];
 
+if($fn=="editParent"){
+    $parent = $MStudent->input("parent");
+    $student_id = $MStudent->input("student_id");
+    $result = $MStudent->editStudent(['parent'=>$parent], ['id'=>$student_id]);
+}
+elseif($fn=="deleteStudent"){
+    $student_id = $MStudent->input("student_id");
+    $result = $MStudent->deleteStudent($student_id);
+}
 
 
 

@@ -37,6 +37,35 @@ if($fn=='insertCheckList'){
 
 }
 
+//insert data list user add to class
+elseif ($fn=='insertStudent'){
+    require_once __DIR__.'/../model/Student.php';
+    $MS = new Student();
+
+    $list = $MS->input('list_user_id');
+    $class = $MS->input('class');
+    $year = $MS->input('year');
+    if ($year!='')
+        $year = $year>2500?$year-543:$year;
+
+
+    $result = $MS->insertStudentList($list,$class,$year);
+    if($result > 0){
+        echo json_encode([
+            'status'=> true,
+            'message'=> 'Success',
+            'data'=>[]
+        ]);
+        exit;
+    }else{
+        echo json_encode([
+            'status'=> false,
+            'message'=> 'Error',
+            'data'=>[]
+        ]);
+        exit;
+    }
+}
 
 //insert news by froala
 elseif ($fn=='insertNews'){
