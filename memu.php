@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <h2 class="navbar-brand">เมนูหลัก</h2>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -5,8 +6,8 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+    <div class="navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="height: 550px; overflow-y: scroll;">
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <a class="nav-link" href="index.php">
                     <i class="fa fa-home"></i>
@@ -72,17 +73,28 @@
                     <i class="fa fa-money"></i>
                     <span class="nav-link-text">เงินออม</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="collapseMulti3">
+                <ul class="sidenav-second-level collapse <?php if ($menuAction == 'saving') echo 'show'; ?>" id="collapseMulti3">
                     <li>
-                        <a href="teacher_deposit.php">ฝากเงิน</a>
+                        <a href="teacher_deposit.php">ค้นหา</a>
                     </li>
-                    <li>
-                        <a href="teacher_withdraw.php">ถอนเงิน</a>
+                    <li class="<?PHP echo ($menuSave == '1') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=1">ประถมศึกษาปีที่ 1</a>
                     </li>
-                    <li>
-                        <a href="teacher_databalance.php">ดูข้อมูล</a>
+                    <li class="<?PHP echo ($menuSave == '2') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=2">ประถมศึกษาปีที่ 2</a>
                     </li>
-
+                    <li class="<?PHP echo ($menuSave == '3') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=3">ประถมศึกษาปีที่ 3</a>
+                    </li>
+                    <li class="<?PHP echo ($menuSave == '4') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=4">ประถมศึกษาปีที่ 4</a>
+                    </li>
+                    <li class="<?PHP echo ($menuSave == '5') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=5">ประถมศึกษาปีที่ 5</a>
+                    </li>
+                    <li class="<?PHP echo ($menuSave == '6') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=6">ประถมศึกษาปีที่ 6</a>
+                    </li>
                 </ul>
             </li>
 
@@ -114,7 +126,6 @@
                     <li class="<?PHP echo ($menuCourse == '6') ? 'active' : ''; ?>">
                         <a href="teacher_course.php?class=6">ประถมศึกษาปีที่ 6</a>
                     </li>
-
 
                 </ul>
             </li>
