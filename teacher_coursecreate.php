@@ -26,6 +26,12 @@ require_once __DIR__."/controller/teacherCourseCreateController.php";
         <li class="breadcrumb-item">รายวิชาที่เปิดสอนทั้งหมด</li>
     </ol>
 
+    <div class="text-right mb-2 mr-5">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-modal-create-course">
+            <i class="fa fa-plus"></i> เพิ่มรายวิชา
+        </button>
+    </div>
+
     <div class="container-fluid">
 
         <table id="table_subject" class="table table-striped table-bordered" style="width:100%;">

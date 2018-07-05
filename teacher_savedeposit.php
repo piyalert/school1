@@ -14,24 +14,13 @@ $DAYName = ['-','จันทร์','อังคาร','พุธ','พฤห
 $date = new DateTime();
 $interval = new DateInterval('P1D');
 
-$d5_day = $DAYName[$date->format('N')];
-$d5_ymd = $date->format('Y-m-d');
+$this_day = $DAYName[$date->format('N')];
+$this_ymd = $date->format('Y-m-d');
 
-$date1 = $date->sub($interval);
-$d4_day = $DAYName[$date->format('N')];
-$d4_ymd = $date->format('Y-m-d');
+//$date1 = $date->sub($interval);
+//$d4_day = $DAYName[$date->format('N')];
+//$d4_ymd = $date->format('Y-m-d');
 
-$date1 = $date->sub($interval);
-$d3_day = $DAYName[$date->format('N')];
-$d3_ymd = $date->format('Y-m-d');
-
-$date1 = $date->sub($interval);
-$d2_day = $DAYName[$date->format('N')];
-$d2_ymd = $date->format('Y-m-d');
-
-$date1 = $date->sub($interval);
-$d1_day = $DAYName[$date->format('N')];
-$d1_ymd = $date->format('Y-m-d');
 
 
 require_once __DIR__."/controller/teacherSaveListController.php";
@@ -62,13 +51,17 @@ require_once __DIR__."/controller/teacherSaveListController.php";
     </ul>
 
     <div class="form-inline">
-        <div class="form-group mb-5 ml-5">
-            <label for="input_year"> ปีการศึกษา </label>
+        <div class="form-group ml-5">
+            <label class="mr-3" for="input_year"> ปีการศึกษา </label>
             <select class="form-control" id="input_year" name="year" onchange="selectYear(this);">
                 <?php for ($i=$year;$i>($year-10);$i--): ?>
                     <option value="<?php echo ($i);?>"  <?php echo $UrlYear==$i?'selected':'' ?>> <?php echo ($i+543); ?></option>
                 <?php endfor; ?>
             </select>
+        </div>
+        <div class="form-group ml-5">
+            <label class="mr-3" for="input_ymd"> วันที่ฝากเงิน </label>
+            <input class="form-control" id="input_ymd" name="input_ymd" type="date" value="<?php echo $this_ymd; ?>" onchange="changeYMDDeposit();">
         </div>
     </div>
 
@@ -82,9 +75,9 @@ require_once __DIR__."/controller/teacherSaveListController.php";
                 <th>ชื่อ - สกุล</th>
                 <th>ปีการศึกษา</th>
                 <th>ระดับชั่น</th>
-                <th><?php echo "($d3_day)$d3_ymd" ;?></th>
-                <th><?php echo "($d4_day)$d4_ymd" ;?></th>
-                <th><?php echo "($d5_day)$d5_ymd" ;?></th>
+                <th>วันที่ฝากล่าสุด</th>
+                <th>เงินฝากล่าสุด</th>
+                <th><?php echo $this_ymd ;?></th>
             </tr>
             </thead>
             <tbody>
@@ -94,13 +87,20 @@ require_once __DIR__."/controller/teacherSaveListController.php";
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
                     <td><?php echo $item['year'];?></td>
                     <td><?php echo $item['class'];?></td>
-                    <td>xx</td>
-                    <td>xx</td>
-                    <td>xx</td>
+                    <td>2018-05-10</td>
+                    <td>23</td>
+                    <td>
+                        <input class="form-control" type="number" value="">
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
+
         </table>
+
+        <div class="text-center">
+            <button class="btn btn-success">Save</button>
+        </div>
 
         <div class="value-attr" hidden>
             <input id="input_year" value="<?php echo $UrlYear;?>">
@@ -121,7 +121,8 @@ require_once __DIR__."/controller/teacherSaveListController.php";
         $('#table_saving').DataTable({
             "lengthChange": false,
             "bInfo" : false,
-            "iDisplayLength" : 50
+            "bPaginate":false,
+            "iDisplayLength" : 100
         });
     } );
 
@@ -129,7 +130,12 @@ require_once __DIR__."/controller/teacherSaveListController.php";
     function selectYear(res) {
         var input_year = res.value;
         var input_class = $('#input_class').val();
-        document.location = "teacher_savelist.php?class="+input_class+"&year="+input_year;
+        document.location = "teacher_savedeposit.php?class="+input_class+"&year="+input_year;
+    }
+
+    function changeYMDDeposit() {
+        var ymd = $('#input_ymd').val();
+        alert(ymd);
     }
 
 
