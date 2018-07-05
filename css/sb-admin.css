@@ -160,6 +160,10 @@ body.fixed-nav {
     flex-direction: column;
     margin-top: 56px;
   }
+  #mainNav .navbar-sidenav {
+    max-height: none;
+    overflow-y: scroll;
+  }
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item {
     width: 250px;
     padding: 0;
@@ -286,7 +290,7 @@ body.sidenav-toggled #mainNav.static-top #sidenavToggler i {
 
 @media (min-width: 992px) {
   .content-wrapper {
-    margin-left: 250px;
+    margin-left: 267px;
   }
 }
 
@@ -476,3 +480,42 @@ footer.sticky-footer {
     width: calc(100% - 55px);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

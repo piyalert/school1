@@ -22,7 +22,7 @@ $phone='';
 $img_path='';
 $gender='';
 $status='';
-if ($fn==='edit'){
+if ($fn=='edit'){
     $id = isset($_REQUEST['id'])?$_REQUEST['id']:'';
     $modelUser = new User();
     $user = $modelUser->selectById($id);
@@ -41,7 +41,7 @@ if ($fn==='edit'){
     }
     
 }
-elseif ($fn==='insert'){
+elseif ($fn=='insert'){
 
     $username = isset($_REQUEST['username'])?$_REQUEST['username']:'';
     $password = isset($_REQUEST['password'])?$_REQUEST['password']:'';
@@ -90,7 +90,7 @@ elseif ($fn==='insert'){
         exit();
     }
 }
-elseif ($fn==='update'){
+elseif ($fn=='update'){
 
     $username = isset($_REQUEST['username'])?$_REQUEST['username']:'';
     $name = isset($_REQUEST['name'])?$_REQUEST['name']:'';

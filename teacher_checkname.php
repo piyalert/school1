@@ -49,17 +49,15 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <?//php foreach ($USERS as $item): ?>
-                        <tr>
-                            <td>1</td>
-                            <td>xxxxxxxxx</td>
-                            <td>yyyyyyyy</td>
-                            <td> <input type="radio" name="learn" value="present"></td>
-                            <td> <input type="radio" name="learn" value="absent"></td>
-                            <td> <input type="radio" name="learn" value="la"></td>
-                            <td> <input type="text" name="detail"</td></td>
- <!--                            <td><?//php echo $item['address'];?></td>    -->
-                          <tr>
+                  <tr>
+                      <td>1</td>
+                      <td>xxxxxxxxx</td>
+                      <td>yyyyyyyy</td>
+                      <td> <input type="radio" name="learn" value="present"></td>
+                      <td> <input type="radio" name="learn" value="absent"></td>
+                      <td> <input type="radio" name="learn" value="la"></td>
+                      <td> <input type="text" name="detail"</td>
+                  </tr>
                   </tbody>
                   
 

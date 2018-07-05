@@ -82,8 +82,6 @@ require_once __DIR__."/controller/teacherSaveListController.php";
                 <th>ชื่อ - สกุล</th>
                 <th>ปีการศึกษา</th>
                 <th>ระดับชั่น</th>
-                <th><?php echo "($d1_day)$d1_ymd" ;?></th>
-                <th><?php echo "($d2_day)$d2_ymd" ;?></th>
                 <th><?php echo "($d3_day)$d3_ymd" ;?></th>
                 <th><?php echo "($d4_day)$d4_ymd" ;?></th>
                 <th><?php echo "($d5_day)$d5_ymd" ;?></th>
@@ -96,8 +94,6 @@ require_once __DIR__."/controller/teacherSaveListController.php";
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
                     <td><?php echo $item['year'];?></td>
                     <td><?php echo $item['class'];?></td>
-                    <td>xx</td>
-                    <td>xx</td>
                     <td>xx</td>
                     <td>xx</td>
                     <td>xx</td>

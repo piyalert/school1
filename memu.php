@@ -7,7 +7,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="height: 550px; overflow-y: scroll;">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" >
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <a class="nav-link" href="index.php">
                     <i class="fa fa-home"></i>

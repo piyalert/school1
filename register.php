@@ -88,12 +88,12 @@ $menuSub = 'register';
             </div>
 
             <?php if($passwordCheck): ?>
-                <input class="text-hide" name="fn" value="insert">
+                <input name="fn" value="insert" hidden>
                 <button class="btn btn-primary btn-block mt-5" type="submit">Register</button>
             <?php else: ?>
 
-                <input class="text-hide" name="fn" value="update">
-                <input class="text-hide" name="id" value="<?php echo $id;?>">
+                <input name="fn" value="update" hidden>
+                <input name="id" value="<?php echo $id;?>" hidden>
                 <button class="btn btn-primary btn-block mt-5" type="submit">Edit</button>
             <?php endif; ?>
         </form>
