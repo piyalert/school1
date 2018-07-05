@@ -1,7 +1,6 @@
 <?php
 date_default_timezone_set("Asia/Bangkok");
 
-
 $SAVELIST = [];
 $menuAction = 'saving';
 $menuSave = isset($_REQUEST['class']) ? $_REQUEST['class'] : 1;

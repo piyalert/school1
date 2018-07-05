@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__."/_session.php";
 
 $menuAction = 'user';
 $menuSub = 'list';

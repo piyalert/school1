@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__."/_session.php";
+
+
 
 $menuAction = 'news';
 require_once __DIR__."/controller/newsController.php";

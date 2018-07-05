@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set("Asia/Bangkok");
+require_once __DIR__."/_session.php";
 
 $menuAction = 'news';
 $year = date("Y");
