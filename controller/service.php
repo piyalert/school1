@@ -170,4 +170,60 @@ elseif ($fn=='updateNews'){
     }
 }
 
+//insert list saving
+elseif ($fn=='insertListSaving'){
+    require_once __DIR__.'/../model/Saving.php';
+    $MS = new Saving();
+
+    $active_user = $MS->input('active_user');
+    $year = $MS->input('year');
+    $list = $MS->input('list');
+    $date = $MS->input('date');
+
+    $result = $MS->insertSavingDepositList($active_user , $year , $date, $list);
+    if($result > 0){
+        echo json_encode([
+            'status'=> true,
+            'message'=> 'Success',
+            'data'=>[]
+        ]);
+        exit;
+    }else{
+        echo json_encode([
+            'status'=> false,
+            'message'=> 'Error',
+            'data'=>[]
+        ]);
+        exit;
+    }
+
+}
+
+//search
+elseif ($fn=='searchUser'){
+    require_once __DIR__."/../model/User.php";
+    $MU = new User();
+    $attr = $MU->input('attr');
+    $value = $MU->input('value');
+
+    $result = $MU->searchAttr($attr,$value);
+    if($result > 0){
+        echo json_encode([
+            'status'=> true,
+            'message'=> 'Success',
+            'data'=>$result
+        ]);
+        exit;
+    }else{
+        echo json_encode([
+            'status'=> false,
+            'message'=> 'Error',
+            'data'=>[]
+        ]);
+        exit;
+    }
+
+
+}
+
 

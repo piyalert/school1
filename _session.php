@@ -12,3 +12,5 @@ date_default_timezone_set("Asia/Bangkok");
 $menuAction = '';
 $menuSub = '';
 $menuCourse='';
+
+$SESSION_user_id = 0;

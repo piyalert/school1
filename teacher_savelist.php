@@ -25,13 +25,13 @@ require_once __DIR__."/controller/teacherSaveListController.php";
 
     <ul class="nav nav-pills breadcrumb">
         <li class="nav-item">
-            <a class="nav-link active" href="teacher_savelist.php">ยอดรวม</a>
+            <a class="nav-link active" href="teacher_savelist.php?class=<?php echo $menuSave; ?>">ยอดรวม</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="teacher_savedeposit.php">ฝากเงิน</a>
+            <a class="nav-link " href="teacher_savedeposit.php?class=<?php echo $menuSave; ?>">ฝากเงิน</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="teacher_savewithdraw.php">ถอนเงิน</a>
+            <a class="nav-link " href="teacher_savewithdraw.php?class=<?php echo $menuSave; ?>">ถอนเงิน</a>
         </li>
     </ul>
 

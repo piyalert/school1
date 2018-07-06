@@ -10,6 +10,7 @@ require_once __DIR__."/_DBPDO.php";
 
 class User extends _DBPDO
 {
+    private $DB = 'user';
 
     function insertUser($input){
         //set parameter
@@ -130,6 +131,34 @@ class User extends _DBPDO
         $sql = "SELECT * FROM user WHERE id=:id";
         $params= array(':id'=> $id);
         $result = $this->query($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+    }
+
+
+    function searchAttr($attr,$value){
+        $this_db = $this->DB;
+        //set parameter
+
+        //connect DB
+        $this->connect();
+        if($attr==''){
+            return [];
+        }
+        elseif ($attr=='id'){
+            $sql = "SELECT * FROM $this_db WHERE id=:id";
+            $params= array(':id'=> $value);
+        }else{
+            $con = " $attr LIKE '%$value%'";
+            $sql = "SELECT * FROM $this_db WHERE $con";
+            $params= array();
+        }
+
+        $result = $this->queryAll($sql,$params);
+
         //close DB
         $this->close();
 

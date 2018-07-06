@@ -74,8 +74,8 @@
                     <span class="nav-link-text">เงินออม</span>
                 </a>
                 <ul class="sidenav-second-level collapse <?php if ($menuAction == 'saving') echo 'show'; ?>" id="collapseMulti3">
-                    <li>
-                        <a href="teacher_deposit.php">ค้นหา</a>
+                    <li class="<?PHP echo ($menuSave == '0') ? 'active' : ''; ?>">
+                        <a href="teacher_savesearch.php">ค้นหา</a>
                     </li>
                     <li class="<?PHP echo ($menuSave == '1') ? 'active' : ''; ?>">
                         <a href="teacher_savelist.php?class=1">ประถมศึกษาปีที่ 1</a>

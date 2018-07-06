@@ -36,6 +36,30 @@ class Saving extends _DBPDO
         }
     }
 
+    function insertSavingDepositList($active_user , $year , $date , $list){
+        $this_db = $this->DB;
+
+        //connect DB
+        $this->connect();
+
+        $list_cut = explode(',',$list);
+        for($i=0;$i<count($list_cut);$i++){
+            $list_box = explode(':',$list_cut[$i]);
+            $user_id = $list_box[0];
+            $balance = $list_box[1];
+
+            $sql = "INSERT INTO $this_db ( user_id, active_user, balance, date_at, year)
+            VALUES ( :user_id , :active_user , :balance , :date_at , :year )";
+            $params = array(':user_id'=>$user_id , ':active_user'=>$active_user, ':balance'=>$balance , ':date_at'=>$date , ':year'=>$year);
+            $lastId = $this->insert($sql,$params);
+
+        }
+
+        //close DB
+        $this->close();
+        return $lastId;
+    }
+
     function editSaving($input , $condition){
         $this_db = $this->DB;
 
@@ -106,22 +130,36 @@ class Saving extends _DBPDO
 
         //connect DB
         $this->connect();
-        $sql = "SELECT us.id, st.class , st.year , us.name , us.surname , sa.* FROM $this_db_student st 
+
+        $sql = "SELECT us.id, st.class , st.year, us.name , us.surname , sav.balance, sav.date_at FROM $this_db_student st 
         LEFT JOIN $this_db_user us ON st.user_id = us.id
-        LEFT JOIN (
-        SELECT user_id , SUM(IF(`event`='deposit',balance,0)) as sum_deposit,
-        SUM(IF(`event`='withdraw',balance,0)) as sum_withdraw FROM $this_db WHERE year = $year
-        GROUP BY user_id
-        ) sa ON us.id = sa.user_id
-        WHERE st.class = $class AND st.year = $year ";
-        $params= array();
+        LEFT JOIN ( SELECT * FROM $this_db s WHERE s.date_at = (SELECT MAX(date_at) FROM $this_db sv WHERE sv.`event`='deposit' AND sv.user_id = s.user_id ) ) AS sav ON sav.user_id = us.id
+        WHERE st.class =:class AND st.year =:year";
+        $params= array(':class'=>$class , ':year'=>$year);
         $result = $this->queryAll($sql,$params);
+
         //close DB
         $this->close();
 
 
         return $result;
 
+    }
+
+    function selectSavingByUserId($user_id=''){
+        $this_db = $this->DB;
+        //set parameter
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT * FROM $this_db WHERE user_id=:user_id ORDER BY date_at DESC";
+        $params= array(':user_id'=> $user_id);
+        $result = $this->queryAll($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
     }
 
 }

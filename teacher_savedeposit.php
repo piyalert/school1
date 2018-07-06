@@ -23,7 +23,7 @@ $this_ymd = $date->format('Y-m-d');
 
 
 
-require_once __DIR__."/controller/teacherSaveListController.php";
+require_once __DIR__."/controller/teacherSaveDepositController.php";
 
 ?>
 
@@ -40,13 +40,13 @@ require_once __DIR__."/controller/teacherSaveListController.php";
 
     <ul class="nav nav-pills breadcrumb">
         <li class="nav-item">
-            <a class="nav-link " href="teacher_savelist.php">ยอดรวม</a>
+            <a class="nav-link " href="teacher_savelist.php?class=<?php echo $menuSave; ?>">ยอดรวม</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="teacher_savedeposit.php">ฝากเงิน</a>
+            <a class="nav-link active" href="teacher_savedeposit.php?class=<?php echo $menuSave; ?>">ฝากเงิน</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="teacher_savewithdraw.php">ถอนเงิน</a>
+            <a class="nav-link " href="teacher_savewithdraw.php?class=<?php echo $menuSave; ?>">ถอนเงิน</a>
         </li>
     </ul>
 
@@ -87,12 +87,12 @@ require_once __DIR__."/controller/teacherSaveListController.php";
                     <td><?php echo ($key+1);?></td>
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
                     <td style="width: 120px;">
-                        <input class="form-control" type="number" value="">
+                        <input class="form-control input-deposit" attr_user_id="<?php echo $item['id']; ?>" type="number" value="">
                     </td>
                     <td><?php echo $item['year'];?></td>
                     <td><?php echo $item['class'];?></td>
-                    <td>2018-05-10</td>
-                    <td>23</td>
+                    <td><?php echo $item['date_at'];?></td>
+                    <td><?php echo $item['balance'];?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -100,12 +100,14 @@ require_once __DIR__."/controller/teacherSaveListController.php";
         </table>
 
         <div class="text-center">
-            <button class="btn btn-success">Save</button>
+            <button class="btn btn-success" onclick="saveDeposit();">Save</button>
+            <button class="btn btn-danger" onclick="clearDeposit();">Clear</button>
         </div>
 
         <div class="value-attr" hidden>
             <input id="input_year" value="<?php echo $UrlYear;?>">
             <input id="input_class" value="<?php echo $menuSave;?>">
+            <input id="input_login_user_id" value="<?php echo $SESSION_user_id;?>">
         </div>
 
     </div>
@@ -137,6 +139,55 @@ require_once __DIR__."/controller/teacherSaveListController.php";
     function changeYMDDeposit() {
         var ymd = $('#input_ymd').val();
         $('#deposit_ymd').html(ymd);
+    }
+
+    function clearDeposit() {
+        $('.input-deposit').val('');
+    }
+
+    function saveDeposit() {
+        var deposit = $('.input-deposit');
+        var input_class = $('#input_class').val();
+        var input_year = $('#input_year').val();
+        var date = $('#deposit_ymd').text();
+        var input_user_login = $('#input_login_user_id').val();
+
+        var list_data = '';
+        var user_id = '';
+        var balance = '';
+        for(var i=0;i<deposit.length;i++){
+            balance  = $(deposit[i]).val();
+            user_id = $(deposit[i]).attr('attr_user_id');
+            if(balance.length>0){
+                if(i==0){
+                    list_data += user_id+":"+balance;
+                }else {
+                    list_data += ","+user_id+":"+balance;
+                }
+            }
+        }
+
+        var req = $.ajax({
+            type: 'POST',
+            url: './controller/service.php',
+            data: {
+                fn: 'insertListSaving',
+                active_user: input_user_login,
+                year: input_year,
+                list: list_data,
+                date: date
+            },
+            dataType: 'JSON'
+        });
+        req.done(function (res) {
+            if(res.status){
+                alert('save data complete...');
+                document.location = "teacher_savedeposit.php?class="+input_class;
+            }else{
+                alert('save data false!!!!');
+            }
+        });
+
     }
 
 
