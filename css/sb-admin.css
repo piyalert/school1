@@ -160,7 +160,7 @@ body.fixed-nav {
     flex-direction: column;
     margin-top: 56px;
   }
-  
+
   #mainNav .navbar-sidenav {
     max-height: none;
     overflow-y: scroll;
