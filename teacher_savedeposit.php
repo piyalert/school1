@@ -73,25 +73,26 @@ require_once __DIR__."/controller/teacherSaveListController.php";
             <tr>
                 <th>#</th>
                 <th>ชื่อ - สกุล</th>
+                <th id="deposit_ymd"><?php echo $this_ymd ;?></th>
                 <th>ปีการศึกษา</th>
                 <th>ระดับชั่น</th>
                 <th>วันที่ฝากล่าสุด</th>
                 <th>เงินฝากล่าสุด</th>
-                <th><?php echo $this_ymd ;?></th>
+
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($SAVELIST as $item): ?>
+            <?php foreach ($SAVELIST as $key=>$item): ?>
                 <tr>
-                    <td><?php echo $item['id'];?></td>
+                    <td><?php echo ($key+1);?></td>
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
+                    <td style="width: 120px;">
+                        <input class="form-control" type="number" value="">
+                    </td>
                     <td><?php echo $item['year'];?></td>
                     <td><?php echo $item['class'];?></td>
                     <td>2018-05-10</td>
                     <td>23</td>
-                    <td>
-                        <input class="form-control" type="number" value="">
-                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -135,7 +136,7 @@ require_once __DIR__."/controller/teacherSaveListController.php";
 
     function changeYMDDeposit() {
         var ymd = $('#input_ymd').val();
-        alert(ymd);
+        $('#deposit_ymd').html(ymd);
     }
 
 

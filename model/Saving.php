@@ -98,4 +98,30 @@ class Saving extends _DBPDO
 
     }
 
+    function selectSavingLastDeposit($year,$class){
+        //set parameter
+        $this_db = $this->DB;
+        $this_db_user = $this->FKUser;
+        $this_db_student = $this->FKStudent;
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT us.id, st.class , st.year , us.name , us.surname , sa.* FROM $this_db_student st 
+        LEFT JOIN $this_db_user us ON st.user_id = us.id
+        LEFT JOIN (
+        SELECT user_id , SUM(IF(`event`='deposit',balance,0)) as sum_deposit,
+        SUM(IF(`event`='withdraw',balance,0)) as sum_withdraw FROM $this_db WHERE year = $year
+        GROUP BY user_id
+        ) sa ON us.id = sa.user_id
+        WHERE st.class = $class AND st.year = $year ";
+        $params= array();
+        $result = $this->queryAll($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+
+    }
+
 }
