@@ -7,129 +7,37 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" >
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <a class="nav-link" href="index.php">
-                    <i class="fa fa-home"></i>
-                    <span class="nav-link-text">หน้าหลัก</span>
-                </a>
+
+        <!-- left menu -->
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion"  <?php echo $SESSION_user_id==0?'hidden':'';?>>
+            <li class="nav-item" >
+                <div class="text-center">
+                    <img src="<?php echo $SESSION_user_img_path;?>" class="img-thumbnail" alt="user image" style="width: 120px; height: 120px;">
+                    <p><a href="/school/register.php?fn=edit&id=<?php echo $SESSION_user_id;?>" style="color: white"><strong><?php echo $SESSION_user_username;?></strong></a></p>
+                </div>
             </li>
 
+            <!-- ข้อมูลทั่วไป -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti1"
                    data-parent="#exampleAccordion">
                     <i class="fa fa-share"></i>
                     <span class="nav-link-text">ข้อมูลทั่วไป</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="collapseMulti1">
-                    <li>
-                        <a href="aboutSchool.php">เกี่ยวกับโรงเรียน</a>
+                <ul class="sidenav-second-level collapse <?php if ($menuAction == 'about') echo 'show'; ?>" id="collapseMulti1">
+                    <li class="<?PHP echo ($menuAbout == 'school') ? 'active' : ''; ?>">
+                        <a href="aboutSchoolEdit.php">เกี่ยวกับโรงเรียน</a>
                     </li>
-                    <li>
-                        <a href="aboutTeacher.php">ข้อมูลครู</a>
+                    <li class="<?PHP echo ($menuAbout == 'teacher') ? 'active' : ''; ?>">
+                        <a href="aboutTeacherEdit.php">ข้อมูลครู</a>
                     </li>
-                    <li>
-                        <a href="aboutItem.php">ข้อมูลครุภัณฑ์</a>
-                    </li>
-                    <li>
-                        <a href="aboutStudent.php">ข้อมูลนักเรียน</a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2"
-                   data-parent="#exampleAccordion">
-                    <i class="fa fa-money"></i>
-                    <span class="nav-link-text">ทะเบียนนักเรียน</span>
-                </a>
-                <ul class="sidenav-second-level collapse <?php if ($menuAction == 'class') echo 'show'; ?>"
-                    id="collapseMulti2">
-                    <li class="<?PHP echo ($menuClass == '1') ? 'active' : ''; ?>">
-                        <a href="teacher_class.php?class=1">ประถมศึกษาปีที่ 1</a>
-                    </li>
-                    <li class="<?PHP echo ($menuClass == '2') ? 'active' : ''; ?>">
-                        <a href="teacher_class.php?class=2">ประถมศึกษาปีที่ 2</a>
-                    </li>
-                    <li class="<?PHP echo ($menuClass == '3') ? 'active' : ''; ?>">
-                        <a href="teacher_class.php?class=3">ประถมศึกษาปีที่ 3</a>
-                    </li>
-                    <li class="<?PHP echo ($menuClass == '4') ? 'active' : ''; ?>">
-                        <a href="teacher_class.php?class=4">ประถมศึกษาปีที่ 4</a>
-                    </li>
-                    <li class="<?PHP echo ($menuClass == '5') ? 'active' : ''; ?>">
-                        <a href="teacher_class.php?class=5">ประถมศึกษาปีที่ 5</a>
-                    </li>
-                    <li class="<?PHP echo ($menuClass == '6') ? 'active' : ''; ?>">
-                        <a href="teacher_class.php?class=6">ประถมศึกษาปีที่ 6</a>
+                    <li class="<?PHP echo ($menuAbout == 'item') ? 'active' : ''; ?>">
+                        <a href="aboutItemEdit.php">ข้อมูลครุภัณฑ์</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti3"
-                   data-parent="#exampleAccordion">
-                    <i class="fa fa-money"></i>
-                    <span class="nav-link-text">เงินออม</span>
-                </a>
-                <ul class="sidenav-second-level collapse <?php if ($menuAction == 'saving') echo 'show'; ?>" id="collapseMulti3">
-                    <li class="<?PHP echo ($menuSave == '0') ? 'active' : ''; ?>">
-                        <a href="teacher_savesearch.php">ค้นหา</a>
-                    </li>
-                    <li class="<?PHP echo ($menuSave == '1') ? 'active' : ''; ?>">
-                        <a href="teacher_savelist.php?class=1">ประถมศึกษาปีที่ 1</a>
-                    </li>
-                    <li class="<?PHP echo ($menuSave == '2') ? 'active' : ''; ?>">
-                        <a href="teacher_savelist.php?class=2">ประถมศึกษาปีที่ 2</a>
-                    </li>
-                    <li class="<?PHP echo ($menuSave == '3') ? 'active' : ''; ?>">
-                        <a href="teacher_savelist.php?class=3">ประถมศึกษาปีที่ 3</a>
-                    </li>
-                    <li class="<?PHP echo ($menuSave == '4') ? 'active' : ''; ?>">
-                        <a href="teacher_savelist.php?class=4">ประถมศึกษาปีที่ 4</a>
-                    </li>
-                    <li class="<?PHP echo ($menuSave == '5') ? 'active' : ''; ?>">
-                        <a href="teacher_savelist.php?class=5">ประถมศึกษาปีที่ 5</a>
-                    </li>
-                    <li class="<?PHP echo ($menuSave == '6') ? 'active' : ''; ?>">
-                        <a href="teacher_savelist.php?class=6">ประถมศึกษาปีที่ 6</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti4"
-                   data-parent="#exampleAccordion">
-                    <i class="fa fa-user-secret"></i>
-                    <span class="nav-link-text">จัดการรายวิชา</span>
-                </a>
-                <ul class="sidenav-second-level collapse <?php if ($menuAction == 'course') echo 'show'; ?>" id="collapseMulti4">
-                    <li class="<?PHP echo ($menuCourse == 'create') ? 'active' : ''; ?>">
-                        <a href="teacher_coursecreate.php">สร้างรายวิชา</a>
-                    </li>
-                    <li class="<?PHP echo ($menuCourse == '1') ? 'active' : ''; ?>">
-                        <a href="teacher_course.php?class=1">ประถมศึกษาปีที่ 1</a>
-                    </li>
-                    <li class="<?PHP echo ($menuCourse == '2') ? 'active' : ''; ?>">
-                        <a href="teacher_course.php?class=2">ประถมศึกษาปีที่ 2</a>
-                    </li>
-                    <li class="<?PHP echo ($menuCourse == '3') ? 'active' : ''; ?>">
-                        <a href="teacher_course.php?class=3">ประถมศึกษาปีที่ 3</a>
-                    </li>
-                    <li class="<?PHP echo ($menuCourse == '4') ? 'active' : ''; ?>">
-                        <a href="teacher_course.php?class=4">ประถมศึกษาปีที่ 4</a>
-                    </li>
-                    <li class="<?PHP echo ($menuCourse == '5') ? 'active' : ''; ?>">
-                        <a href="teacher_course.php?class=5">ประถมศึกษาปีที่ 5</a>
-                    </li>
-                    <li class="<?PHP echo ($menuCourse == '6') ? 'active' : ''; ?>">
-                        <a href="teacher_course.php?class=6">ประถมศึกษาปีที่ 6</a>
-                    </li>
-
-                </ul>
-            </li>
-
+            <!-- จัดการสมาชิก -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages"
                    data-parent="#exampleAccordion">
@@ -162,6 +70,118 @@
                 </ul>
             </li>
 
+            <!-- ทะเบียนนักเรียน -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-link-text">ทะเบียนนักเรียน</span>
+                </a>
+                <ul class="sidenav-second-level collapse <?php if ($menuAction == 'class') echo 'show'; ?>"
+                    id="collapseMulti2">
+                    <li class="<?PHP echo ($menuClass == '10') ? 'active' : ''; ?>">
+                        <a href="teacher_class.php?class=10">อนุบาล 1</a>
+                    </li>
+                    <li class="<?PHP echo ($menuClass == '20') ? 'active' : ''; ?>">
+                        <a href="teacher_class.php?class=20">อนุบาล 2</a>
+                    </li>
+                    <li class="<?PHP echo ($menuClass == '1') ? 'active' : ''; ?>">
+                        <a href="teacher_class.php?class=1">ประถมศึกษาปีที่ 1</a>
+                    </li>
+                    <li class="<?PHP echo ($menuClass == '2') ? 'active' : ''; ?>">
+                        <a href="teacher_class.php?class=2">ประถมศึกษาปีที่ 2</a>
+                    </li>
+                    <li class="<?PHP echo ($menuClass == '3') ? 'active' : ''; ?>">
+                        <a href="teacher_class.php?class=3">ประถมศึกษาปีที่ 3</a>
+                    </li>
+                    <li class="<?PHP echo ($menuClass == '4') ? 'active' : ''; ?>">
+                        <a href="teacher_class.php?class=4">ประถมศึกษาปีที่ 4</a>
+                    </li>
+                    <li class="<?PHP echo ($menuClass == '5') ? 'active' : ''; ?>">
+                        <a href="teacher_class.php?class=5">ประถมศึกษาปีที่ 5</a>
+                    </li>
+                    <li class="<?PHP echo ($menuClass == '6') ? 'active' : ''; ?>">
+                        <a href="teacher_class.php?class=6">ประถมศึกษาปีที่ 6</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- จัดการรายวิชา -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti4"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-server"></i>
+                    <span class="nav-link-text">จัดการรายวิชา</span>
+                </a>
+                <ul class="sidenav-second-level collapse <?php if ($menuAction == 'course') echo 'show'; ?>" id="collapseMulti4">
+                    <li class="<?PHP echo ($menuCourse == 'create') ? 'active' : ''; ?>">
+                        <a href="teacher_coursecreate.php">สร้างรายวิชา</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCourse == '1') ? 'active' : ''; ?>">
+                        <a href="teacher_course.php?class=1">ประถมศึกษาปีที่ 1</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCourse == '2') ? 'active' : ''; ?>">
+                        <a href="teacher_course.php?class=2">ประถมศึกษาปีที่ 2</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCourse == '3') ? 'active' : ''; ?>">
+                        <a href="teacher_course.php?class=3">ประถมศึกษาปีที่ 3</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCourse == '4') ? 'active' : ''; ?>">
+                        <a href="teacher_course.php?class=4">ประถมศึกษาปีที่ 4</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCourse == '5') ? 'active' : ''; ?>">
+                        <a href="teacher_course.php?class=5">ประถมศึกษาปีที่ 5</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCourse == '6') ? 'active' : ''; ?>">
+                        <a href="teacher_course.php?class=6">ประถมศึกษาปีที่ 6</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <!-- เงินออม -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti3"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-money"></i>
+                    <span class="nav-link-text">เงินออม</span>
+                </a>
+                <ul class="sidenav-second-level collapse <?php if ($menuAction == 'saving') echo 'show'; ?>" id="collapseMulti3">
+                    <li class="<?PHP echo ($menuSave == '0') ? 'active' : ''; ?>">
+                        <a href="teacher_savesearch.php">ค้นหา</a>
+                    </li>
+                    <li class="<?PHP echo ($menuSave == '1') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=1">ประถมศึกษาปีที่ 1</a>
+                    </li>
+                    <li class="<?PHP echo ($menuSave == '2') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=2">ประถมศึกษาปีที่ 2</a>
+                    </li>
+                    <li class="<?PHP echo ($menuSave == '3') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=3">ประถมศึกษาปีที่ 3</a>
+                    </li>
+                    <li class="<?PHP echo ($menuSave == '4') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=4">ประถมศึกษาปีที่ 4</a>
+                    </li>
+                    <li class="<?PHP echo ($menuSave == '5') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=5">ประถมศึกษาปีที่ 5</a>
+                    </li>
+                    <li class="<?PHP echo ($menuSave == '6') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=6">ประถมศึกษาปีที่ 6</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- เพิ่มข่าวประกาศ -->
+            <li class="nav-item <?PHP echo ($menuAction == 'news') ? 'active' : ''; ?>" data-toggle="tooltip"
+                data-placement="right" title="Link">
+                <a class="nav-link" href="news.php">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="nav-link-text"> ข่าว/ประกาศ </span>
+                </a>
+            </li>
+
+
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                 <a class="nav-link" href="document.php">
                     <i class="fa fa-server"></i>
@@ -176,16 +196,11 @@
                 </a>
             </li>
 
-            <li class="nav-item <?PHP echo ($menuAction == 'news') ? 'active' : ''; ?>" data-toggle="tooltip"
-                data-placement="right" title="Link">
-                <a class="nav-link" href="news.php">
-                    <i class="fa fa-list-alt"></i>
-                    <span class="nav-link-text">เพิ่มข่าวประกาศ </span>
-                </a>
-            </li>
+
 
         </ul>
 
+        <!-- tab bank -->
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">
                 <a class="nav-link text-center" id="sidenavToggler">
@@ -194,15 +209,41 @@
             </li>
         </ul>
 
-        <ul class="navbar-nav ml-auto">
+        <!-- top menu -->
+        <ul class="navbar-nav">
+            <li class="nav-item  <?php if ($menuAction == 'home') echo 'active'; ?>">
+                <a class="nav-link" href="index.php">
+                    <i class="fa fa-fw fa-home"></i> หน้าหลัก
+                </a>
+            </li>
+            <li class="nav-item <?php if ($menuAction == 'school') echo 'active'; ?>">
+                <a class="nav-link" href="aboutSchool.php">
+                    <i class="fa fa-fw fa-bank"></i> เกี่ยวกับโรงเรียน
+                </a>
+            </li>
+            <li class="nav-item <?php if ($menuAction == 'teacher') echo 'active'; ?>">
+                <a class="nav-link" href="aboutTeacher.php">
+                    <i class="fa fa-fw fa-graduation-cap"></i> ครู
+                </a>
+            </li>
+            <li class="nav-item <?php if ($menuAction == 'item') echo 'active'; ?>">
+                <a class="nav-link" href="aboutItem.php">
+                    <i class="fa fa-fw fa-building-o"></i> ครุภัณฑ์
+                </a>
+            </li>
             <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-fw fa-group"></i> นักเรียน
+                </a>
+            </li>
+        </ul>
+        <!-- log in / out menu -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item" <?php echo $SESSION_user_id == 0 ?'hidden':'';?>>
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                     <i class="fa fa-fw fa-sign-out"></i>ออกจากระบบ</a>
             </li>
-        </ul>
-
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item" <?php echo $SESSION_user_id != 0 ?'hidden':'';?>>
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal2">
                     <i class="fa fa-key"></i>เข้าสู่ระบบ</a>
             </li>
@@ -226,7 +267,7 @@
             <div class="modal-body">ถ้าต้องการออกจากระบบให้กดที่ Logout</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="index.php">Logout</a>
+                <a class="btn btn-primary" href="controller/logoutController.php">Logout</a>
             </div>
         </div>
     </div>

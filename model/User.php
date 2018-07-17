@@ -12,6 +12,22 @@ class User extends _DBPDO
 {
     private $DB = 'user';
 
+    function login($username , $password){
+        //set parameter
+        $this_db = $this->DB;
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT * FROM $this_db WHERE username=:username AND password=:password";
+        $params= array(':username'=> $username , ':password'=> $password);
+        $result = $this->query($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+    }
+
     function insertUser($input){
         //set parameter
         $username = isset($input['username'])?$input['username']:'';

@@ -9,20 +9,7 @@ $year = date("Y");
     <?php include( __DIR__."/head.php"); ?>
 
     <!-- css froala -->
-    <link rel="stylesheet" href="froala/css/froala_editor.css">
-    <link rel="stylesheet" href="froala/css/froala_style.css">
-    <link rel="stylesheet" href="froala/css/plugins/code_view.css">
-    <link rel="stylesheet" href="froala/css/plugins/colors.css">
-    <link rel="stylesheet" href="froala/css/plugins/emoticons.css">
-    <link rel="stylesheet" href="froala/css/plugins/image_manager.css">
-    <link rel="stylesheet" href="froala/css/plugins/image.css">
-    <link rel="stylesheet" href="froala/css/plugins/line_breaker.css">
-    <link rel="stylesheet" href="froala/css/plugins/table.css">
-    <link rel="stylesheet" href="froala/css/plugins/char_counter.css">
-    <link rel="stylesheet" href="froala/css/plugins/video.css">
-    <link rel="stylesheet" href="froala/css/plugins/fullscreen.css">
-    <link rel="stylesheet" href="froala/css/plugins/file.css">
-    <link rel="stylesheet" href="froala/css/plugins/quick_insert.css">
+    <?php include( __DIR__."/_froalaCss.php"); ?>
 
 
 
@@ -108,6 +95,7 @@ $year = date("Y");
 
 
 </div>
+
 </body>
 <footer class="sticky-footer">
     <?php include( __DIR__."/footer.php"); ?>
@@ -115,33 +103,7 @@ $year = date("Y");
 
 
 <!-- froala script -->
-<script type="text/javascript" src="froala/js/froala_editor.min.js" ></script>
-<script type="text/javascript" src="froala/js/plugins/align.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/char_counter.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/code_beautifier.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/code_view.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/colors.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/draggable.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/emoticons.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/entities.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/file.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/font_size.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/font_family.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/fullscreen.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/image.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/image_manager.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/line_breaker.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/inline_style.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/link.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/lists.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/paragraph_format.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/paragraph_style.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/quick_insert.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/quote.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/table.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/save.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/url.min.js"></script>
-<script type="text/javascript" src="froala/js/plugins/video.min.js"></script>
+<?php include( __DIR__."/_froalaScript.php"); ?>
 
 <script>
     $(function() {
@@ -161,7 +123,7 @@ $year = date("Y");
             var cut_type_file = file_name.split('.');
             var file_type = cut_type_file[cut_type_file.length - 1];
             file_type = file_type.toLowerCase();
-            var file_type_set_accept = ["png"];
+            var file_type_set_accept = ["png","jpg"];
             var set_type_upload = "news";
             //console.log(file_type);
 

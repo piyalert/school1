@@ -226,4 +226,73 @@ elseif ($fn=='searchUser'){
 
 }
 
+//about
+elseif ($fn=='insertAbout'){
+    require_once __DIR__.'/../model/About.php';
+    $MA = new About();
+
+    $detail = $MA->input('detail');
+    $type = $MA->input('type');
+    $year = $MA->input('year');
+    if ($year!='')
+        $year = $year>2500?$year-543:$year;
+
+    $input = [
+        'detail'=>$detail,
+        'type'=>$type,
+        'year'=>$year
+    ];
+
+    $result = $MA->insertAbout($input);
+    if($result > 0){
+        echo json_encode([
+            'status'=> true,
+            'message'=> 'Success',
+            'data'=>[]
+        ]);
+        exit;
+    }else{
+        echo json_encode([
+            'status'=> false,
+            'message'=> 'Error',
+            'data'=>[]
+        ]);
+        exit;
+    }
+}
+elseif ($fn=='updateAbout'){
+    require_once __DIR__.'/../model/About.php';
+    $MA = new About();
+
+    $detail = $MA->input('detail');
+    $type = $MA->input('type');
+    $year = $MA->input('year');
+    $id = $MA->input('id');
+    if ($year!='')
+        $year = $year>2500?$year-543:$year;
+
+    $input = [
+        'detail'=>$detail,
+        'type'=>$type,
+        'year'=>$year
+    ];
+
+    $result = $MA->updateAbout($input,['id'=>$id]);
+    if($result > 0){
+        echo json_encode([
+            'status'=> true,
+            'message'=> 'Success',
+            'data'=>[]
+        ]);
+        exit;
+    }else{
+        echo json_encode([
+            'status'=> false,
+            'message'=> 'Error',
+            'data'=>[]
+        ]);
+        exit;
+    }
+}
+
 

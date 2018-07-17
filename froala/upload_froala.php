@@ -10,9 +10,9 @@ header("content-type: application/json;charset=utf-8");
 
 $host = $_SERVER['SERVER_NAME'];
 if($host=='localhost'){
-    $targetFolder = '/froala/upload/';  //for localhost
+    $targetFolder = '/school/froala/upload/';  //for localhost
 }else{
-    $targetFolder = '/B2I/froala/upload/';    //for server
+    $targetFolder = '/school/froala/upload/';    //for server
 }
 
 if (!empty($_FILES)) {

@@ -8,12 +8,12 @@
  */
 require_once __DIR__."/_DBPDO.php";
 
-class News extends _DBPDO
+class About extends _DBPDO
 {
 
-    public $DB = "news";
+    public $DB = "about";
 
-    function insertNews($input){
+    function insertAbout($input){
         $this_db = $this->DB;
 
         $data_sql = $this->convertArrayToInsert($input);
@@ -34,7 +34,7 @@ class News extends _DBPDO
         }
     }
 
-    function updateNews($input , $condition){
+    function updateAbout($input , $condition){
         $this_db = $this->DB;
 
         $data_sql = $this->convertArrayToUpdate($input,$condition);
@@ -54,7 +54,7 @@ class News extends _DBPDO
         }
     }
 
-    function deleteNews($id){
+    function deleteAbout($id){
         $this_db = $this->DB;
         //set parameter
 
@@ -70,23 +70,7 @@ class News extends _DBPDO
         return $rowUpdate;
     }
 
-    function selectAll(){
-        //set parameter
-        $this_db = $this->DB;
-
-        //connect DB
-        $this->connect();
-        $sql = "SELECT * FROM $this_db ORDER BY create_at DESC";
-        $params= array();
-        $result = $this->queryAll($sql,$params);
-        //close DB
-        $this->close();
-
-
-        return $result;
-    }
-
-    function selectNewsId($id){
+    function selectAboutId($id){
         //set parameter
         $this_db = $this->DB;
 
@@ -102,5 +86,35 @@ class News extends _DBPDO
         return $result;
     }
 
+    function selectByTypeYear($type , $year){
+        //set parameter
+        $this_db = $this->DB;
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT * FROM $this_db WHERE type=:type AND year=:year";
+        $params= array(':type'=>$type , ':year'=>$year);
+        $result = $this->query($sql,$params);
+        //close DB
+        $this->close();
+
+        return $result;
+    }
+
+    function selectLast($type){
+        //set parameter
+        $this_db = $this->DB;
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT * FROM $this_db WHERE type=:type ORDER BY year DESC limit 1";
+        $params= array(':type'=>$type);
+        $result = $this->query($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+    }
 
 }

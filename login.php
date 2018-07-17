@@ -1,37 +1,55 @@
+<?php
+require_once __DIR__ . "/_session.php";
+
+require_once __DIR__."/controller/loginController.php";
+?>
+
 <head>
-<?php include( __DIR__."/head.php"); ?>
+    <?php include(__DIR__ . "/head.php"); ?>
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
-  <!-- Navigation-->
-    
-  <div class="container">
-    <div class="card card-login mx-auto mt-5">
-      <div class="card-header">เข้าสู่ระบบ</div>
-      <div class="card-body">
-        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">ชื่อผู้ใช้งาน</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="ชื่อผู้ใช้งาน">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">รหัสผ่าน</label>
-            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="รหัสผ่าน">
-          </div>
-          <div class="form-group">
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox">จดจำรหัสผ่าน</label>
+<body class="fixed-nav sticky-footer bg-dark pb-5 <?php echo $SESSION_user_id == 0 ?'sidenav-toggled':'';?>" id="page-top">
+<!-- Navigation-->
+<?php include(__DIR__ . "/memu.php"); ?>
+
+<div class="container">
+
+    <div class="card card-register mx-auto mt-1">
+        <?php if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong>
+                <p><?php echo $_SESSION['error']; ?></p>
             </div>
-          </div>
-          <a class="btn btn-primary btn-block" href="index.php">เข้าสู่ระบบ</a>
-        </form>
-        <div class="text-center">
-          <a class="d-block small mt-3" href="register.php">Register an Account</a>
-          <a class="d-block small" href="forgot-password.php">Forgot Password?</a>
+            <?php unset($_SESSION['error']);
+        } ?>
+        <div class="card-header text-center"><h3> เข้าสู่ระบบ </h3></div>
+        <div class="card-body">
+            <form method="post">
+
+                <div class="form-group">
+                    <label for="username">ชื่อผู้ใช้งาน</label>
+                    <input class="form-control" name="username" type="text" aria-describedby="nameHelp"
+                           placeholder="ชื่อผู้ใช้งาน" value="" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">รหัสผ่าน</label>
+                    <input class="form-control" name="password" type="password" placeholder="รหัสผ่าน" value=""
+                           required>
+                </div>
+
+                <input name="fn" value="login" hidden>
+                <button class="btn btn-primary btn-block mt-5" type="submit">Log In</button>
+
+            </form>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 </body>
+
+<footer class="sticky-footer">
+    <?php include(__DIR__ . "/footer.php"); ?>
+</footer>
