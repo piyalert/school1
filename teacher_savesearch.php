@@ -1,12 +1,13 @@
 <?php
 require_once __DIR__."/_session.php";
-
+$date = new DateTime();
 
 $menuAction = 'saving';
 $menuSave = 0;
 $UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : 2561;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
-$year = date("Y");
+$UrlYMD = isset($_REQUEST['ymd']) ? $_REQUEST['ymd'] : $date->format('Y-m-d');
+$year = $date->format('Y');
 
 
 
@@ -32,7 +33,8 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
         </li>
     </ul>
 
-    <div class="form-inline" method="post">
+    <!-- search -->
+    <div class="form-inline">
         <div class="form-group ml-5">
             <select class="btn btn-light" name="search_attr" id="search_attr">
                 <option value="name">ชื่อ</option>
@@ -48,7 +50,15 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
 
     <hr>
 
-    <div class="row">
+    <!-- show user name -->
+    <div class="row" <?php echo ($USER_id == 0)?'hidden':''; ?> >
+        <div class="col text-center">
+           <h3> ชื่อ : <strong><?php echo $USER_name.' '.$USER_surname  . ' ('.$USER_username.')';?></strong> </h3>
+        </div>
+    </div>
+
+    <!-- show deposit withdraw -->
+    <div class="row" <?php echo ($USER_id == 0)?'hidden':''; ?> >
         <div class="col-md-6" style="background-color: #D5F5E3;">
             <div class="m-2">
 
@@ -68,18 +78,18 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
 
                     <div class="form-group ml-2">
                         <label class="mr-3" for="deposit_ymd"> วันที่ฝากเงิน </label>
-                        <input class="form-control" id="input_ymd" name="date_at" type="date" value="">
+                        <input class="form-control" id="input_ymd" name="date_at" type="date" value="<?php echo $UrlYMD; ?>" onchange="getDeposit();">
                     </div>
                 </div>
                 <div class="form-inline mt-2">
                     <div class="form-group ml-2">
                         <label class="mr-3" for="deposit_balance"> จำนวนเงินที่ฝาก </label>
-                        <input class="form-control" id="deposit_balance" name="balance" type="number" value="">
+                        <input class="form-control" id="deposit_balance" name="balance" type="number" min="1" value="">
                     </div>
                 </div>
 
                 <div class="text-center mt-2">
-                    <button class="btn btn-success">ฝาก</button>
+                    <button class="btn btn-success" onclick="saveDeposit();">ฝาก</button>
                 </div>
 
 
@@ -104,7 +114,7 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
 
                     <div class="form-group ml-2">
                         <label class="mr-3" for="withdraw_ymd"> วันที่ถอน </label>
-                        <input class="form-control" id="withdraw_ymd" name="date_at" type="date" value="">
+                        <input class="form-control" id="withdraw_ymd" name="date_at" type="date" value="<?php echo $UrlYMD; ?>">
                     </div>
                 </div>
                 <div class="form-inline mt-2">
@@ -115,7 +125,7 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
                 </div>
 
                 <div class="text-center mt-2">
-                    <button class="btn btn-danger">ถอน</button>
+                    <button class="btn btn-danger" onclick="saveWithdraw();">ถอน</button>
                 </div>
 
 
@@ -125,12 +135,13 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
 
     <hr>
 
-    <div class="container-fluid mt-4">
+    <!-- show table list -->
+    <div class="container-fluid mt-4" <?php echo ($USER_id == 0)?'hidden':''; ?> >
         <!-- Card Columns Example Social Feed-->
 
 
         <div class="text-center">
-            <strong>รายการฝากถอน</strong> ยอดเงิน:<span style="color: red">(20)</span>
+            <strong>รายการฝากถอน</strong> ยอดเงิน: <span style="color: red"><strong>(<?php echo $USER_balance;?>)</strong></span>
         </div>
         <table id="table_saving" class="table table-striped table-bordered" style="width:100%;">
             <thead style="font-size: 12px;">
@@ -152,7 +163,15 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
                     <td><?php echo $item['year'];?></td>
                     <td><?php echo $item['event'];?></td>
                     <td><?php echo $item['balance'];?></td>
-                    <td>x</td>
+                    <td>
+                        <form method="post" action="teacher_savesearch.php?id=<?php echo $item['user_id'];?>">
+                            <input name="fn" value="deleteSaving" hidden>
+                            <input name="id_saving" value="<?php echo $item['id'];?>" hidden>
+                            <button class="btn btn-link" type="submit"  style="padding-left: 20px; color: red;">
+                                <i class="fa fa-pencil"></i> delete
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -163,6 +182,7 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
             <input id="input_year" value="<?php echo $UrlYear;?>">
             <input id="input_class" value="<?php echo $menuSave;?>">
             <input id="input_login_user_id" value="<?php echo $SESSION_user_id;?>">
+            <input id="input_balance" value="<?php echo $USER_balance;?>">
         </div>
 
     </div>
@@ -203,6 +223,11 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
         </div>
     </div>
 
+    <!-- attribute -->
+    <div class="text-center" hidden>
+        <input id="input_user_id" name="input_user_id" value="<?php echo $USER_id; ?>">
+        <input id="session_user_id" name="session_user_id" value="<?php echo $SESSION_user_id; ?>">
+    </div>
 
 </body>
 
@@ -268,6 +293,90 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
         $('#modal_user_id').attr('value',$(res).val());
     }
 
+    getDeposit();
+    function getDeposit() {
+        var user_id = $('#input_user_id').val();
+        var ymd = $('#input_ymd').val();
+        var req = $.ajax({
+            type: 'POST',
+            url: './controller/service.php',
+            data: {
+                fn: 'searchSaving',
+                user_id: user_id,
+                date: ymd
+            },
+            dataType: 'JSON'
+        });
+        req.done(function (res) {
+            if(res.status){
+                $('#deposit_balance').val(res.data.balance);
+            }else {
+                $('#deposit_balance').val('');
+            }
+        });
+    }
+
+    function saveDeposit() {
+        var active_user = $('#session_user_id').val();
+        var user_id = $('#input_user_id').val();
+        var ymd = $('#input_ymd').val();
+        var balance = $('#deposit_balance').val();
+        var year = $('#deposit_year').val();
+        var req = $.ajax({
+            type: 'POST',
+            url: './controller/service.php',
+            data: {
+                fn: 'insertSaving',
+                user_id: user_id,
+                active_user: active_user,
+                year: year,
+                balance: balance,
+                ymd: ymd,
+                type: 'deposit'
+            },
+            dataType: 'JSON'
+        });
+        req.done(function (res) {
+            if(res.status){
+                alert('save data complete...');
+                document.location = "teacher_savesearch.php?id="+user_id;
+            }
+        });
+    }
+    function saveWithdraw() {
+        var active_user = $('#session_user_id').val();
+        var user_id = $('#input_user_id').val();
+        var ymd = $('#withdraw_ymd').val();
+        var balance = $('#withdraw_balance').val();
+        var year = $('#withdraw_year').val();
+        var sumBalance = $('#input_balance').val();
+        if(parseInt(balance)> parseInt(sumBalance)){
+            alert("ยอดถอนมากว่ายอดฝาก กรุณาตรวจสอบยอดถอนเงิน!!!!");
+            $('#withdraw_balance').val('');
+        }else{
+            var req = $.ajax({
+                type: 'POST',
+                url: './controller/service.php',
+                data: {
+                    fn: 'insertSaving',
+                    user_id: user_id,
+                    active_user: active_user,
+                    year: year,
+                    balance: balance,
+                    ymd: ymd,
+                    type: 'withdraw'
+                },
+                dataType: 'JSON'
+            });
+            req.done(function (res) {
+                if(res.status){
+                    alert('save data complete...');
+                    document.location = "teacher_savesearch.php?id="+user_id;
+                }
+            });
+        }
+
+    }
 
 
 </script>

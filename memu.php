@@ -150,6 +150,12 @@
                     <li class="<?PHP echo ($menuSave == '0') ? 'active' : ''; ?>">
                         <a href="teacher_savesearch.php">ค้นหา</a>
                     </li>
+                    <li class="<?PHP echo ($menuSave == '10') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=10">อนุบาล 1</a>
+                    </li>
+                    <li class="<?PHP echo ($menuSave == '20') ? 'active' : ''; ?>">
+                        <a href="teacher_savelist.php?class=20">อนุบาล 2</a>
+                    </li>
                     <li class="<?PHP echo ($menuSave == '1') ? 'active' : ''; ?>">
                         <a href="teacher_savelist.php?class=1">ประถมศึกษาปีที่ 1</a>
                     </li>
@@ -167,6 +173,73 @@
                     </li>
                     <li class="<?PHP echo ($menuSave == '6') ? 'active' : ''; ?>">
                         <a href="teacher_savelist.php?class=6">ประถมศึกษาปีที่ 6</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- ผลคะแนน -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Grade">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMultiGrade"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-calculator"></i>
+                    <span class="nav-link-text">ผลคะแนน</span>
+                </a>
+                <ul class="sidenav-second-level collapse <?php if ($menuAction == 'grade') echo 'show'; ?>" id="collapseMultiGrade">
+                    <li class="<?PHP echo ($menuGrade == '0') ? 'active' : ''; ?>">
+                        <a href="#">ค้นหา</a>
+                    </li>
+                    <li class="<?PHP echo ($menuGrade == '10') ? 'active' : ''; ?>">
+                        <a href="#">อนุบาล 1</a>
+                    </li>
+                    <li class="<?PHP echo ($menuGrade == '20') ? 'active' : ''; ?>">
+                        <a href="#">อนุบาล 2</a>
+                    </li>
+                    <li class="<?PHP echo ($menuGrade == '2') ? 'active' : ''; ?>">
+                        <a href="#">ประถมศึกษาปีที่ 2</a>
+                    </li>
+                    <li class="<?PHP echo ($menuGrade == '3') ? 'active' : ''; ?>">
+                        <a href="#">ประถมศึกษาปีที่ 3</a>
+                    </li>
+                    <li class="<?PHP echo ($menuGrade == '4') ? 'active' : ''; ?>">
+                        <a href="#">ประถมศึกษาปีที่ 4</a>
+                    </li>
+                    <li class="<?PHP echo ($menuGrade == '5') ? 'active' : ''; ?>">
+                        <a href="#">ประถมศึกษาปีที่ 5</a>
+                    </li>
+                    <li class="<?PHP echo ($menuGrade == '6') ? 'active' : ''; ?>">
+                        <a href="#">ประถมศึกษาปีที่ 6</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- เข้าเรียน -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Grade">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMultiCheck"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-check-square-o"></i>
+                    <span class="nav-link-text">เช็คชื่อ/เข้าเรียน</span>
+                </a>
+                <ul class="sidenav-second-level collapse <?php if ($menuAction == 'check') echo 'show'; ?>" id="collapseMultiCheck">
+                    <li class="<?PHP echo ($menuCheck == '10') ? 'active' : ''; ?>">
+                        <a href="#">อนุบาล 1</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCheck == '20') ? 'active' : ''; ?>">
+                        <a href="#">อนุบาล 2</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCheck == '2') ? 'active' : ''; ?>">
+                        <a href="#">ประถมศึกษาปีที่ 2</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCheck == '3') ? 'active' : ''; ?>">
+                        <a href="#">ประถมศึกษาปีที่ 3</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCheck == '4') ? 'active' : ''; ?>">
+                        <a href="#">ประถมศึกษาปีที่ 4</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCheck == '5') ? 'active' : ''; ?>">
+                        <a href="#">ประถมศึกษาปีที่ 5</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCheck == '6') ? 'active' : ''; ?>">
+                        <a href="#">ประถมศึกษาปีที่ 6</a>
                     </li>
                 </ul>
             </li>

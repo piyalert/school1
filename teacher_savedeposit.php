@@ -1,22 +1,22 @@
 <?php
 require_once __DIR__."/_session.php";
-
+$date = new DateTime();
 
 $SAVELIST = [];
 $menuAction = 'saving';
 $menuSave = isset($_REQUEST['class']) ? $_REQUEST['class'] : 1;
 $UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : 2561;
+$UrlYMD = isset($_REQUEST['ymd']) ? $_REQUEST['ymd'] : $date->format('Y-m-d');
+
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
 $year = date("Y");
 
 $DAYName = ['-','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์','อาทิตย์'];
 
-$date = new DateTime();
-$interval = new DateInterval('P1D');
-
-$this_day = $DAYName[$date->format('N')];
-$this_ymd = $date->format('Y-m-d');
-
+//$date = new DateTime();
+//$interval = new DateInterval('P1D');
+//$this_day = $DAYName[$date->format('N')];
+//$this_ymd = $date->format('Y-m-d');
 //$date1 = $date->sub($interval);
 //$d4_day = $DAYName[$date->format('N')];
 //$d4_ymd = $date->format('Y-m-d');
@@ -61,7 +61,7 @@ require_once __DIR__."/controller/teacherSaveDepositController.php";
         </div>
         <div class="form-group ml-5">
             <label class="mr-3" for="input_ymd"> วันที่ฝากเงิน </label>
-            <input class="form-control" id="input_ymd" name="input_ymd" type="date" value="<?php echo $this_ymd; ?>" onchange="changeYMDDeposit();">
+            <input class="form-control" id="input_ymd" name="input_ymd" type="date" value="<?php echo $UrlYMD; ?>" onchange="changeYMDDeposit();">
         </div>
     </div>
 
@@ -73,11 +73,8 @@ require_once __DIR__."/controller/teacherSaveDepositController.php";
             <tr>
                 <th>#</th>
                 <th>ชื่อ - สกุล</th>
-                <th id="deposit_ymd"><?php echo $this_ymd ;?></th>
-                <th>ปีการศึกษา</th>
-                <th>ระดับชั่น</th>
-                <th>วันที่ฝากล่าสุด</th>
-                <th>เงินฝากล่าสุด</th>
+                <th id="deposit_ymd"><?php echo $UrlYMD ;?></th>
+                <th>Action</th>
 
             </tr>
             </thead>
@@ -85,14 +82,19 @@ require_once __DIR__."/controller/teacherSaveDepositController.php";
             <?php foreach ($SAVELIST as $key=>$item): ?>
                 <tr>
                     <td><?php echo ($key+1);?></td>
-                    <td><?php echo $item['name'].' '.$item['surname'];?></td>
-                    <td style="width: 120px;">
-                        <input class="form-control input-deposit" attr_user_id="<?php echo $item['id']; ?>" type="number" value="">
+                    <td>
+                        <a href="teacher_savesearch.php?id=<?php echo $item['id'];?>">
+                            <?php echo $item['name'].' '.$item['surname'];?>
+                        </a>
                     </td>
-                    <td><?php echo $item['year'];?></td>
-                    <td><?php echo $item['class'];?></td>
-                    <td><?php echo $item['date_at'];?></td>
-                    <td><?php echo $item['balance'];?></td>
+                    <td style="width: 120px;">
+                        <input class="form-control input-deposit" attr_user_id="<?php echo $item['id']; ?>" type="number" value="<?php echo $item['balance'];?>">
+                    </td>
+                    <td>
+                        <a class="btn btn-link" role="button" href="teacher_savesearch.php?id=<?php echo $item['id'];?>" style="color: #DF7401;">
+                            <i class="fa fa-pencil"></i> Edit
+                        </a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -137,8 +139,10 @@ require_once __DIR__."/controller/teacherSaveDepositController.php";
     }
 
     function changeYMDDeposit() {
+        var input_class = $('#input_class').val();
+        var input_year = $('#input_year').val();
         var ymd = $('#input_ymd').val();
-        $('#deposit_ymd').html(ymd);
+        document.location = "teacher_savedeposit.php?class="+input_class+"&year="+input_year+"&ymd="+ymd;
     }
 
     function clearDeposit() {
@@ -182,7 +186,7 @@ require_once __DIR__."/controller/teacherSaveDepositController.php";
         req.done(function (res) {
             if(res.status){
                 alert('save data complete...');
-                document.location = "teacher_savedeposit.php?class="+input_class;
+                document.location = "teacher_savedeposit.php?class="+input_class+"&year="+input_year+"&ymd="+date;
             }else{
                 alert('save data false!!!!');
             }

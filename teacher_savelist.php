@@ -54,8 +54,6 @@ require_once __DIR__."/controller/teacherSaveListController.php";
             <tr>
                 <th>#</th>
                 <th>ชื่อ - สกุล</th>
-                <th>ปีการศึกษา</th>
-                <th>ระดับชั่น</th>
                 <th>ยอดฝาก</th>
                 <th>ยอดถอน</th>
                 <th>ยอดคงเหลือ</th>
@@ -65,9 +63,11 @@ require_once __DIR__."/controller/teacherSaveListController.php";
             <?php foreach ($SAVELIST as $item): ?>
                 <tr>
                     <td><?php echo $item['id'];?></td>
-                    <td><?php echo $item['name'].' '.$item['surname'];?></td>
-                    <td><?php echo $item['year'];?></td>
-                    <td><?php echo $item['class'];?></td>
+                    <td>
+                        <a href="teacher_savesearch.php?id=<?php echo $item['id'];?>">
+                        <?php echo $item['name'].' '.$item['surname'];?>
+                        </a>
+                    </td>
                     <td><?php echo $item['sum_deposit'];?></td>
                     <td><?php echo $item['sum_withdraw'];?></td>
                     <td><?php echo $item['sum_deposit']-$item['sum_withdraw'];?></td>

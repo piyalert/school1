@@ -15,6 +15,8 @@ $menuCourse='';
 $menuClass = '';
 $menuSave = '';
 $menuAbout = '';
+$menuGrade = '';
+$menuCheck = '';
 
 
 $SESSION_user_id = isset($_SESSION['id'])?$_SESSION['id']:0;

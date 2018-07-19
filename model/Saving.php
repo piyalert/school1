@@ -48,11 +48,47 @@ class Saving extends _DBPDO
             $user_id = $list_box[0];
             $balance = $list_box[1];
 
-            $sql = "INSERT INTO $this_db ( user_id, active_user, balance, date_at, year)
-            VALUES ( :user_id , :active_user , :balance , :date_at , :year )";
-            $params = array(':user_id'=>$user_id , ':active_user'=>$active_user, ':balance'=>$balance , ':date_at'=>$date , ':year'=>$year);
-            $lastId = $this->insert($sql,$params);
+            $sql = "SELECT * FROM $this_db WHERE user_id=:user_id AND date_at=:date_at";
+            $params = array(':user_id'=>$user_id,'date_at'=>$date);
+            $result = $this->query($sql,$params);
 
+            if(isset($result['id'])){
+                $sql = "UPDATE $this_db SET balance=:balance WHERE user_id=:user_id AND date_at=:date_at";
+                $params = array(':balance'=>$balance,':user_id'=>$user_id,'date_at'=>$date);
+                $lastId = $this->update($sql,$params);
+            }else{
+                $sql = "INSERT INTO $this_db ( user_id, active_user, balance, date_at, year)
+                VALUES ( :user_id , :active_user , :balance , :date_at , :year )";
+                $params = array(':user_id'=>$user_id , ':active_user'=>$active_user, ':balance'=>$balance , ':date_at'=>$date , ':year'=>$year);
+                $lastId = $this->insert($sql,$params);
+            }
+
+        }
+
+        //close DB
+        $this->close();
+        return $lastId;
+    }
+
+    function insertUpdateSaving($active_user , $user_id , $year , $ymd , $balance , $type ){
+        $this_db = $this->DB;
+
+        //connect DB
+        $this->connect();
+
+        $sql = "SELECT * FROM $this_db WHERE user_id=:user_id AND date_at=:date_at";
+        $params = array(':user_id'=>$user_id,'date_at'=>$ymd);
+        $result = $this->query($sql,$params);
+
+        if(isset($result['id'])){
+            $sql = "UPDATE $this_db SET balance=:balance WHERE user_id=:user_id AND date_at=:date_at";
+            $params = array(':balance'=>$balance,':user_id'=>$user_id,'date_at'=>$ymd);
+            $lastId = $this->update($sql,$params);
+        }else{
+            $sql = "INSERT INTO $this_db ( user_id, active_user, balance, date_at, year , event)
+                VALUES ( :user_id , :active_user , :balance , :date_at , :year , :event )";
+            $params = array(':user_id'=>$user_id , ':active_user'=>$active_user, ':balance'=>$balance , ':date_at'=>$ymd , ':year'=>$year , ':event'=>$type);
+            $lastId = $this->insert($sql,$params);
         }
 
         //close DB
@@ -122,6 +158,31 @@ class Saving extends _DBPDO
 
     }
 
+    function selectSavingBalanceAll($year,$class){
+        //set parameter
+        $this_db = $this->DB;
+        $this_db_user = $this->FKUser;
+        $this_db_student = $this->FKStudent;
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT us.id, st.class , st.year , us.name , us.surname , sa.* FROM $this_db_student st 
+        LEFT JOIN $this_db_user us ON st.user_id = us.id
+        LEFT JOIN (
+        SELECT user_id , SUM(IF(`event`='deposit',balance,0)) as sum_deposit,
+        SUM(IF(`event`='withdraw',balance,0)) as sum_withdraw FROM $this_db GROUP BY user_id
+        ) sa ON us.id = sa.user_id
+        WHERE st.class = $class AND st.year = $year ";
+        $params= array();
+        $result = $this->queryAll($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+
+    }
+
     function selectSavingLastDeposit($year,$class){
         //set parameter
         $this_db = $this->DB;
@@ -146,6 +207,49 @@ class Saving extends _DBPDO
 
     }
 
+    function selectSavingYMDDeposit($year,$class,$ymd){
+        //set parameter
+        $this_db = $this->DB;
+        $this_db_user = $this->FKUser;
+        $this_db_student = $this->FKStudent;
+
+        //connect DB
+        $this->connect();
+
+        $sql = "SELECT us.id, st.class , st.year, us.name , us.surname , sav.balance, sav.date_at FROM $this_db_student st 
+        LEFT JOIN $this_db_user us ON st.user_id = us.id
+        LEFT JOIN ( SELECT * FROM $this_db s WHERE s.event='deposit' AND s.date_at =:ymd ) AS sav ON sav.user_id = us.id
+        WHERE st.class =:class AND st.year =:year";
+        $params= array(':ymd'=>$ymd, ':class'=>$class , ':year'=>$year);
+        $result = $this->queryAll($sql,$params);
+
+        //close DB
+        $this->close();
+
+
+        return $result;
+
+    }
+
+    function selectSavingYMDUserId($user_id , $ymd){
+        //set parameter
+        $this_db = $this->DB;
+
+        //connect DB
+        $this->connect();
+
+        $sql = "SELECT * FROM $this_db WHERE user_id =:user_id AND date_at =:ymd";
+        $params= array('user_id'=>$user_id ,':ymd'=>$ymd);
+        $result = $this->query($sql,$params);
+
+        //close DB
+        $this->close();
+
+
+        return $result;
+
+    }
+
     function selectSavingByUserId($user_id=''){
         $this_db = $this->DB;
         //set parameter
@@ -155,6 +259,24 @@ class Saving extends _DBPDO
         $sql = "SELECT * FROM $this_db WHERE user_id=:user_id ORDER BY date_at DESC";
         $params= array(':user_id'=> $user_id);
         $result = $this->queryAll($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+    }
+
+    function selectTotalSavingByUserId($user_id=''){
+        $this_db = $this->DB;
+        //set parameter
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT user_id , SUM(IF(`event`='deposit',balance,0)) as sum_deposit,
+        SUM(IF(`event`='withdraw',balance,0)) as sum_withdraw FROM $this_db WHERE user_id = :user_id
+        GROUP BY user_id";
+        $params= array(':user_id'=> $user_id);
+        $result = $this->query($sql,$params);
         //close DB
         $this->close();
 

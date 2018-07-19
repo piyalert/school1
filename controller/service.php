@@ -198,6 +198,74 @@ elseif ($fn=='insertListSaving'){
     }
 
 }
+elseif ($fn=='insertSaving'){
+    require_once __DIR__.'/../model/Saving.php';
+    $MS = new Saving();
+
+    $user_id = $MS->input('user_id');
+    $active_user = $MS->input('active_user');
+    $year = $MS->input('year');
+    $balance = $MS->input('balance');
+    $ymd = $MS->input('ymd');
+    $type = $MS->input('type');
+
+    if ($type=='withdraw'){
+        $input = [
+            'user_id'=>$user_id,
+            'active_user'=>$active_user,
+            'event'=>$type,
+            'balance'=>$balance,
+            'year'=>$year,
+            'date_at'=>$ymd
+        ];
+        $result = $MS->insertSaving($input);
+    }else{
+        $result = $MS->insertUpdateSaving($active_user , $user_id , $year , $ymd , $balance , $type );
+    }
+
+
+    if($result > 0){
+        echo json_encode([
+            'status'=> true,
+            'message'=> 'Success',
+            'data'=>[]
+        ]);
+        exit;
+    }else{
+        echo json_encode([
+            'status'=> false,
+            'message'=> 'Error',
+            'data'=>[]
+        ]);
+        exit;
+    }
+
+}
+elseif ($fn=='searchSaving') {
+    require_once __DIR__ . '/../model/Saving.php';
+    $MS = new Saving();
+
+    $user_id = $MS->input('user_id');
+    $date = $MS->input('date');
+
+    $result = $MS->selectSavingYMDUserId($user_id,$date);
+    if (isset($result['id'])) {
+        echo json_encode([
+            'status' => true,
+            'message' => 'Success',
+            'data' => $result
+        ]);
+        exit;
+    } else {
+        echo json_encode([
+            'status' => false,
+            'message' => 'Error',
+            'data' => []
+        ]);
+
+    }
+}
+
 
 //search
 elseif ($fn=='searchUser'){

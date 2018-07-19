@@ -12,7 +12,7 @@ $MS = new Saving();
 $SAVELIST = [];
 
 
-$result = $MS->selectSavingLastDeposit($UrlYear,$menuSave);
+$result = $MS->selectSavingYMDDeposit($UrlYear,$menuSave,$UrlYMD);
 if(count($result)>0){
     $SAVELIST=$result;
 }
