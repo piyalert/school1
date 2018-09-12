@@ -7,6 +7,7 @@ $menuGrade = isset($_REQUEST['class']) ? $_REQUEST['class'] : 1;
 
 $UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : $SCHOOL_YEAR;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
+$year = date("Y");
 
 if ($menuGrade == 10) {
     $className = "อนุบาล 1";
@@ -15,6 +16,9 @@ if ($menuGrade == 10) {
 } else {
     $className = "ชั้นประถมศึกษาปีที่ " . $menuGrade;
 }
+
+
+require_once __DIR__."/controller/teacherScoreController.php";
 
 ?>
 
@@ -34,7 +38,7 @@ if ($menuGrade == 10) {
             <h2><i class="fa fa-calculator"></i> เกรด <small> <?php echo $className; ?> </small> </h2></div>
         <hr class="mt-2">
 
-        <div class="form-inline">
+        <div class="form-inline mb-5">
             <div class="form-group ml-5">
                 <label class="mr-3" for="input_year" > ปีการศึกษา </label>
                 <select class="form-control" id="input_year" name="year" onchange="">
@@ -44,6 +48,38 @@ if ($menuGrade == 10) {
                 </select>
             </div>
         </div>
+
+        <!-- Card Columns Example Social Feed-->
+        <table class="table table-striped table-bordered dataTable" style="width:100%;">
+            <thead style="font-size: 12px;">
+            <tr>
+                <th>#</th>
+                <th>ชื่อ สกุล</th>
+                <?php foreach ($HEADER as $item): ?>
+                    <th><?=$item['name']?></th>
+                <?php endforeach; ?>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($STUDENT as $key=>$item): ?>
+                <tr>
+                    <td><?php echo ($key+1);?></td>
+                    <td><?php echo $item['name'].' '.$item['surname'];?></td>
+
+                    <?php foreach ($item['grade'] as $i): ?>
+                        <th><?php echo $i;?></th>
+                    <?php endforeach; ?>
+
+                    <td>
+                        <a href="teacher_score_edit.php?uid=<?php echo $item['user_id'];?>&y=<?php echo $item['year'];?>&c=<?php echo $item['class'];?>">
+                            <i class="fa fa-pencil"></i> edit
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
 
 
     </div>
@@ -55,3 +91,9 @@ if ($menuGrade == 10) {
 <footer class="sticky-footer">
     <?php include(__DIR__ . "/footer.php"); ?>
 </footer>
+
+<script>
+    $(document).ready(function() {
+        $('.dataTable').DataTable();
+    } );
+</script>
