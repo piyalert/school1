@@ -1,3 +1,8 @@
+<?php
+require_once __DIR__."/_session.php";
+
+?>
+
 <head>
 <?php include( __DIR__."/head.php"); ?>
 </head>

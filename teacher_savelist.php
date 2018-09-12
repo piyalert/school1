@@ -4,7 +4,7 @@ require_once __DIR__.'/_session.php';
 $SAVELIST = [];
 $menuAction = 'saving';
 $menuSave = isset($_REQUEST['class']) ? $_REQUEST['class'] : 1;
-$UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : 2561;
+$UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : $SCHOOL_YEAR;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
 $year = date("Y");
 

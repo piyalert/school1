@@ -10,11 +10,6 @@ $MS = new Saving();
 
 $SAVELIST = [];
 
-
-
-
-
-
 $result = $MS->selectSavingBalance($UrlYear,$menuSave);
 if(count($result)>0){
     $SAVELIST=$result;

@@ -231,15 +231,15 @@ class Saving extends _DBPDO
 
     }
 
-    function selectSavingYMDUserId($user_id , $ymd){
+    function selectSavingYMDUserId($user_id , $ymd , $event='deposit'){
         //set parameter
         $this_db = $this->DB;
 
         //connect DB
         $this->connect();
 
-        $sql = "SELECT * FROM $this_db WHERE user_id =:user_id AND date_at =:ymd";
-        $params= array('user_id'=>$user_id ,':ymd'=>$ymd);
+        $sql = "SELECT * FROM $this_db WHERE user_id =:user_id AND date_at =:ymd AND event =:event";
+        $params= array('user_id'=>$user_id ,':ymd'=>$ymd , ':event'=>$event);
         $result = $this->query($sql,$params);
 
         //close DB

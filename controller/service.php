@@ -363,4 +363,31 @@ elseif ($fn=='updateAbout'){
     }
 }
 
+//check name
+elseif ($fn=='insertListCheck'){
+    require_once __DIR__.'/../model/Check.php';
+    $MC = new Check();
+
+    $date = $MC->input('date');
+    $year = $MC->input('year');
+    $list = $MC->input('list');
+
+    $result = $MC->insertUpdateCheckList($year,$date,$list);
+    if($result > 0){
+        echo json_encode([
+            'status'=> true,
+            'message'=> 'Success',
+            'data'=>[]
+        ]);
+        exit;
+    }else{
+        echo json_encode([
+            'status'=> false,
+            'message'=> 'Error',
+            'data'=>[]
+        ]);
+        exit;
+    }
+}
+
 

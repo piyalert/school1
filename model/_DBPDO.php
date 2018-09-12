@@ -189,6 +189,28 @@ class _DBPDO
         }
     }
 
+    function convertArrayToCondition($where){
+        $check_first = true;
+        $value= " WHERE ";
+        foreach ($where as $k=>$item){
+            if($item!=""){
+                $params[':'.$k]=$item;
+                if($check_first){
+                    $check_first = !$check_first;
+                    $value.=" ".$k."=:".$k;
+                }else{
+                    $value.=" AND ".$k."=:".$k;
+                }
+            }
+        }
+
+        if(count($params) > 0 && !$check_first){
+            return ["value"=>$value,"params"=>$params];
+        }else{
+            return ["value"=>"" , "params"=>[]];
+        }
+    }
+
     function input($attr , $default=''){
         return isset($_REQUEST[$attr])?$_REQUEST[$attr]:$default;
     }

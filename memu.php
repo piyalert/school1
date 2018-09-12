@@ -52,21 +52,21 @@
                     <li class="<?PHP echo ($menuSub == 'register') ? 'active' : ''; ?>">
                         <a href="register.php">เพิ่มสมาชิก</a>
                     </li>
-                    <li>
-                        <a href="teacher_managestudent.php">จัดการผู้เรียน</a>
-                    </li>
-                    <li>
-                        <a href="teacher_checkname.php">เช็คชื่อเข้าเรียน</a>
-                    </li>
-                    <li>
-                        <a href="teacher_inputscore.php">กรอกคะแนน</a>
-                    </li>
-                    <li>
-                        <a href="teacher_name.php">ข้อมูลการเข้าเรียน</a>
-                    </li>
-                    <li>
-                        <a href="teacher_score.php">ผลการเรียน</a>
-                    </li>
+<!--                    <li>-->
+<!--                        <a href="teacher_managestudent.php">จัดการผู้เรียน</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="teacher_checkname.php">เช็คชื่อเข้าเรียน</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="teacher_inputscore.php">กรอกคะแนน</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="teacher_name.php">ข้อมูลการเข้าเรียน</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="teacher_score.php">ผลการเรียน</a>-->
+<!--                    </li>-->
                 </ul>
             </li>
 
@@ -189,25 +189,28 @@
                         <a href="#">ค้นหา</a>
                     </li>
                     <li class="<?PHP echo ($menuGrade == '10') ? 'active' : ''; ?>">
-                        <a href="#">อนุบาล 1</a>
+                        <a href="teacher_score.php?class=10">อนุบาล 1</a>
                     </li>
                     <li class="<?PHP echo ($menuGrade == '20') ? 'active' : ''; ?>">
-                        <a href="#">อนุบาล 2</a>
+                        <a href="teacher_score.php?class=20">อนุบาล 2</a>
+                    </li>
+                    <li class="<?PHP echo ($menuGrade == '1') ? 'active' : ''; ?>">
+                        <a href="teacher_score.php?class=1">ประถมศึกษาปีที่ 1</a>
                     </li>
                     <li class="<?PHP echo ($menuGrade == '2') ? 'active' : ''; ?>">
-                        <a href="#">ประถมศึกษาปีที่ 2</a>
+                        <a href="teacher_score.php?class=2">ประถมศึกษาปีที่ 2</a>
                     </li>
                     <li class="<?PHP echo ($menuGrade == '3') ? 'active' : ''; ?>">
-                        <a href="#">ประถมศึกษาปีที่ 3</a>
+                        <a href="teacher_score.php?class=3">ประถมศึกษาปีที่ 3</a>
                     </li>
                     <li class="<?PHP echo ($menuGrade == '4') ? 'active' : ''; ?>">
-                        <a href="#">ประถมศึกษาปีที่ 4</a>
+                        <a href="teacher_score.php?class=4">ประถมศึกษาปีที่ 4</a>
                     </li>
                     <li class="<?PHP echo ($menuGrade == '5') ? 'active' : ''; ?>">
-                        <a href="#">ประถมศึกษาปีที่ 5</a>
+                        <a href="teacher_score.php?class=5">ประถมศึกษาปีที่ 5</a>
                     </li>
                     <li class="<?PHP echo ($menuGrade == '6') ? 'active' : ''; ?>">
-                        <a href="#">ประถมศึกษาปีที่ 6</a>
+                        <a href="teacher_score.php?class=6">ประถมศึกษาปีที่ 6</a>
                     </li>
                 </ul>
             </li>
@@ -221,25 +224,28 @@
                 </a>
                 <ul class="sidenav-second-level collapse <?php if ($menuAction == 'check') echo 'show'; ?>" id="collapseMultiCheck">
                     <li class="<?PHP echo ($menuCheck == '10') ? 'active' : ''; ?>">
-                        <a href="#">อนุบาล 1</a>
+                        <a href="teacher_checkname.php?class=10">อนุบาล 1</a>
                     </li>
                     <li class="<?PHP echo ($menuCheck == '20') ? 'active' : ''; ?>">
-                        <a href="#">อนุบาล 2</a>
+                        <a href="teacher_checkname.php?class=20">อนุบาล 2</a>
+                    </li>
+                    <li class="<?PHP echo ($menuCheck == '1') ? 'active' : ''; ?>">
+                        <a href="teacher_checkname.php?class=1">ประถมศึกษาปีที่ 1</a>
                     </li>
                     <li class="<?PHP echo ($menuCheck == '2') ? 'active' : ''; ?>">
-                        <a href="#">ประถมศึกษาปีที่ 2</a>
+                        <a href="teacher_checkname.php?class=2">ประถมศึกษาปีที่ 2</a>
                     </li>
                     <li class="<?PHP echo ($menuCheck == '3') ? 'active' : ''; ?>">
-                        <a href="#">ประถมศึกษาปีที่ 3</a>
+                        <a href="teacher_checkname.php?class=3">ประถมศึกษาปีที่ 3</a>
                     </li>
                     <li class="<?PHP echo ($menuCheck == '4') ? 'active' : ''; ?>">
-                        <a href="#">ประถมศึกษาปีที่ 4</a>
+                        <a href="teacher_checkname.php?class=4">ประถมศึกษาปีที่ 4</a>
                     </li>
                     <li class="<?PHP echo ($menuCheck == '5') ? 'active' : ''; ?>">
-                        <a href="#">ประถมศึกษาปีที่ 5</a>
+                        <a href="teacher_checkname.php?class=5">ประถมศึกษาปีที่ 5</a>
                     </li>
                     <li class="<?PHP echo ($menuCheck == '6') ? 'active' : ''; ?>">
-                        <a href="#">ประถมศึกษาปีที่ 6</a>
+                        <a href="teacher_checkname.php?class=6">ประถมศึกษาปีที่ 6</a>
                     </li>
                 </ul>
             </li>
@@ -255,19 +261,19 @@
 
 
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <a class="nav-link" href="document.php">
-                    <i class="fa fa-server"></i>
-                    <span class="nav-link-text">ดาวโหลดเอกสาร</span>
-                </a>
-            </li>
-
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-                <a class="nav-link" href="link.php">
-                    <i class="fa fa-fw fa-link"></i>
-                    <span class="nav-link-text">เว็บไซต์ที่เกี่ยวข้อง </span>
-                </a>
-            </li>
+<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">-->
+<!--                <a class="nav-link" href="document.php">-->
+<!--                    <i class="fa fa-server"></i>-->
+<!--                    <span class="nav-link-text">ดาวโหลดเอกสาร</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!---->
+<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">-->
+<!--                <a class="nav-link" href="link.php">-->
+<!--                    <i class="fa fa-fw fa-link"></i>-->
+<!--                    <span class="nav-link-text">เว็บไซต์ที่เกี่ยวข้อง </span>-->
+<!--                </a>-->
+<!--            </li>-->
 
 
 

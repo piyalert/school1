@@ -8,6 +8,9 @@
 
 session_start();
 date_default_timezone_set("Asia/Bangkok");
+$ARR_MONTH = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน ','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+
+$SCHOOL_YEAR = '2561';
 
 $menuAction = '';
 $menuSub = '';
