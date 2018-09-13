@@ -131,11 +131,11 @@ elseif ($fn=='update'){
     ];
     $result = $modelUser->updateUser($input);
     if($result>0){
-        header("Location: /userManage.php");
+        header("Location: /school/userManage.php");
         exit();
     }else{
         $_SESSION['error']="Unable to Edit User!!!!";
-        header("Location: /register.php?fn=edit&id=".$id);
+        header("Location: /school/register.php?fn=edit&id=".$id);
         exit();
     }
 }
