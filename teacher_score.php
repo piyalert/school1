@@ -72,7 +72,7 @@ require_once __DIR__."/controller/teacherScoreController.php";
                     <?php endforeach; ?>
 
                     <td>
-                        <a href="teacher_score_edit.php?uid=<?php echo $item['user_id'];?>&y=<?php echo $item['year'];?>&c=<?php echo $item['class'];?>">
+                        <a href="teacher_score_edit.php?sid=<?php echo $item['id'];?>&y=<?php echo $item['year'];?>&c=<?php echo $item['class'];?>">
                             <i class="fa fa-pencil"></i> edit
                         </a>
                     </td>

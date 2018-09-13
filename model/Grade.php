@@ -172,5 +172,60 @@ class Grade extends _DBPDO
         return $dataReturn;
     }
 
+    function selectGradeByStudentId($year , $class , $student_id){
+        //set parameter
+        $this_db = $this->DB;
+        $this_db_user = $this->FKUser;
+        $this_db_student = $this->FKStudent;
+        $this_db_course = $this->FKCourse;
+        $this_db_subject = $this->FKSubject;
+
+        //connect DB
+        $this->connect();
+
+
+        //student in class
+        $sql = "select u.name , u.surname , s.* from $this_db_student s  left join $this_db_user u on s.user_id = u.id where s.class=:class and s.year=:year and s.id=:student_id";
+        $params = [':class'=>$class, ':year'=>$year , ':student_id'=>$student_id];
+        $arrStudent = $this->query($sql,$params);
+
+        //subject in class
+        $sql = "select s.name , s.detail , c.* from $this_db_course c  left join $this_db_subject s on c.subject_id = s.id where c.classroom =:class and c.year =:year";
+        $params = [':class'=>$class, ':year'=>$year];
+        $arrSubject = $this->queryAll($sql,$params);
+
+        //grade
+        $sql = "select g.* from $this_db g left join $this_db_course c on g.course_id = c.id where c.year =:year and c.classroom=:class and student_id=:student_id";
+        $params = [':class'=>$class, ':year'=>$year  , ':student_id'=>$student_id];
+        $arrGrade = $this->queryAll($sql,$params);
+        $listGrade = [];
+        foreach ($arrGrade as $item){
+            $key = $item['course_id'];
+            $listGrade[$key]= $item;
+        }
+
+        //student grade
+        foreach ($arrSubject as $k=>$item){
+            $key =  $item['id'];
+            if(isset($listGrade[$key])){
+                $arrSubject[$k]['grade'] = $listGrade[$key];
+            }else{
+                $arrSubject[$k]['grade'] = '';
+            }
+
+        }
+
+
+
+        //close DB
+        $this->close();
+
+        $dataReturn = [
+            'student'=>$arrStudent,
+            'grade'=>$arrSubject
+        ];
+        return $dataReturn;
+    }
+
 
 }

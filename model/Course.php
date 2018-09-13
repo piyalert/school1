@@ -113,7 +113,7 @@ class Course extends _DBPDO
 
         //connect DB
         $this->connect();
-        $sql = "SELECT c.`*` , s.name , s.detail FROM $this_db AS c
+        $sql = "SELECT c.* , s.name , s.detail FROM $this_db AS c
         LEFT JOIN $this_fk AS s ON c.subject_id = s.id
         WHERE c.classroom =:class AND c.year =:year ";
         $params= array(':class'=>$class , ':year'=>$year);
