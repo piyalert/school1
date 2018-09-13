@@ -70,6 +70,45 @@ class Grade extends _DBPDO
 
         return $rowUpdate;
     }
+    function insertUpdateThis($input , $condition){
+        //set parameter
+        $this_db = $this->DB;
+        $lastId = 0;
+
+        //connect DB
+        $this->connect();
+
+        //condition
+        $data_sql = $this->convertArrayToCondition($condition);
+        $sql_value = $data_sql['value'];
+        $params = $data_sql['params'];
+        $sql = "SELECT * FROM $this_db ".$sql_value;
+        $result = $this->query($sql,$params);
+        if(isset($result['id'])){
+            $data_sql = $this->convertArrayToUpdate($input,$condition);;
+            if(count($data_sql)>0){
+                $sql_value = $data_sql['value'];
+                $sql = "UPDATE $this_db $sql_value";
+                $params = $data_sql['params'];
+                $lastId = $this->update($sql,$params);
+            }
+        }else{
+            $data_sql = $this->convertArrayToInsert($input);
+            if(count($data_sql)>0){
+                $sql_value = $data_sql['value'];
+                $sql = "INSERT INTO $this_db $sql_value";
+                $params = $data_sql['params'];
+                $lastId = $this->insert($sql,$params);
+            }
+        }
+
+
+        //close DB
+        $this->close();
+
+        return $lastId;
+
+    }
     function selectThis($condition){
         //set parameter
         $this_db = $this->DB;
@@ -141,7 +180,7 @@ class Grade extends _DBPDO
         $listGrade = [];
         foreach ($arrGrade as $item){
             $key = $item['course_id'].''.$item['student_id'];
-            $listGrade[$key]= $item;
+            $listGrade[$key]= $item['score'];
         }
 
         //student grade
@@ -201,7 +240,7 @@ class Grade extends _DBPDO
         $listGrade = [];
         foreach ($arrGrade as $item){
             $key = $item['course_id'];
-            $listGrade[$key]= $item;
+            $listGrade[$key]= $item['score'];
         }
 
         //student grade

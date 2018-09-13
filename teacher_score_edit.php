@@ -48,10 +48,10 @@ require_once __DIR__."/controller/teacherScoreEditController.php";
                     <?php foreach ($GRADE as $key=>$item): ?>
 
                         <div class="form-group row">
-                            <label for="subject<?php echo $key;?>" class="col-sm-4 col-form-label text-right"><?php echo $item['name'];?></label>
+                            <label for="gradeInput<?php echo $key;?>" class="col-sm-4 col-form-label text-right"><?php echo $item['name'];?></label>
                             <div class="col-sm-2">
-                                <input type="text" name="subjectid<?php echo $key;?>" value="<?php echo $item['subject_id'];?>" hidden>
-                                <input type="text" class="form-control" id="subject<?php echo $key;?>" value="<?php echo $item['grade'];?>">
+                                <input type="text" name="courseId<?php echo $key;?>" value="<?php echo $item['id'];?>" hidden>
+                                <input type="text" name="grade<?php echo $key;?>" class="form-control" id="gradeInput<?php echo $key;?>" value="<?php echo $item['grade'];?>">
                             </div>
                         </div>
 
@@ -63,7 +63,7 @@ require_once __DIR__."/controller/teacherScoreEditController.php";
                             <input type="text" name="fn" value="addUpdateGrade" hidden>
                             <input type="text" name="year" value="<?php echo $UrlYear;?>" hidden>
                             <input type="text" name="student_id" value="<?php echo $StudentId;?>" hidden>
-
+                            <input type="text" name="countInput"value="<?php echo count($GRADE);?>" hidden>
                             <button class="btn btn-success" type="submit"> บันทึก </button>
                         </div>
 
