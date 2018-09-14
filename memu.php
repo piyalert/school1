@@ -267,7 +267,7 @@
 
                 <li class="nav-item <?PHP echo ($menuAction == 'saving') ? 'active' : ''; ?>" data-toggle="tooltip"
                     data-placement="right" title="Link">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="user_save.php">
                         <i class="fa fa-money"></i>
                         <span class="nav-link-text"> เงินออม </span>
                     </a>
