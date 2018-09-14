@@ -28,7 +28,6 @@ require_once __DIR__."/controller/userManage.php";
           <hr class="mt-2">
 
           <div class="">
-          <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example">
               <table id="example" class="table table-striped table-bordered" style="width:100%;font-size: 12px;">
                   <thead style="font-size: 12px;">
                   <tr>

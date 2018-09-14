@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/_session.php";
+require_once __DIR__ . "/_loginTeacher.php";
 $date = new DateTime();
 
 /**
@@ -155,7 +156,13 @@ require_once __DIR__."/controller/teacherCheckShowController.php";
                     if( ($new_line) % 7 == 0|| $new_line % 7 == 6 ) {
                         $item_check_status='holiday';
                         $item_alert = 'alert-light';
-                        $item_status = ' ';
+                        if(isset($HOLIDAYLIST[$i+1])){
+                            $item_check_status='holiday';
+                            $item_alert = 'alert-light';
+                            $item_status = $HOLIDAYLIST[$i+1]['detail'];
+                        }else{
+                            $item_status = ' ';
+                        }
                     }elseif (isset($HOLIDAYLIST[$i+1])){
                         $item_check_status='holiday';
                         $item_alert = 'alert-light';

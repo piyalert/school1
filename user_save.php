@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__.'/_session.php';
+require_once __DIR__ . "/_loginStudent.php";
 
 $SAVELIST = [];
 $menuAction = 'saving';

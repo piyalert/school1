@@ -19,7 +19,7 @@ $id_card= '';
 $birthday='';
 $address= '';
 $phone='';
-$img_path='';
+$img_path='/school/upload/user.png';
 $gender='';
 $status='';
 if ($fn=='edit'){
@@ -35,7 +35,7 @@ if ($fn=='edit'){
         $birthday = $user['birthday'];
         $address= $user['address'];
         $phone= $user['phone'];
-        $img_path= $user['img_path'];
+        $img_path= (strlen($user['img_path'])>10)?$user['img_path']:'/school/upload/user.png';
         $gender= $user['gender'];
         $status= $user['status'];
     }
@@ -131,10 +131,12 @@ elseif ($fn=='update'){
     ];
     $result = $modelUser->updateUser($input);
     if($result>0){
-        header("Location: /school/userManage.php");
+        $_SESSION = $input;
+        $_SESSION['success']="Update to Edit User Success";
+        header("Location: /school/register.php?fn=edit&id=".$id);
         exit();
     }else{
-        $_SESSION['error']="Unable to Edit User!!!!";
+        $_SESSION['error']="Unable to Edit User FAIL!!!!";
         header("Location: /school/register.php?fn=edit&id=".$id);
         exit();
     }

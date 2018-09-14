@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/_session.php";
+require_once __DIR__ . "/_loginStudent.php";
 $date = new DateTime();
 
 $menuAction = 'check';
@@ -125,7 +126,13 @@ require_once __DIR__.'/controller/userCheckNameController.php';
                     if( ($new_line) % 7 == 0|| $new_line % 7 == 6 ) {
                         $item_check_status='holiday';
                         $item_alert = 'alert-light';
-                        $item_status = ' ';
+                        if(isset($HOLIDAYLIST[$i+1])){
+                            $item_check_status='holiday';
+                            $item_alert = 'alert-light';
+                            $item_status = $HOLIDAYLIST[$i+1]['detail'];
+                        }else{
+                            $item_status = ' ';
+                        }
                     }elseif (isset($HOLIDAYLIST[$i+1])){
                         $item_check_status='holiday';
                         $item_alert = 'alert-light';
@@ -157,7 +164,7 @@ require_once __DIR__.'/controller/userCheckNameController.php';
                     $new_line++;
 
                     ?>
-                    <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
+                    <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate">
                         <h5 class="row align-items-center">
                             <span class="date col-1"><?php echo($i + 1); ?></span>
                         </h5>

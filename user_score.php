@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__.'/_session.php';
+require_once __DIR__ . "/_loginStudent.php";
+
 $date = new DateTime();
 
 $menuAction = 'grade';
