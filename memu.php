@@ -105,6 +105,12 @@
                         <li class="<?PHP echo ($menuCourse == 'create') ? 'active' : ''; ?>">
                             <a href="teacher_coursecreate.php">สร้างรายวิชา</a>
                         </li>
+                        <li class="<?PHP echo ($menuCourse == '10') ? 'active' : ''; ?>">
+                            <a href="teacher_course.php?class=10">อนุบาล 1</a>
+                        </li>
+                        <li class="<?PHP echo ($menuCourse == '20') ? 'active' : ''; ?>">
+                            <a href="teacher_course.php?class=20">อนุบาล 2</a>
+                        </li>
                         <li class="<?PHP echo ($menuCourse == '1') ? 'active' : ''; ?>">
                             <a href="teacher_course.php?class=1">ประถมศึกษาปีที่ 1</a>
                         </li>
