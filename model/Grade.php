@@ -266,5 +266,46 @@ class Grade extends _DBPDO
         return $dataReturn;
     }
 
+    function selectGradeByUserId($user_id){
+        //set parameter
+        $this_db = $this->DB;
+        $this_db_user = $this->FKUser;
+        $this_db_student = $this->FKStudent;
+
+        //connect DB
+        $this->connect();
+
+        $sql = "select t.* from $this_db_student as t left join  $this_db_user as u on u.id = t.user_id where t.user_id =:user_id order by t.year ASC , t.class ASC";
+        $params = ['user_id'=>$user_id];
+        $arrStudent = $this->queryAll($sql,$params);
+        foreach ($arrStudent as $key=>$item){
+            $id = $item['id'];
+            $class = $item['class'];
+            $year = $item['year'];
+
+            if($class==10){
+                $class_str = 'ชั้นอนุบาล 1';
+            }elseif ($class==20){
+                $class_str = 'ชั้นอนุบาล 2';
+            }else{
+                $class_str = 'ชั้นประถมศึกษาปีที่ '.$class;
+            }
+            $arrStudent[$key]['class_str'] = $class_str;
+            $arrStudent[$key]['year_str'] = $year+543;
+
+
+            $grade = $this->selectGradeByStudentId($year,$class,$id);
+            $arrStudent[$key]['grade'] = $grade['grade'];
+
+
+        }
+
+        //close DB
+        $this->close();
+
+        return $arrStudent;
+
+    }
+
 
 }

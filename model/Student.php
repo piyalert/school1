@@ -103,6 +103,66 @@ class Student extends _DBPDO
         return $rowUpdate;
     }
 
+    function selectThis($condition){
+        //set parameter
+        $this_db = $this->DB;
+
+        //condition
+        $data_sql = $this->convertArrayToCondition($condition);
+        $sql_value = $data_sql['value'];
+        $params = $data_sql['params'];
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT * FROM $this_db ".$sql_value;
+        $result = $this->query($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+
+    }
+
+    function selectThisAll($condition){
+        //set parameter
+        $this_db = $this->DB;
+
+        //condition
+        $data_sql = $this->convertArrayToCondition($condition);
+        $sql_value = $data_sql['value'];
+        $params = $data_sql['params'];
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT * FROM $this_db ".$sql_value;
+        $result = $this->queryAll($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+
+    }
+
+    function selectStudentLast($user_id){
+        //set parameter
+        $this_db = $this->DB;
+
+        //connect DB
+        $this->connect();
+
+        $sql = "SELECT * FROM $this_db WHERE user_id=:user_id  ORDER BY year DESC , class DESC limit 1";
+        $params = ['user_id'=>$user_id];
+        $result = $this->query($sql,$params);
+
+        //close DB
+        $this->close();
+
+
+        return $result;
+    }
+
     function selectStudentByClassAndYear($class , $year){
         //set parameter
         $this_db = $this->DB;
