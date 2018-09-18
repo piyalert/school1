@@ -40,24 +40,59 @@ require_once __DIR__."/controller/teacherScoreEditController.php";
     <div class="container-fluid">
 
         <div class="mb-0 mt-4">
-            <h2><i class="fa fa-calculator"></i> เกรด <small> <?php echo $className; ?> </small> ( <strong> <?php echo $USERNAME;?> </strong> ) </h2></div>
+            <h2> <i class="fa fa-calculator"></i> เกรด
+                <small><a href="teacher_score.php?class=<?php echo $menuGrade;?>&year=<?php echo $UrlYear;?>"><?php echo $className; ?></a></small>
+                ( <strong> <?php echo $USERNAME;?> </strong> )
+            </h2>
+        </div>
         <hr class="mt-2">
+
+        <?php include(__DIR__.'/_alert.php');?>
 
         <div class="row justify-content-around">
             <div class="col-10">
                 <form method="post">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">วิชา</th>
+                            <th scope="col" style="width: 20%">คะแนน</th>
+                            <th scope="col" style="width: 20%">เกรด</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($GRADE as $key=>$item): ?>
 
-                    <?php foreach ($GRADE as $key=>$item): ?>
+                            <tr>
+                                <th scope="row"><?php echo ($key+1);?></th>
+                                <td> <?php echo $item['name'];?> (<small><?php echo $item['detail'];?> </small>) </td>
+                                <td>
+                                    <input type="text" name="final_exam<?php echo $key;?>" class="form-control" value="<?php echo $item['final_exam'];?>">
+                                </td>
+                                <td>
+                                    <input type="text" name="courseId<?php echo $key;?>" value="<?php echo $item['id'];?>" hidden>
+                                    <input type="text" name="grade<?php echo $key;?>" class="form-control" value="<?php echo $item['grade'];?>">
+                                </td>
+                            </tr>
 
-                        <div class="form-group row">
-                            <label for="gradeInput<?php echo $key;?>" class="col-sm-4 col-form-label text-right"><?php echo $item['name'];?></label>
-                            <div class="col-sm-2">
-                                <input type="text" name="courseId<?php echo $key;?>" value="<?php echo $item['id'];?>" hidden>
-                                <input type="text" name="grade<?php echo $key;?>" class="form-control" id="gradeInput<?php echo $key;?>" value="<?php echo $item['grade'];?>">
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
 
-                    <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
+<!--                    --><?php //foreach ($GRADE as $key=>$item): ?>
+<!---->
+<!--                        <div class="form-group row">-->
+<!--                            <label for="gradeInput--><?php //echo $key;?><!--" class="col-sm-4 col-form-label text-right">--><?php //echo $item['name'];?><!--</label>-->
+<!--                            <div class="col-sm-2">-->
+<!--                                <input type="text" name="courseId--><?php //echo $key;?><!--" value="--><?php //echo $item['id'];?><!--" hidden>-->
+<!--                                <input type="text" name="grade--><?php //echo $key;?><!--" class="form-control" id="gradeInput--><?php //echo $key;?><!--" value="--><?php //echo $item['grade'];?><!--">-->
+<!--                                <input type="text" name="grade--><?php //echo $key;?><!--" class="form-control" id="gradeInput--><?php //echo $key;?><!--" value="--><?php //echo $item['grade'];?><!--">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                    --><?php //endforeach; ?>
 
                     <div class="form-group row">
                         <div class="col-sm-4"></div>

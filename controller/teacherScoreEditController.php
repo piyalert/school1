@@ -18,25 +18,27 @@ if($fn=='addUpdateGrade'){
     for($i=0;$i<$countInput;$i++){
         $course_id = $MG->input('courseId'.$i);
         $grade = $MG->input('grade'.$i);
+        $final_exam = $MG->input('final_exam'.$i);
 
         $input = [
             'course_id'=>$course_id,
             'student_id'=>$studentId,
             'year'=> $year,
-            'score'=>$grade
+            'score'=>$grade,
+            'final_exam'=>$final_exam
         ];
 
         $condition = [
             'course_id'=>$course_id,
             'student_id'=>$studentId,
-            'year'=> $year,
-            'score'=>$grade
+            'year'=> $year
         ];
 
         $result = $MG->insertUpdateThis($input,$condition);
 
     }
-
+    $_SESSION['E_STATUS'] = 'success';
+    $_SESSION['E_MESSAGE'] = 'แก้ไขข้อมูลสำเร็จ';
 
 }
 

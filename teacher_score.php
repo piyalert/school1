@@ -43,7 +43,7 @@ require_once __DIR__."/controller/teacherScoreController.php";
         <div class="form-inline mb-5">
             <div class="form-group ml-5">
                 <label class="mr-3" for="input_year" > ปีการศึกษา </label>
-                <select class="form-control" id="input_year" name="year" onchange="">
+                <select class="form-control" name="year" onchange="selectYear(this);">
                     <?php for ($i=$year;$i>($year-10);$i--): ?>
                         <option value="<?php echo ($i);?>"  <?php echo $UrlYear==$i?'selected':'' ?>> <?php echo ($i+543); ?></option>
                     <?php endfor; ?>
@@ -70,7 +70,7 @@ require_once __DIR__."/controller/teacherScoreController.php";
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
 
                     <?php foreach ($item['grade'] as $i): ?>
-                        <th><?php echo $i;?></th>
+                        <th><?php echo $i['score'];?> <small> <?php echo $i['final_exam']==''?'':'('.$i['final_exam'].')';?> </small></th>
                     <?php endforeach; ?>
 
                     <td>
@@ -94,8 +94,21 @@ require_once __DIR__."/controller/teacherScoreController.php";
     <?php include(__DIR__ . "/footer.php"); ?>
 </footer>
 
+<div class="value-attr" hidden>
+    <input id="input_year" value="<?php echo $UrlYear;?>">
+    <input id="input_class" value="<?php echo $menuGrade;?>">
+</div>
+
 <script>
     $(document).ready(function() {
         $('.dataTable').DataTable();
     } );
+
+    function selectYear(res) {
+        var input_year = res.value;
+        var input_class = $('#input_class').val();
+        document.location = "teacher_score.php?class="+input_class+"&year="+input_year;
+    }
+
+
 </script>

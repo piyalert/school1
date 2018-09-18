@@ -31,7 +31,7 @@ require_once __DIR__."/controller/userScoreController.php";
         <table class="table table-bordered" style="width: 80%; margin: auto;">
             <thead class="thead-light">
             <tr class="table-info text-center" >
-                <td colspan="4" scope="col"><?=$item['class_str']?> ปีการศึกษา <?=$item['year_str'];?></td>
+                <td colspan="5" scope="col"><?=$item['class_str']?> ปีการศึกษา <?=$item['year_str'];?></td>
             </tr>
             </thead>
             <tbody>
@@ -41,6 +41,7 @@ require_once __DIR__."/controller/userScoreController.php";
                 <th scope="row"> <?=($k+1);?> </th>
                 <td><?=$item2['name']?></td>
                 <td><?=$item2['detail']?></td>
+                <td><?=$item2['final_exam']?></td>
                 <td><?=$item2['grade'];?></td>
             </tr>
             <?php endforeach; ?>

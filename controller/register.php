@@ -22,6 +22,29 @@ $phone='';
 $img_path='/school/upload/user.png';
 $gender='';
 $status='';
+
+
+//father
+$name_father='';
+$data_father='';
+
+//mother
+$name_mother='';
+$data_mother='';
+
+//normal
+$date_admission='';
+$report_grade='';
+$date_issue='';
+$note_issue='';
+$detail_report='';
+$address_birth='';
+$old_school='';
+$note_change_school='';
+$home_birth='';
+
+
+
 if ($fn=='edit'){
     $id = isset($_REQUEST['id'])?$_REQUEST['id']:'';
     $modelUser = new User();

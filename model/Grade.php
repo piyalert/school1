@@ -85,7 +85,7 @@ class Grade extends _DBPDO
         $sql = "SELECT * FROM $this_db ".$sql_value;
         $result = $this->query($sql,$params);
         if(isset($result['id'])){
-            $data_sql = $this->convertArrayToUpdate($input,$condition);;
+            $data_sql = $this->convertArrayToUpdate($input,$condition);
             if(count($data_sql)>0){
                 $sql_value = $data_sql['value'];
                 $sql = "UPDATE $this_db $sql_value";
@@ -180,7 +180,7 @@ class Grade extends _DBPDO
         $listGrade = [];
         foreach ($arrGrade as $item){
             $key = $item['course_id'].''.$item['student_id'];
-            $listGrade[$key]= $item['score'];
+            $listGrade[$key]= ['score'=>$item['score'] , 'final_exam'=>$item['final_exam']];
         }
 
         //student grade
@@ -193,7 +193,7 @@ class Grade extends _DBPDO
                 if(isset($listGrade[$key])){
                     $g[] = $listGrade[$key];
                 }else{
-                    $g[] = '';
+                    $g[] = ['score'=>'' , 'final_exam'=>'' ];
                 }
             }
             $arrStudent[$k]['grade'] = $g;
@@ -240,16 +240,18 @@ class Grade extends _DBPDO
         $listGrade = [];
         foreach ($arrGrade as $item){
             $key = $item['course_id'];
-            $listGrade[$key]= $item['score'];
+            $listGrade[$key]= $item;//$item['score'];
         }
 
         //student grade
         foreach ($arrSubject as $k=>$item){
             $key =  $item['id'];
             if(isset($listGrade[$key])){
-                $arrSubject[$k]['grade'] = $listGrade[$key];
+                $arrSubject[$k]['grade'] = $listGrade[$key]['score'];
+                $arrSubject[$k]['final_exam'] = $listGrade[$key]['final_exam'];
             }else{
                 $arrSubject[$k]['grade'] = '';
+                $arrSubject[$k]['final_exam'] = '';
             }
 
         }
