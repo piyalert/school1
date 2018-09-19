@@ -76,7 +76,25 @@ elseif ($fn=='insert'){
     $phone = isset($_REQUEST['phone'])?$_REQUEST['phone']:'';
     $img_path= isset($_REQUEST['img_path'])?$_REQUEST['img_path']:'';
     $gender= isset($_REQUEST['gender'])?$_REQUEST['gender']:'f';
-    $status= isset($_REQUEST['status'])?$_REQUEST['status']:'student';
+    $status= isset($_REQUEST['status'])?$_REQUEST['status']:'';
+
+    $name_father= isset($_REQUEST['name_father'])?$_REQUEST['name_father']:'';
+    $data_father= isset($_REQUEST['data_father'])?$_REQUEST['data_father']:'';
+
+    $name_mother= isset($_REQUEST['name_mother'])?$_REQUEST['name_mother']:'';
+    $data_mother= isset($_REQUEST['data_mother'])?$_REQUEST['data_mother']:'';
+
+    $date_admission= isset($_REQUEST['date_admission'])?$_REQUEST['date_admission']:'';
+    $report_grade= isset($_REQUEST['report_grade'])?$_REQUEST['report_grade']:'';
+    $date_issue= isset($_REQUEST['date_issue'])?$_REQUEST['date_issue']:'';
+    $note_issue= isset($_REQUEST['note_issue'])?$_REQUEST['note_issue']:'';
+    $detail_report= isset($_REQUEST['detail_report'])?$_REQUEST['detail_report']:'';
+    $address_birth= isset($_REQUEST['address_birth'])?$_REQUEST['address_birth']:'';
+    $old_school= isset($_REQUEST['old_school'])?$_REQUEST['old_school']:'';
+    $note_change_school= isset($_REQUEST['note_change_school'])?$_REQUEST['note_change_school']:'';
+    $home_birth = isset($_REQUEST['home_birth'])?$_REQUEST['home_birth']:'';
+
+
     if($birthday!==''){
         $cutBD = explode('-',$birthday);
         $y= $cutBD[0];
@@ -101,7 +119,24 @@ elseif ($fn=='insert'){
         'phone'=> $phone,
         'img_path'=> $img_path,
         'gender'=> $gender,
-        'status'=> $status
+        'status'=> $status,
+
+        'name_father'=> $name_father,
+        'data_father'=> $data_father,
+
+        'name_mother'=>$name_mother,
+        'data_mother'=>$data_mother,
+
+        'date_admission'=>$date_admission,
+        'report_grade'=>$report_grade,
+        'date_issue'=>$date_issue,
+        'note_issue'=>$note_issue,
+        'detail_report'=>$detail_report,
+        'address_birth'=>$address_birth,
+        'old_school'=>$old_school,
+        'note_change_school'=>$note_change_school,
+        'home_birth'=>$home_birth
+
     ];
     $result = $modelUser->insertUser($input);
     if($result>0){
@@ -125,6 +160,23 @@ elseif ($fn=='update'){
     $img_path= isset($_REQUEST['img_path'])?$_REQUEST['img_path']:'';
     $gender= isset($_REQUEST['gender'])?$_REQUEST['gender']:'f';
     $status= isset($_REQUEST['status'])?$_REQUEST['status']:'student';
+
+    $name_father= isset($_REQUEST['name_father'])?$_REQUEST['name_father']:'';
+    $data_father= isset($_REQUEST['data_father'])?$_REQUEST['data_father']:'';
+
+    $name_mother= isset($_REQUEST['name_mother'])?$_REQUEST['name_mother']:'';
+    $data_mother= isset($_REQUEST['data_mother'])?$_REQUEST['data_mother']:'';
+
+    $date_admission= isset($_REQUEST['date_admission'])?$_REQUEST['date_admission']:'';
+    $report_grade= isset($_REQUEST['report_grade'])?$_REQUEST['report_grade']:'';
+    $date_issue= isset($_REQUEST['date_issue'])?$_REQUEST['date_issue']:'';
+    $note_issue= isset($_REQUEST['note_issue'])?$_REQUEST['note_issue']:'';
+    $detail_report= isset($_REQUEST['detail_report'])?$_REQUEST['detail_report']:'';
+    $address_birth= isset($_REQUEST['address_birth'])?$_REQUEST['address_birth']:'';
+    $old_school= isset($_REQUEST['old_school'])?$_REQUEST['old_school']:'';
+    $note_change_school= isset($_REQUEST['note_change_school'])?$_REQUEST['note_change_school']:'';
+    $home_birth = isset($_REQUEST['home_birth'])?$_REQUEST['home_birth']:'';
+
     $id = isset($_REQUEST['id'])?$_REQUEST['id']:'';
     if($birthday!==''){
         $cutBD = explode('-',$birthday);
@@ -150,6 +202,23 @@ elseif ($fn=='update'){
         'img_path'=> $img_path,
         'gender'=> $gender,
         'status'=> $status,
+
+        'name_father'=> $name_father,
+        'data_father'=> $data_father,
+
+        'name_mother'=>$name_mother,
+        'data_mother'=>$data_mother,
+
+        'date_admission'=>$date_admission,
+        'report_grade'=>$report_grade,
+        'date_issue'=>$date_issue,
+        'note_issue'=>$note_issue,
+        'detail_report'=>$detail_report,
+        'address_birth'=>$address_birth,
+        'old_school'=>$old_school,
+        'note_change_school'=>$note_change_school,
+        'home_birth'=>$home_birth,
+
         'id'=>$id
     ];
     $result = $modelUser->updateUser($input);
