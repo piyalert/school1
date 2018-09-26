@@ -241,7 +241,9 @@ elseif ($fn=='update'){
     ];
     $result = $modelUser->updateUser($input,['id'=>$id]);
     if($result>0){
-        $_SESSION['img_path'] = $img_path;
+        if($SESSION_user_id==$id){
+            $_SESSION['img_path'] = $img_path;
+        }
         $_SESSION['success']="Update to Edit User Success";
         header("Location: /school/register.php?fn=edit&id=".$id);
         exit();
