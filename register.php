@@ -6,6 +6,9 @@ require_once __DIR__ . "/controller/register.php";
 $menuAction = 'user';
 $menuSub = 'register';
 
+$disabled = '';
+if ($SESSION_user_status != 'teacher') $disabled='disabled';
+
 ?>
 
 <head>
@@ -75,20 +78,26 @@ $menuSub = 'register';
             <form action="/school/register.php" method="post">
 
                 <div class="form-group">
-                    <label for="username">ชื่อผู้ใช้งาน</label>
+                    <label for="exampleInputStatus">สถานะ <strong class="text-danger">**</strong></label><br>
+                    <input type="radio" name="status" value="teacher" <?php if ($status == 'teacher') echo 'checked'; ?> <?php echo $disabled;?> > อาจารย์
+                    <input type="radio" name="status" value="student" <?php if ($status != 'teacher') echo 'checked'; ?> <?php echo $disabled;?> > นักเรียน
+                </div>
+
+                <div class="form-group">
+                    <label for="username">ชื่อผู้ใช้งาน <strong class="text-danger">**</strong></label>
                     <input class="form-control" name="username" type="text" aria-describedby="nameHelp"
                            placeholder="ชื่อผู้ใช้งาน" value="<?php echo $username; ?>" required>
                 </div>
 
-                <div class="form-group" <?php if (!$passwordCheck) echo 'style="display: none"'; ?> >
+                <div class="form-group" <?php if (!$passwordCheck) echo 'hidden'; ?> >
                     <div class="form-row">
                         <div class="col-md-6">
-                            <label for="exampleInputPassword1">รหัสผ่าน</label>
+                            <label for="exampleInputPassword1">รหัสผ่าน <strong class="text-danger">**</strong></label>
                             <input class="form-control" name="password" type="password" id="password"
                                    placeholder="รหัสผ่าน" <?php if ($passwordCheck) echo 'required'; ?> >
                         </div>
                         <div class="col-md-6">
-                            <label for="exampleConfirmPassword">ยืนยันรหัสผ่าน</label>
+                            <label for="exampleConfirmPassword">ยืนยันรหัสผ่าน <strong class="text-danger">**</strong></label>
                             <input class="form-control" name="confirmPassword" type="password" id="confirmPassword"
                                    placeholder="ยืนยันรหัสผ่าน" <?php if ($passwordCheck) echo 'required'; ?> >
                         </div>
@@ -98,12 +107,12 @@ $menuSub = 'register';
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6">
-                            <label for="exampleInputName">ชื่อ</label>
+                            <label for="exampleInputName">ชื่อ <strong class="text-danger">**</strong></label>
                             <input class="form-control" name="name" type="text" aria-describedby="nameHelp"
                                    placeholder="ชื่อ" value="<?php echo $name; ?>" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="exampleInputLastName">นามสกุล</label>
+                            <label for="exampleInputLastName">นามสกุล <strong class="text-danger">**</strong></label>
                             <input class="form-control" name="surname" type="text" aria-describedby="nameHelp"
                                    placeholder="นามสกุล" value="<?php echo $surname; ?>" required>
                         </div>
@@ -111,13 +120,13 @@ $menuSub = 'register';
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputIdCard">รหัสบัตรประจำตัวประชาชน</label>
+                    <label for="exampleInputIdCard">รหัสบัตรประจำตัวประชาชน <strong class="text-danger">**</strong></label>
                     <input class="form-control" name="id_card" type="text" placeholder="รหัสบัตรประจำตัวประชาชน"
                            value="<?php echo $id_card; ?>" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputBirthday">วันเกิด</label>
+                    <label for="exampleInputBirthday">วันเกิด <strong class="text-danger">**</strong></label>
                     <input class="form-control" name="birthday" type="date" value="<?php echo $birthday; ?>" required>
                 </div>
 
@@ -135,8 +144,8 @@ $menuSub = 'register';
 
                 <div class="form-group">
                     <label for="exampleInputGender">เพศ</label><br>
-                    <input type="radio" name="gender" value="m" <?php if ($gender === 'm') echo 'checked'; ?> > ชาย
-                    <input type="radio" name="gender" value="f" <?php if ($gender === 'f') echo 'checked'; ?> > หญิง
+                    <input type="radio" name="gender" value="m" <?php if ($gender == 'm' || $gender=='') echo 'checked'; ?>  > ชาย
+                    <input type="radio" name="gender" value="f" <?php if ($gender == 'f') echo 'checked'; ?> > หญิง
                 </div>
 
                 <hr>
@@ -144,12 +153,12 @@ $menuSub = 'register';
                 <div class="form-group">
                     <label for="nameFatherId">ชื่อ-สกุล บิดา</label>
                     <input id="nameFatherId" class="form-control" name="name_father" type="text" placeholder="ชื่อ-สกุล"
-                           value="<?php echo $name_father; ?>">
+                           value="<?php echo $name_father; ?>" <?php echo $disabled;?>>
                 </div>
                 <div class="form-group">
                     <label for="dataFatherId">ข้อมูลบิดา</label>
                     <textarea id="dataFatherId" class="form-control" name="data_father" type="text"
-                              placeholder="ที่อยู่"><?php echo $data_father; ?></textarea>
+                              placeholder="ที่อยู่" <?php echo $disabled;?>><?php echo $data_father; ?></textarea>
                 </div>
 
                 <hr>
@@ -157,12 +166,12 @@ $menuSub = 'register';
                 <div class="form-group">
                     <label for="nameMotherId">ชื่อ-สกุล มารดา</label>
                     <input id="nameMotherId" class="form-control" name="name_mother" type="text" placeholder="ชื่อ-สกุล"
-                           value="<?php echo $name_mother; ?>">
+                           value="<?php echo $name_mother; ?>" <?php echo $disabled;?>>
                 </div>
                 <div class="form-group">
                     <label for="dataMotherId">ข้อมูลมารดา</label>
                     <textarea id="dataMotherId" class="form-control" name="data_mother" type="text"
-                              placeholder="ที่อยู่"><?php echo $data_mother; ?></textarea>
+                              placeholder="ที่อยู่" <?php echo $disabled;?>><?php echo $data_mother; ?></textarea>
                 </div>
 
                 <hr>
@@ -170,47 +179,47 @@ $menuSub = 'register';
                 <div class="date_admission form-group">
                     <label for="dateAdmissionId">วันที่เข้าเรียน</label>
                     <input id="dateAdmissionId" class="form-control" name="date_admission" type="date"
-                           value="<?php echo $date_admission; ?>">
+                           value="<?php echo $date_admission; ?>" <?php echo $disabled;?>>
                 </div>
                 <div class="report_grade form-group">
                     <label for="reportGradeId">รายงานผลการเรียนเดิม</label>
                     <textarea id="reportGradeId" class="form-control" name="report_grade" type="text"
-                              placeholder="รายงานผลการเรียนเดิม"><?php echo $report_grade; ?></textarea>
+                              placeholder="รายงานผลการเรียนเดิม" <?php echo $disabled;?> ><?php echo $report_grade; ?></textarea>
                 </div>
                 <div class="date_issue form-group">
                     <label for="dateIssueId">วันที่จำหน่าย</label>
                     <input id="dateIssueId" class="form-control" name="date_issue" type="date"
-                           value="<?php echo $date_issue; ?>">
+                           value="<?php echo $date_issue; ?>" <?php echo $disabled;?> >
                 </div>
                 <div class="note_issue form-group">
                     <label for="note_issueId">เหตุที่จำหน่าย</label>
                     <textarea id="note_issueId" class="form-control" name="note_issue" type="text"
-                              placeholder="เหตุที่จำหน่าย"><?php echo $note_issue; ?></textarea>
+                              placeholder="เหตุที่จำหน่าย" <?php echo $disabled;?> ><?php echo $note_issue; ?></textarea>
                 </div>
                 <div class="detail_report form-group">
                     <label for="detail_reportId">ความรู้และความประพฤติ</label>
                     <textarea id="detail_reportId" class="form-control" name="detail_report" type="text"
-                              placeholder="ความรู้และความประพฤติ"><?php echo $detail_report; ?></textarea>
+                              placeholder="ความรู้และความประพฤติ" <?php echo $disabled;?> ><?php echo $detail_report; ?></textarea>
                 </div>
                 <div class="address_birth form-group">
                     <label for="address_birthId">สถานที่เกิด</label>
                     <textarea id="address_birthId" class="form-control" name="address_birth" type="text"
-                              placeholder="สถานที่เกิด"><?php echo $address_birth; ?></textarea>
+                              placeholder="สถานที่เกิด" <?php echo $disabled;?> ><?php echo $address_birth; ?></textarea>
                 </div>
                 <div class="old_school form-group">
                     <label for="old_schoolId">สถานศึกษาเดิม</label>
                     <textarea id="old_schoolId" class="form-control" name="old_school" type="text"
-                              placeholder="สถานศึกษาเดิม"><?php echo $old_school; ?></textarea>
+                              placeholder="สถานศึกษาเดิม" <?php echo $disabled;?> ><?php echo $old_school; ?></textarea>
                 </div>
                 <div class="note_change_school form-group">
                     <label for="note_change_schoolId">เหตุที่ย้าย</label>
                     <textarea id="note_change_schoolId" class="form-control" name="note_change_school" type="text"
-                              placeholder="เหตุที่ย้าย"><?php echo $note_change_school; ?></textarea>
+                              placeholder="เหตุที่ย้าย" <?php echo $disabled;?> ><?php echo $note_change_school; ?></textarea>
                 </div>
                 <div class="home_birth form-group">
                     <label for="home_birthId">บ้านเกิด</label>
                     <textarea id="home_birthId" class="form-control" name="home_birth" type="text"
-                              placeholder="บ้านเกิด"><?php echo $home_birth; ?></textarea>
+                              placeholder="บ้านเกิด" <?php echo $disabled;?> ><?php echo $home_birth; ?></textarea>
                 </div>
 
 

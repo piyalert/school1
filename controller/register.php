@@ -61,6 +61,26 @@ if ($fn=='edit'){
         $img_path= (strlen($user['img_path'])>10)?$user['img_path']:'/school/upload/user.png';
         $gender= $user['gender'];
         $status= $user['status'];
+
+        //father
+        $name_father=$user['name_father'];
+        $data_father=$user['data_father'];
+
+        //mother
+        $name_mother=$user['name_mother'];
+        $data_mother=$user['data_mother'];
+
+        //normal
+        $date_admission=$user['date_admission'];
+        $report_grade=$user['report_grade'];
+        $date_issue=$user['date_issue'];
+        $note_issue=$user['note_issue'];
+        $detail_report=$user['detail_report'];
+        $address_birth=$user['address_birth'];
+        $old_school=$user['old_school'];
+        $note_change_school=$user['note_change_school'];
+        $home_birth=$user['home_birth'];
+
     }
     
 }
@@ -159,7 +179,7 @@ elseif ($fn=='update'){
     $phone = isset($_REQUEST['phone'])?$_REQUEST['phone']:'';
     $img_path= isset($_REQUEST['img_path'])?$_REQUEST['img_path']:'';
     $gender= isset($_REQUEST['gender'])?$_REQUEST['gender']:'f';
-    $status= isset($_REQUEST['status'])?$_REQUEST['status']:'student';
+    $status= isset($_REQUEST['status'])?$_REQUEST['status']:'';
 
     $name_father= isset($_REQUEST['name_father'])?$_REQUEST['name_father']:'';
     $data_father= isset($_REQUEST['data_father'])?$_REQUEST['data_father']:'';
@@ -218,12 +238,10 @@ elseif ($fn=='update'){
         'old_school'=>$old_school,
         'note_change_school'=>$note_change_school,
         'home_birth'=>$home_birth,
-
-        'id'=>$id
     ];
-    $result = $modelUser->updateUser($input);
+    $result = $modelUser->updateUser($input,['id'=>$id]);
     if($result>0){
-        $_SESSION = $input;
+        $_SESSION['img_path'] = $img_path;
         $_SESSION['success']="Update to Edit User Success";
         header("Location: /school/register.php?fn=edit&id=".$id);
         exit();

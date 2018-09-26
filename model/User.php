@@ -29,84 +29,49 @@ class User extends _DBPDO
     }
 
     function insertUser($input){
-        //set parameter
-        $username = isset($input['username'])?$input['username']:'';
-        $password = isset($input['password'])?$input['password']:'';
-        $name = isset($input['name'])?$input['name']:'';
-        $surname = isset($input['surname'])?$input['surname']:'';
-        $id_card = isset($input['id_card'])?$input['id_card']:'';
-        $birthday = isset($input['birthday'])?$input['birthday']:'';
-        $address = isset($input['address'])?$input['address']:'';
-        $phone = isset($input['phone'])?$input['phone']:'';
-        $img_path= isset($input['img_path'])?$input['img_path']:'';
-        $gender= isset($input['gender'])?$input['gender']:'f';
-        $status= isset($input['status'])?$input['status']:'student';
+        $this_db = $this->DB;
 
+        $data_sql = $this->convertArrayToInsert($input);
+        if(count($data_sql)<=0){
+            return 0;
+        }else{
 
-        //connect DB
-        $this->connect();
-        $sql = "INSERT INTO user (username,password,name,surname,id_card,birthday,address,phone,img_path,gender,status) 
-        VALUES (:username,:password,:name,:surname,:id_card,:birthday,:address,:phone,:img_path,:gender,:status)";
-        $params= array(
-            ':username'=> $username,
-            ':password'=> $password,
-            ':name'=> $name,
-            ':surname'=> $surname,
-            ':id_card'=> $id_card,
-            ':birthday'=> $birthday,
-            ':address'=> $address,
-            ':phone'=> $phone,
-            ':img_path'=> $img_path,
-            ':gender'=> $gender,
-            ':status'=> $status
-        );
-        $lastId = $this->insert($sql,$params);
-        //close DB
-        $this->close();
+            //connect DB
+            $this->connect();
+            $sql_value = $data_sql['value'];
+            $sql = "INSERT INTO $this_db $sql_value";
+            $params = $data_sql['params'];
+            $lastId = $this->insert($sql,$params);
 
-
-        return $lastId;
+            //close DB
+            $this->close();
+            return $lastId;
+        }
     }
 
-    function updateUser($input){
+    function updateUser($input , $condition){
         //set parameter
-        $username = isset($input['username'])?$input['username']:'';
-        $name = isset($input['name'])?$input['name']:'';
-        $surname = isset($input['surname'])?$input['surname']:'';
-        $id_card = isset($input['id_card'])?$input['id_card']:'';
-        $birthday = isset($input['birthday'])?$input['birthday']:'';
-        $address = isset($input['address'])?$input['address']:'';
-        $phone = isset($input['phone'])?$input['phone']:'';
-        $img_path= isset($input['img_path'])?$input['img_path']:'';
-        $gender= isset($input['gender'])?$input['gender']:'f';
-        $status= isset($input['status'])?$input['status']:'student';
-        $id= isset($input['id'])?$input['id']:'';
 
-
-        //connect DB
-        $this->connect();
-        $sql = "UPDATE user SET username=:username,name=:name,surname=:surname,id_card=:id_card,
-        birthday=:birthday,address=:address,phone=:phone,img_path=:img_path,gender=:gender,status=:status 
-        WHERE id=:id";
-        $params= array(
-            ':username'=> $username,
-            ':name'=> $name,
-            ':surname'=> $surname,
-            ':id_card'=> $id_card,
-            ':birthday'=> $birthday,
-            ':address'=> $address,
-            ':phone'=> $phone,
-            ':img_path'=> $img_path,
-            ':gender'=> $gender,
-            ':status'=> $status,
-            ':id'=> $id
-        );
-        $rowUpdate = $this->update($sql,$params);
         //close DB
         $this->close();
 
+        $this_db = $this->DB;
 
-        return $rowUpdate;
+        $data_sql = $this->convertArrayToUpdate($input,$condition);;
+        if(count($data_sql)<=0){
+            return 0;
+        }else {
+            //connect DB
+            $this->connect();
+            $sql_value = $data_sql['value'];
+            $sql = "UPDATE $this_db $sql_value";
+            $params = $data_sql['params'];
+            $lastId = $this->update($sql,$params);
+
+            //close DB
+            $this->close();
+            return $lastId;
+        }
     }
 
     function deleteUser($id){

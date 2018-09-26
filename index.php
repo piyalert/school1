@@ -18,27 +18,44 @@ require_once __DIR__ . "/controller/indexController.php";
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Card Columns Example Social Feed-->
-        <div class="mb-0 mt-4">
-            <i class="fa fa-newspaper-o"></i> ข่าวประชาสัมพันธ์
+
+        <div style="height: 150px;" class="bg-dark">
+
         </div>
-        <hr class="mt-2">
 
-        <div class="card-columns">
-
-            <?php foreach ($NEWSLIST as $key => $item): ?>
-
-                <div class="card mb-3 <?php echo $key==0?'col-12':'';?>">
-                    <img class="card-img-top img-fluid w-100" src="<?php echo $item['img'];?>" alt="<?php echo $item['title'];?>">
-                    <div class="card-body">
-                        <h6 class="card-title mb-1"><?php echo $item['title'];?></h6>
-                        <p class="card-text small"><?php echo $item['create_at'];?></p>
-                    </div>
-                    <hr class="my-0">
+        <div class="row">
+            <div class="col-9">
+                <div class="mb-0 mt-4">
+                    <i class="fa fa-newspaper-o"></i> ข่าวประชาสัมพันธ์
                 </div>
+                <hr class="mt-2">
+                <div class="card-columns">
 
-            <?php endforeach; ?>
+                    <?php foreach ($NEWSLIST as $key => $item): ?>
 
+                        <div class="card mb-3 <?php echo $key==0?'col-12':'';?>">
+                            <a href="index_news.php?id=<?php echo $item['id'] ?>">
+                                <img class="card-img-top img-fluid w-100" src="<?php echo $item['img'];?>" alt="<?php echo $item['title'];?>">
+                            </a>
+                            <div class="card-body">
+                                <h6 class="card-title mb-1"> <a href="index_news.php?id=<?php echo $item['id'] ?>"> <?php echo $item['title'];?> </a></h6>
+                                <p class="card-text small"><?php echo $item['create_at'];?></p>
+                            </div>
+                            <hr class="my-0">
+                        </div>
+
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+            <div class="col-3">
+                <div style="height: 150px;">
+
+                </div>
+            </div>
         </div>
+
+
 
     </div>
     <!-- /.container-fluid-->
