@@ -77,8 +77,8 @@ require_once __DIR__."/controller/teacherClassController.php";
                     <td>
                         <div class="form-inline">
                             <div class="mb-2">
-                                <button class="btn btn-link" data-toggle="modal" data-target=".bd-modal-parent"
-                                        attr_parent="<?php echo $item['parent'];?>" attr_student_id="<?php echo $item['student_id'];?>"
+                                <button class="btn btn-link"
+                                        attr_parent="<?php echo $item['parent'];?>" attr_user_id="<?php echo $item['id'];?>"
                                         onclick="editParent(this);" >
                                     <i class="fa fa-pencil"></i> edit
                                 </button>
@@ -256,9 +256,8 @@ require_once __DIR__."/controller/teacherClassController.php";
 
     function editParent(res) {
         var parent = $(res).attr("attr_parent");
-        var student_id = $(res).attr("attr_student_id");
-        $('#input_student_id').attr("value",student_id);
-        $('#input_parent').val(parent);
+        var user_id = $(res).attr("attr_user_id");
+        document.location = "register.php?fn=edit&id="+user_id;
     }
 
 </script>

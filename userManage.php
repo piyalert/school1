@@ -55,25 +55,13 @@ require_once __DIR__."/controller/userManage.php";
                                 <a href="/school/register.php?fn=edit&id=<?php echo $item['id'];?>">
                                     <i class="fa fa-pencil"></i> edit
                                 </a>
-                                <a href="/school/userManage.php?fn=delete&id=<?php echo $item['id'];?>">
+                                <a class="text-danger" href="/school/userManage.php?fn=delete&id=<?php echo $item['id'];?>">
                                     <i class="fa fa-pencil"></i> delete
                                 </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                   </tbody>
-<!--                  <tfoot>-->
-<!--                  <tr style="font-size: 10px;">-->
-<!--                      <th>Username</th>-->
-<!--                      <th>ID.Card</th>-->
-<!--                      <th>Name Surname</th>-->
-<!--                      <th>Gender</th>-->
-<!--                      <th>Birthday</th>-->
-<!--                      <th>Phone</th>-->
-<!--                      <th>Address</th>-->
-<!--                      <th>Action</th>-->
-<!--                  </tr>-->
-<!--                  </tfoot>-->
               </table>
 
           </div>

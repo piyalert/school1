@@ -67,6 +67,9 @@
                     </a>
                     <ul class="sidenav-second-level collapse <?php if ($menuAction == 'class') echo 'show'; ?>"
                         id="collapseMulti2">
+                        <li class="<?PHP echo ($menuClass == '0') ? 'active' : ''; ?>">
+                            <a href="teacher_classsearch.php">ทะเบียนนักศึกษา</a>
+                        </li>
                         <li class="<?PHP echo ($menuClass == '10') ? 'active' : ''; ?>">
                             <a href="teacher_class.php?class=10">อนุบาล 1</a>
                         </li>
@@ -141,7 +144,7 @@
                         <span class="nav-link-text">เงินออม</span>
                     </a>
                     <ul class="sidenav-second-level collapse <?php if ($menuAction == 'saving') echo 'show'; ?>" id="collapseMulti3">
-                        <li class="<?PHP echo ($menuSave == '0') ? 'active' : ''; ?>" hidden>
+                        <li class="<?PHP echo ($menuSave == '0') ? 'active' : ''; ?>">
                             <a href="teacher_savesearch.php">ค้นหา</a>
                         </li>
                         <li class="<?PHP echo ($menuSave == '10') ? 'active' : ''; ?>">
@@ -179,7 +182,7 @@
                         <span class="nav-link-text">ผลคะแนน</span>
                     </a>
                     <ul class="sidenav-second-level collapse <?php if ($menuAction == 'grade') echo 'show'; ?>" id="collapseMultiGrade">
-                        <li class="<?PHP echo ($menuGrade == '0') ? 'active' : ''; ?>">
+                        <li class="<?PHP echo ($menuGrade == '0') ? 'active' : ''; ?>" hidden>
                             <a href="#">ค้นหา</a>
                         </li>
                         <li class="<?PHP echo ($menuGrade == '10') ? 'active' : ''; ?>">
