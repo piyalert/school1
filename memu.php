@@ -98,7 +98,7 @@
                 </li>
 
                 <!-- จัดการรายวิชา -->
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Object">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti4"
                        data-parent="#exampleAccordion">
                         <i class="fa fa-server"></i>
@@ -137,7 +137,7 @@
                 </li>
 
                 <!-- เงินออม -->
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Save">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti3"
                        data-parent="#exampleAccordion">
                         <i class="fa fa-money"></i>
@@ -213,7 +213,7 @@
                 </li>
 
                 <!-- เข้าเรียน -->
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Grade">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Check">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMultiCheck"
                        data-parent="#exampleAccordion">
                         <i class="fa fa-check-square-o"></i>
@@ -243,6 +243,42 @@
                         </li>
                         <li class="<?PHP echo ($menuCheck == '6') ? 'active' : ''; ?>">
                             <a href="teacher_checkname.php?class=6">ประถมศึกษาปีที่ 6</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- เยี้ยมบ้าน -->
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Visiting">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMultiVisiting"
+                       data-parent="#exampleAccordion">
+                        <i class="fa fa-home"></i>
+                        <span class="nav-link-text">เยี้ยมบ้าน</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse <?php if ($menuAction == 'visiting') echo 'show'; ?>"
+                        id="collapseMultiVisiting">
+                        <li class="<?PHP echo ($menuVisiting == '10') ? 'active' : ''; ?>">
+                            <a href="teacher_visiting.php?class=10">อนุบาล 1</a>
+                        </li>
+                        <li class="<?PHP echo ($menuVisiting == '20') ? 'active' : ''; ?>">
+                            <a href="teacher_visiting.php?class=20">อนุบาล 2</a>
+                        </li>
+                        <li class="<?PHP echo ($menuVisiting == '1') ? 'active' : ''; ?>">
+                            <a href="teacher_visiting.php?class=1">ประถมศึกษาปีที่ 1</a>
+                        </li>
+                        <li class="<?PHP echo ($menuVisiting == '2') ? 'active' : ''; ?>">
+                            <a href="teacher_visiting.php?class=2">ประถมศึกษาปีที่ 2</a>
+                        </li>
+                        <li class="<?PHP echo ($menuVisiting == '3') ? 'active' : ''; ?>">
+                            <a href="teacher_visiting.php?class=3">ประถมศึกษาปีที่ 3</a>
+                        </li>
+                        <li class="<?PHP echo ($menuVisiting == '4') ? 'active' : ''; ?>">
+                            <a href="teacher_visiting.php?class=4">ประถมศึกษาปีที่ 4</a>
+                        </li>
+                        <li class="<?PHP echo ($menuVisiting == '5') ? 'active' : ''; ?>">
+                            <a href="teacher_visiting.php?class=5">ประถมศึกษาปีที่ 5</a>
+                        </li>
+                        <li class="<?PHP echo ($menuVisiting == '6') ? 'active' : ''; ?>">
+                            <a href="teacher_visiting.php?class=6">ประถมศึกษาปีที่ 6</a>
                         </li>
                     </ul>
                 </li>

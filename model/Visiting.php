@@ -3,32 +3,17 @@
 /**
  * Created by PhpStorm.
  * User: EPOP
- * Date: 5/24/2018
- * Time: 11:38 AM
+ * Date: 6/18/2018
+ * Time: 12:15 PM
  */
 require_once __DIR__."/_DBPDO.php";
 
-class User extends _DBPDO
+class Visiting extends _DBPDO
 {
-    private $DB = 'user';
 
-    function login($username , $password){
-        //set parameter
-        $this_db = $this->DB;
+    public $DB = "visiting";
 
-        //connect DB
-        $this->connect();
-        $sql = "SELECT * FROM $this_db WHERE username=:username AND password=:password";
-        $params= array(':username'=> $username , ':password'=> $password);
-        $result = $this->query($sql,$params);
-        //close DB
-        $this->close();
-
-
-        return $result;
-    }
-
-    function insertUser($input){
+    function insertThis($input){
         $this_db = $this->DB;
 
         $data_sql = $this->convertArrayToInsert($input);
@@ -49,15 +34,10 @@ class User extends _DBPDO
         }
     }
 
-    function updateUser($input , $condition){
-        //set parameter
-
-        //close DB
-        $this->close();
-
+    function updateThis($input , $condition){
         $this_db = $this->DB;
 
-        $data_sql = $this->convertArrayToUpdate($input,$condition);;
+        $data_sql = $this->convertArrayToUpdate($input,$condition);
         if(count($data_sql)<=0){
             return 0;
         }else {
@@ -74,12 +54,13 @@ class User extends _DBPDO
         }
     }
 
-    function deleteUser($id){
+    function deleteThis($id){
+        $this_db = $this->DB;
         //set parameter
 
         //connect DB
         $this->connect();
-        $sql = "DELETE FROM user WHERE id=:id";
+        $sql = "DELETE FROM $this_db WHERE id=:id";
         $params= array(':id'=> $id);
         $rowUpdate = $this->update($sql,$params);
         //close DB
@@ -89,13 +70,14 @@ class User extends _DBPDO
         return $rowUpdate;
     }
 
-    function selectByStatus($status=''){
+    function selectThisAll(){
         //set parameter
+        $this_db = $this->DB;
 
         //connect DB
         $this->connect();
-        $sql = "SELECT * FROM user WHERE status=:status";
-        $params= array(':status'=> $status);
+        $sql = "SELECT * FROM $this_db ORDER BY create_at DESC";
+        $params= array();
         $result = $this->queryAll($sql,$params);
         //close DB
         $this->close();
@@ -104,14 +86,14 @@ class User extends _DBPDO
         return $result;
     }
 
-    function selectById($id=''){
+    function selectThisId($id){
         //set parameter
         $this_db = $this->DB;
 
         //connect DB
         $this->connect();
-        $sql = "SELECT * FROM $this_db WHERE id=:id";
-        $params= array(':id'=> $id);
+        $sql = "SELECT * FROM $this_db WHERE id=$id";
+        $params= array();
         $result = $this->query($sql,$params);
         //close DB
         $this->close();
@@ -120,32 +102,25 @@ class User extends _DBPDO
         return $result;
     }
 
-
-    function searchAttr($attr,$value){
-        $this_db = $this->DB;
+    function selectThisCondition($condition){
         //set parameter
+        $this_db = $this->DB;
+
+        //condition
+        $data_sql = $this->convertArrayToCondition($condition);
+        $sql_value = $data_sql['value'];
+        $params = $data_sql['params'];
 
         //connect DB
         $this->connect();
-        if($attr==''){
-            return [];
-        }
-        elseif ($attr=='id'){
-            $sql = "SELECT * FROM $this_db WHERE id=:id";
-            $params= array(':id'=> $value);
-        }else{
-            $con = " $attr LIKE '%$value%'";
-            $sql = "SELECT * FROM $this_db WHERE $con";
-            $params= array();
-        }
-
+        $sql = "SELECT * FROM $this_db ".$sql_value;
         $result = $this->queryAll($sql,$params);
-
         //close DB
         $this->close();
 
 
         return $result;
     }
+
 
 }

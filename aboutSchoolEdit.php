@@ -10,7 +10,7 @@ require_once __DIR__."/controller/aboutSchoolEditController.php";
 ?>
 
 <head>
-<?php include( __DIR__."/head.php"); ?>
+    <?php include( __DIR__."/head.php"); ?>
 
     <!-- css froala -->
     <?php include( __DIR__."/_froalaCss.php"); ?>

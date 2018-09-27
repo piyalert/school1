@@ -20,6 +20,7 @@ $menuSave = '';
 $menuAbout = '';
 $menuGrade = '';
 $menuCheck = '';
+$menuVisiting='';
 
 
 $SESSION_user_id = isset($_SESSION['id'])?$_SESSION['id']:0;
