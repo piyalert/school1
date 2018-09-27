@@ -36,7 +36,7 @@ require_once __DIR__."/controller/teacherVisitingListController.php";
     </ol>
 
     <div class="text-right mr-5" style="padding-bottom: 20px;">
-        <a type="button" class="btn btn-success" href="teacher_visitingEdit.php?class=<?php echo $menuVisiting;?>&uid=<?php echo $user_id;?>">
+        <a type="button" class="btn btn-success" href="teacher_visitingEdit.php?id=0&class=<?php echo $menuVisiting;?>&uid=<?php echo $user_id;?>">
             <i class="fa fa-plus"></i> เพิ่มการเยี้ยมบ้าน
         </a>
     </div>

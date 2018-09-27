@@ -11,26 +11,17 @@ require_once __DIR__.'/../model/Visiting.php';
 $MVisiting = new Visiting();
 $MUser = new User();
 
-
-$user_id = $MVisiting->input('uid');
+$VISITINGS = [];
+$user_id = $SESSION_user_id;
+$result = $MVisiting->selectThisAll(['user_id'=>$user_id]);
+if(count($result)>0){
+    $VISITINGS=$result;
+}
 $USER_USERNAME = '';
 $USER_NAME = '';
 $result = $MUser->selectById($user_id);
 if(isset($result['id'])){
     $USER_USERNAME = $result['username'];
     $USER_NAME = $result['name'].' '.$result['surname'];
-}
-
-$VISITING_ID = $MVisiting->input('id',0);
-$VISITING_DATE = '';
-$VISITING_TITLE = '';
-$VISITING_DETAIL = '';
-$result = $MVisiting->selectThisId($VISITING_ID);
-if(isset($result['id'])){
-    $VISITING_DATE = $result['date_at'];
-    $VISITING_TITLE = $result['title'];
-    $VISITING_DETAIL = $result['detail'];
-}else{
-    $VISITING_ID=0;
 }
 

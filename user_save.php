@@ -22,6 +22,10 @@ require_once __DIR__."/controller/userSaveController.php";
 <div class="content-wrapper">
 
     <div class="container-fluid">
+        <div class="mb-0 mt-4">
+            <h2><i class="fa fa-money"></i> เงินออม </h2></div>
+        <hr class="mt-2">
+
         <!-- Card Columns Example Social Feed-->
 
         <div class="alert alert-dark" role="alert">
