@@ -68,7 +68,7 @@
                     <ul class="sidenav-second-level collapse <?php if ($menuAction == 'class') echo 'show'; ?>"
                         id="collapseMulti2">
                         <li class="<?PHP echo ($menuClass == '0') ? 'active' : ''; ?>">
-                            <a href="teacher_classsearch.php">ทะเบียนนักศึกษา</a>
+                            <a href="teacher_classsearch.php">ค้นหารายชื่อ</a>
                         </li>
                         <li class="<?PHP echo ($menuClass == '10') ? 'active' : ''; ?>">
                             <a href="teacher_class.php?class=10">อนุบาล 1</a>
@@ -252,7 +252,7 @@
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMultiVisiting"
                        data-parent="#exampleAccordion">
                         <i class="fa fa-home"></i>
-                        <span class="nav-link-text">เยี้ยมบ้าน</span>
+                        <span class="nav-link-text">เยี่ยมบ้าน</span>
                     </a>
                     <ul class="sidenav-second-level collapse <?php if ($menuAction == 'visiting') echo 'show'; ?>"
                         id="collapseMultiVisiting">
