@@ -12,15 +12,7 @@ $MVisiting = new Visiting();
 $MUser = new User();
 
 
-
-
-
-$VISITINGS = [];
 $user_id = $MVisiting->input('uid');
-$result = $MVisiting->selectThisAll(['user_id'=>$user_id]);
-if(count($result)>0){
-    $VISITINGS=$result;
-}
 $USER_USERNAME = '';
 $USER_NAME = '';
 $result = $MUser->selectById($user_id);
@@ -29,7 +21,7 @@ if(isset($result['id'])){
     $USER_NAME = $result['name'].' '.$result['surname'];
 }
 
-$VISITING_ID = $MVisiting->input('id');
+$VISITING_ID = $MVisiting->input('id',0);
 $VISITING_DATE = '';
 $VISITING_TITLE = '';
 $VISITING_DETAIL = '';
