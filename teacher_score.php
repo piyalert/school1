@@ -60,6 +60,8 @@ require_once __DIR__."/controller/teacherScoreController.php";
                 <?php foreach ($HEADER as $item): ?>
                     <th><?=$item['name']?></th>
                 <?php endforeach; ?>
+                <th>GPA</th>
+                <th>อันดับ</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -72,6 +74,12 @@ require_once __DIR__."/controller/teacherScoreController.php";
                     <?php foreach ($item['grade'] as $i): ?>
                         <th><?php echo $i['score'];?> <small> <?php echo $i['final_exam']==''?'':'('.$i['final_exam'].')';?> </small></th>
                     <?php endforeach; ?>
+                    <td>
+                        <?php echo is_numeric($item['gpa'])?number_format($item['gpa'],2,'.',','):'';?>
+                    </td>
+                    <td>
+                        <?php echo is_numeric($item['gpa'])?$item['seq']:''; ?>
+                    </td>
 
                     <td>
                         <a href="teacher_score_edit.php?sid=<?php echo $item['id'];?>&y=<?php echo $item['year'];?>&c=<?php echo $item['class'];?>">
