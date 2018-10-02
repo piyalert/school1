@@ -72,7 +72,7 @@ require_once __DIR__."/controller/teacherClassController.php";
                     <td><?php echo $item['gender'];?></td>
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
                     <td><?php echo $item['id_card'];?></td>
-                    <td><?php echo $item['birthday'];?></td>
+                    <td><?php echo date('d/m/Y',strtotime($item['birthday']));?></td>
                     <td><?php echo $item['parent'];?></td>
                     <td>
                         <div class="form-inline">
