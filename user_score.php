@@ -36,7 +36,7 @@ require_once __DIR__."/controller/userScoreController.php";
 
         <table class="table table-bordered" style="width: 80%; margin: auto;">
             <thead class="thead-light">
-            <tr class="table-info text-center" >
+            <tr class="text-center  <?php echo $SESSION_user_gender=='f'?'table-danger':'table-info'; ?>" >
                 <td colspan="5" scope="col"><?=$item['class_str']?> ปีการศึกษา <?=$item['year_str'];?></td>
             </tr>
             </thead>

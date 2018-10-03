@@ -1,0 +1,2 @@
+ALTER TABLE `subject`
+	ADD COLUMN `code` VARCHAR(255) NULL AFTER `id`;

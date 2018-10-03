@@ -2,22 +2,22 @@
 require_once __DIR__."/_session.php";
 require_once __DIR__ . "/_loginTeacher.php";
 
-$menuAction = 'visiting';
-$menuVisiting = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
+$menuAction = 'portfolio';
+$menuPortfolio = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
 $UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : $SCHOOL_YEAR;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
 $year = date("Y");
 
-if($menuVisiting==10){
+if($menuPortfolio==10){
     $className = "อนุบาล 1";
-}elseif ($menuVisiting==20){
+}elseif ($menuPortfolio==20){
     $className = "อนุบาล 2";
 }else{
-    $className = "ประถมศึกษาปีที่ " . $menuVisiting;
+    $className = "ประถมศึกษาปีที่ " . $menuPortfolio;
 }
 
 
-require_once __DIR__."/controller/teacherVisitingController.php";
+require_once __DIR__."/controller/teacherPortfolioController.php";
 
 ?>
 
@@ -34,15 +34,14 @@ require_once __DIR__."/controller/teacherVisitingController.php";
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item active">
-            <a href="teacher_visiting.php?class=<?php echo $menuVisiting; ?>"><?php echo $className; ?> </a></li>
+            <a href="teacher_portfolio.php?class=<?php echo $menuPortfolio; ?>"><?php echo $className; ?> </a></li>
         <li class="breadcrumb-item active"> รายชื่อนักเรียน </li>
     </ol>
 
     <div class="pl-2">
-        <h4>เยี่ยมบ้าน</h4>
+        <h4>กิจกรรมและผลงานนักเรียน</h4>
     </div>
     <hr>
-
     <div class="text-right mr-5" style="padding-bottom: 20px;">
         ปีการศึกษา:
         <select id="input_year" name="year" onchange="selectYear(this);">
@@ -72,7 +71,7 @@ require_once __DIR__."/controller/teacherVisitingController.php";
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
                     <td><?php echo $item['id_card'];?></td>
                     <td>
-                        <a href="teacher_visitinglist.php?uid=<?php echo $item['id']; ?>&class=<?php echo $menuVisiting;?>"><i class="fa fa-pencil"></i> edit</a>
+                        <a href="teacher_portfoliolist.php?uid=<?php echo $item['id']; ?>&class=<?php echo $menuPortfolio;?>"><i class="fa fa-pencil"></i> edit</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -84,7 +83,7 @@ require_once __DIR__."/controller/teacherVisitingController.php";
 
     <div class="value-attr" hidden>
         <input id="input_year" value="<?php echo $UrlYear;?>">
-        <input id="input_class" value="<?php echo $menuVisiting;?>">
+        <input id="input_class" value="<?php echo $menuPortfolio;?>">
     </div>
 
 
@@ -105,7 +104,7 @@ require_once __DIR__."/controller/teacherVisitingController.php";
     function selectYear(res) {
         var input_year = res.value;
         var input_class = $('#input_class').val();
-        document.location = "teacher_visiting.php?class="+input_class+"&year="+input_year;
+        document.location = "teacher_portfolio.php?class="+input_class+"&year="+input_year;
     }
 
 </script>

@@ -2,19 +2,19 @@
 require_once __DIR__."/_session.php";
 require_once __DIR__ . "/_loginTeacher.php";
 
-$menuAction = 'visiting';
-$menuVisiting = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
+$menuAction = 'portfolio';
+$menuPortfolio = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
 
-if($menuVisiting==10){
+if($menuPortfolio==10){
     $className = "อนุบาล 1";
-}elseif ($menuVisiting==20){
+}elseif ($menuPortfolio==20){
     $className = "อนุบาล 2";
 }else{
-    $className = "ประถมศึกษาปีที่ " . $menuVisiting;
+    $className = "ประถมศึกษาปีที่ " . $menuPortfolio;
 }
 
 
-require_once __DIR__."/controller/teacherVisitingListController.php";
+require_once __DIR__."/controller/teacherPortfolioListController.php";
 
 ?>
 
@@ -31,19 +31,18 @@ require_once __DIR__."/controller/teacherVisitingListController.php";
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item active">
-            <a href="teacher_visiting.php?class=<?php echo $menuVisiting; ?>"><?php echo $className; ?> </a></li>
+            <a href="teacher_portfolio.php?class=<?php echo $menuPortfolio; ?>"><?php echo $className; ?> </a></li>
         <li class="breadcrumb-item active"> <?php echo $USER_NAME; ?> <small>(<?php echo $USER_USERNAME; ?>)</small> </li>
     </ol>
 
     <div class="pl-2">
-        <h4>เยี่ยมบ้าน</h4>
+        <h4>กิจกรรมและผลงานนักเรียน</h4>
     </div>
     <hr>
 
-
     <div class="text-right mr-5" style="padding-bottom: 20px;">
-        <a type="button" class="btn btn-success" href="teacher_visitingEdit.php?id=0&class=<?php echo $menuVisiting;?>&uid=<?php echo $user_id;?>">
-            <i class="fa fa-plus"></i> เพิ่มการเยี้ยมบ้าน
+        <a type="button" class="btn btn-success" href="teacher_portfolioEdit.php?id=0&class=<?php echo $menuPortfolio;?>&uid=<?php echo $user_id;?>">
+            <i class="fa fa-plus"></i> เพิ่มกิจกรรมและผลงาน
         </a>
     </div>
 
@@ -59,13 +58,13 @@ require_once __DIR__."/controller/teacherVisitingListController.php";
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($VISITINGS as $key=>$item): ?>
+            <?php foreach ($PORTFOLIOS as $key=>$item): ?>
                 <tr>
                     <td><?php echo ($key+1);?></td>
                     <td><?php echo date('d/m/Y',strtotime($item['date_at']));?></td>
                     <td><?php echo $item['title'];?></td>
                     <td>
-                        <a href="teacher_visitingEdit.php?id=<?php echo $item['id'];?>&class=<?php echo $menuVisiting;?>&uid=<?php echo $user_id;?>"><i class="fa fa-pencil"></i> edit</a>
+                        <a href="teacher_portfolioEdit.php?id=<?php echo $item['id'];?>&class=<?php echo $menuPortfolio;?>&uid=<?php echo $user_id;?>"><i class="fa fa-pencil"></i> edit</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -77,7 +76,7 @@ require_once __DIR__."/controller/teacherVisitingListController.php";
 
     <div class="value-attr" hidden>
         <input id="input_year" value="<?php echo $UrlYear;?>">
-        <input id="input_class" value="<?php echo $menuVisiting;?>">
+        <input id="input_class" value="<?php echo $menuPortfolio;?>">
     </div>
 
 

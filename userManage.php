@@ -28,7 +28,7 @@ require_once __DIR__."/controller/userManage.php";
           <hr class="mt-2">
 
           <div class="">
-              <table id="example" class="table table-striped table-bordered" style="width:100%;font-size: 12px;">
+              <table id="example" class="table table-hover table-bordered" style="width:100%;font-size: 12px;">
                   <thead style="font-size: 12px;">
                   <tr>
                       <th>Username</th>
@@ -56,7 +56,7 @@ require_once __DIR__."/controller/userManage.php";
                                     <i class="fa fa-pencil"></i> edit
                                 </a>
                                 <a class="text-danger" href="/school/userManage.php?fn=delete&id=<?php echo $item['id'];?>">
-                                    <i class="fa fa-pencil"></i> delete
+                                    <i class="fa fa-trash"></i> delete
                                 </a>
                             </td>
                         </tr>

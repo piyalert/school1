@@ -247,12 +247,48 @@
                     </ul>
                 </li>
 
-                <!-- เยี้ยมบ้าน -->
+                <!-- กิจกรรม ผลงาน -->
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Portfolio">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMultiPortfolio"
+                       data-parent="#examplePortfolio">
+                        <i class="fa fa-address-card"></i>
+                        <span class="nav-link-text">ผลงานนักเรียน</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse <?php if ($menuAction == 'portfolio') echo 'show'; ?>"
+                        id="collapseMultiPortfolio">
+                        <li class="<?PHP echo ($menuPortfolio == '10') ? 'active' : ''; ?>">
+                            <a href="teacher_portfolio.php?class=10">อนุบาล 1</a>
+                        </li>
+                        <li class="<?PHP echo ($menuPortfolio == '20') ? 'active' : ''; ?>">
+                            <a href="teacher_portfolio.php?class=20">อนุบาล 2</a>
+                        </li>
+                        <li class="<?PHP echo ($menuPortfolio == '1') ? 'active' : ''; ?>">
+                            <a href="teacher_portfolio.php?class=1">ประถมศึกษาปีที่ 1</a>
+                        </li>
+                        <li class="<?PHP echo ($menuPortfolio == '2') ? 'active' : ''; ?>">
+                            <a href="teacher_portfolio.php?class=2">ประถมศึกษาปีที่ 2</a>
+                        </li>
+                        <li class="<?PHP echo ($menuPortfolio == '3') ? 'active' : ''; ?>">
+                            <a href="teacher_portfolio.php?class=3">ประถมศึกษาปีที่ 3</a>
+                        </li>
+                        <li class="<?PHP echo ($menuPortfolio == '4') ? 'active' : ''; ?>">
+                            <a href="teacher_portfolio.php?class=4">ประถมศึกษาปีที่ 4</a>
+                        </li>
+                        <li class="<?PHP echo ($menuPortfolio == '5') ? 'active' : ''; ?>">
+                            <a href="teacher_portfolio.php?class=5">ประถมศึกษาปีที่ 5</a>
+                        </li>
+                        <li class="<?PHP echo ($menuPortfolio == '6') ? 'active' : ''; ?>">
+                            <a href="teacher_portfolio.php?class=6">ประถมศึกษาปีที่ 6</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- เยี่ยมบ้าน -->
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Visiting">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMultiVisiting"
                        data-parent="#exampleAccordion">
                         <i class="fa fa-home"></i>
-                        <span class="nav-link-text">เยี้ยมบ้าน</span>
+                        <span class="nav-link-text">เยี่ยมบ้าน</span>
                     </a>
                     <ul class="sidenav-second-level collapse <?php if ($menuAction == 'visiting') echo 'show'; ?>"
                         id="collapseMultiVisiting">
@@ -319,10 +355,17 @@
                 </li>
 
                 <li class="nav-item <?PHP echo ($menuAction == 'visiting') ? 'active' : ''; ?>" data-toggle="tooltip"
-                    data-placement="right" title="Link">
+                         data-placement="right" title="Link">
                     <a class="nav-link" href="user_visitinglist.php">
                         <i class="fa fa-home"></i>
-                        <span class="nav-link-text"> เยี้ยมบ้าน </span>
+                        <span class="nav-link-text"> เยี่ยมบ้าน </span>
+                    </a>
+                </li>
+                <li class="nav-item <?PHP echo ($menuAction == 'portfolio') ? 'active' : ''; ?>" data-toggle="tooltip"
+                    data-placement="right" title="Link">
+                    <a class="nav-link" href="user_portfoliolist.php">
+                        <i class="fa fa-address-card"></i>
+                        <span class="nav-link-text"> กิจกรรมและผลงาน </span>
                     </a>
                 </li>
 

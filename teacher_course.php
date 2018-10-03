@@ -48,25 +48,29 @@ require_once __DIR__."/controller/teacherCourseController.php";
         <table id="table_course" class="table table-striped table-bordered" style="width:100%;">
             <thead style="font-size: 12px;">
             <tr>
-                <th>ปีการศึกษา</th>
+                <th>#</th>
+                <th>รหัสวิชา</th>
                 <th>วิชา</th>
                 <th>รายละเอียด</th>
+                <th>ปีการศึกษา</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($COURSELIST as $item): ?>
+            <?php foreach ($COURSELIST as $key=>$item): ?>
                 <tr>
-                    <td><?php echo $item['year'];?></td>
+                    <td><?php echo ($key+1); ?></td>
+                    <td><?php echo $item['code'];?></td>
                     <td><?php echo $item['name'];?></td>
                     <td><?php echo $item['detail'];?></td>
+                    <td><?php echo $item['year'];?></td>
                     <td>
                         <div class="form-inline">
                             <form class="mb-2" method="post">
                                 <input name="course_id" value="<?php echo $item['id'];?>" hidden>
                                 <input name="fn" value="deleteCourse" hidden>
                                 <button class="btn btn-link" style="color: red;" type="submit">
-                                    <i class="fa fa-pencil"></i> delete
+                                    <i class="fa fa-trash"></i> delete
                                 </button>
                             </form>
 
