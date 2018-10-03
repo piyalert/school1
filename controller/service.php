@@ -461,3 +461,74 @@ elseif ($fn=='updateVisiting'){
     }
 }
 
+//portfolio
+elseif ($fn=='insertPortfolio'){
+    require_once __DIR__.'/../model/Portfolio.php';
+    $MV = new Portfolio();
+
+    $user_id = $MV->input('user_id');
+    $title = $MV->input('title');
+    $detail = $MV->input('detail');
+    $date_at = $MV->input('date_at');
+
+
+    $input = [
+        'user_id'=>$user_id,
+        'title'=>$title,
+        'detail'=>$detail,
+        'date_at'=>$date_at
+    ];
+
+    $result = $MV->insertThis($input);
+    if($result > 0){
+        echo json_encode([
+            'status'=> true,
+            'message'=> 'Success',
+            'data'=>[]
+        ]);
+        exit;
+    }else{
+        echo json_encode([
+            'status'=> false,
+            'message'=> 'Error',
+            'data'=>[]
+        ]);
+        exit;
+    }
+}
+elseif ($fn=='updatePortfolio'){
+    require_once __DIR__.'/../model/Portfolio.php';
+    $MV = new Portfolio();
+
+    $user_id = $MV->input('user_id');
+    $title = $MV->input('title');
+    $detail = $MV->input('detail');
+    $date_at = $MV->input('date_at');
+    $id = $MV->input('id');
+
+
+    $input = [
+        'user_id'=>$user_id,
+        'title'=>$title,
+        'detail'=>$detail,
+        'date_at'=>$date_at
+    ];
+
+    $result = $MV->updateThis($input,['id'=>$id]);
+    if($result > 0){
+        echo json_encode([
+            'status'=> true,
+            'message'=> 'Success',
+            'data'=>[]
+        ]);
+        exit;
+    }else{
+        echo json_encode([
+            'status'=> false,
+            'message'=> 'Error',
+            'data'=>[]
+        ]);
+        exit;
+    }
+}
+

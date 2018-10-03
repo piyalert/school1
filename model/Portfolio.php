@@ -3,19 +3,17 @@
 /**
  * Created by PhpStorm.
  * User: EPOP
- * Date: 6/29/2018
- * Time: 4:14 PM
+ * Date: 6/18/2018
+ * Time: 12:15 PM
  */
-
 require_once __DIR__."/_DBPDO.php";
 
-class Course extends _DBPDO
+class Portfolio extends _DBPDO
 {
 
-    private $DB = 'course';
-    private $FK = 'subject';
+    public $DB = "portfolio";
 
-    function insertCourse($input){
+    function insertThis($input){
         $this_db = $this->DB;
 
         $data_sql = $this->convertArrayToInsert($input);
@@ -36,42 +34,10 @@ class Course extends _DBPDO
         }
     }
 
-    function insertCourseList($list_id,$class,$year){
-        $this_db = $this->DB;
-        $this_fk = $this->FK;
-        //set parameter
-        $count = 0;
-
-        //connect DB
-        $this->connect();
-
-        $sql = "SELECT * FROM $this_fk WHERE id IN ($list_id)";
-        $result = $this->queryNoParams($sql);
-        foreach ($result as $item){
-            $sql = "INSERT INTO $this_db (subject_id,classroom,year)
-             VALUES (:subject_id,:class,:year)";
-            $params = [
-                ':subject_id'=>$item['id'],
-                ':class'=>$class,
-                ':year'=>$year
-            ];
-            $lastId = $this->insert($sql,$params);
-            if($lastId>0){
-                $count++;
-            }
-        }
-
-        //close DB
-        $this->close();
-
-
-        return $count;
-    }
-
-    function editCourse($input , $condition){
+    function updateThis($input , $condition){
         $this_db = $this->DB;
 
-        $data_sql = $this->convertArrayToUpdate($input,$condition);;
+        $data_sql = $this->convertArrayToUpdate($input,$condition);
         if(count($data_sql)<=0){
             return 0;
         }else {
@@ -88,7 +54,7 @@ class Course extends _DBPDO
         }
     }
 
-    function deleteCourse($id){
+    function deleteThis($id){
         $this_db = $this->DB;
         //set parameter
 
@@ -104,28 +70,57 @@ class Course extends _DBPDO
         return $rowUpdate;
     }
 
-    function selectCourseByRoomAndYear($class,$year){
+    function selectThisAll(){
         //set parameter
         $this_db = $this->DB;
-        $this_fk = $this->FK;
-
-        $year = $year>2500?$year-543:$year;
 
         //connect DB
         $this->connect();
-        $sql = "SELECT c.* ,s.code, s.name , s.detail FROM $this_db AS c
-        LEFT JOIN $this_fk AS s ON c.subject_id = s.id
-        WHERE c.classroom =:class AND c.year =:year ";
-        $params= array(':class'=>$class , ':year'=>$year);
+        $sql = "SELECT * FROM $this_db ORDER BY create_at DESC";
+        $params= array();
         $result = $this->queryAll($sql,$params);
         //close DB
         $this->close();
 
 
         return $result;
-
     }
 
+    function selectThisId($id){
+        //set parameter
+        $this_db = $this->DB;
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT * FROM $this_db WHERE id=$id";
+        $params= array();
+        $result = $this->query($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+    }
+
+    function selectThisCondition($condition){
+        //set parameter
+        $this_db = $this->DB;
+
+        //condition
+        $data_sql = $this->convertArrayToCondition($condition);
+        $sql_value = $data_sql['value'];
+        $params = $data_sql['params'];
+
+        //connect DB
+        $this->connect();
+        $sql = "SELECT * FROM $this_db ".$sql_value;
+        $result = $this->queryAll($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+    }
 
 
 }

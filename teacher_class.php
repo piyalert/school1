@@ -53,7 +53,7 @@ require_once __DIR__."/controller/teacherClassController.php";
 
     <div class="container-fluid">
         <!-- Card Columns Example Social Feed-->
-        <table id="table_student" class="table table-striped table-bordered" style="width:100%;">
+        <table id="table_student" class="table table-hover table-bordered" style="width:100%;">
             <thead style="font-size: 12px;">
             <tr>
                 <th>#</th>
@@ -61,19 +61,17 @@ require_once __DIR__."/controller/teacherClassController.php";
                 <th>ชื่อ สกุล</th>
                 <th>รหัสบัตรประจำตัวประชาชน</th>
                 <th>วันเกิด</th>
-                <th>ผู้ปกครอง</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($STUDENTLISTS as $item): ?>
+            <?php foreach ($STUDENTLISTS as $key=>$item): ?>
                 <tr>
-                    <td><?php echo $item['id'];?></td>
-                    <td><?php echo $item['gender'];?></td>
+                    <td><?php echo $key+1;?></td>
+                    <td><?php echo $item['gender']=='m'?'ชาย':'หญิง';?></td>
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
                     <td><?php echo $item['id_card'];?></td>
-                    <td><?php echo $item['birthday'];?></td>
-                    <td><?php echo $item['parent'];?></td>
+                    <td><?php echo date('d/m/Y',strtotime($item['birthday']));?></td>
                     <td>
                         <div class="form-inline">
                             <div class="mb-2">
@@ -87,7 +85,7 @@ require_once __DIR__."/controller/teacherClassController.php";
                                 <input name="student_id" value="<?php echo $item['student_id'];?>" hidden>
                                 <input name="fn" value="deleteStudent" hidden>
                                 <button class="btn btn-link" style="color: red;" type="submit">
-                                    <i class="fa fa-pencil"></i> delete
+                                    <i class="fa fa-trash"></i> delete
                                 </button>
                             </form>
 

@@ -37,14 +37,18 @@ require_once __DIR__."/controller/teacherCourseCreateController.php";
         <table id="table_subject" class="table table-striped table-bordered" style="width:100%;">
             <thead style="font-size: 12px;">
             <tr>
+                <th>#</th>
+                <th>รหัสวิชา</th>
                 <th>วิชา</th>
                 <th>รายละเอียด</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($SUBLIST as $item): ?>
+            <?php foreach ($SUBLIST as $key=>$item): ?>
                 <tr>
+                    <td><?php echo $key+1;?></td>
+                    <td><?php echo $item['code'];?></td>
                     <td><?php echo $item['name'];?></td>
                     <td><?php echo $item['detail'];?></td>
                     <td>
@@ -52,6 +56,7 @@ require_once __DIR__."/controller/teacherCourseCreateController.php";
 
                             <div class="mb-2">
                                 <button class="btn btn-link" data-toggle="modal" data-target=".bd-modal-edit-course"
+                                        attr_code="<?php echo $item['code'];?>"
                                         attr_name="<?php echo $item['name'];?>" attr_id="<?php echo $item['id'];?>"
                                         attr_detail="<?php echo $item['detail'];?>" onclick="editCourse(this);" >
                                     <i class="fa fa-pencil"></i> edit
@@ -92,12 +97,16 @@ require_once __DIR__."/controller/teacherCourseCreateController.php";
 
             <div class="modal-body">
                 <div class="form-group">
+                    <label for="input_add_subject_code">รหัสวิชา</label>
+                    <input type="text" name="code" class="form-control" id="input_add_subject_code" placeholder="รหัสวิชา">
+                </div>
+                <div class="form-group">
                     <label for="input_add_subject_name">รายวิชา</label>
-                    <input type="text" name="name" class="form-control" id="input_add_subject_name" placeholder="ชื่อวิชา,ชื่อย่อ">
+                    <input type="text" name="name" class="form-control" id="input_add_subject_name" placeholder="ชื่อวิชา,ชื่อย่อ,สปช.">
                 </div>
                 <div class="form-group">
                     <label for="input_add_subject_detail">รายละเอียดวิชา</label>
-                    <input type="text" name="detail" class="form-control" id="input_add_subject_detail" placeholder="รายละเอียดวิชา,ชื่อเต็ม">
+                    <input type="text" name="detail" class="form-control" id="input_add_subject_detail" placeholder="รายละเอียดวิชา,ชื่อเต็ม,สร้างเสริมประสบการณ์ชีวิต">
                 </div>
             </div>
 
@@ -119,6 +128,10 @@ require_once __DIR__."/controller/teacherCourseCreateController.php";
             </div>
 
             <div class="modal-body">
+                <div class="form-group">
+                    <label for="input_edit_subject_code">รหัสวิชา</label>
+                    <input type="text" name="code" class="form-control" id="input_edit_subject_code" placeholder="รหัสวิชา">
+                </div>
                 <div class="form-group">
                     <label for="input_edit_subject_name">รายวิชา</label>
                     <input type="text" name="name" class="form-control" id="input_edit_subject_name" placeholder="ชื่อวิชา,ชื่อย่อ">
@@ -156,7 +169,9 @@ require_once __DIR__."/controller/teacherCourseCreateController.php";
         var name = $(res).attr("attr_name");
         var detail = $(res).attr("attr_detail");
         var attr_id = $(res).attr("attr_id");
+        var code = $(res).attr("attr_code");
 
+        $('#input_edit_subject_code').val(code);
         $('#input_edit_subject_name').val(name);
         $('#input_edit_subject_detail').val(detail);
         $('#course_id').attr('value',attr_id);

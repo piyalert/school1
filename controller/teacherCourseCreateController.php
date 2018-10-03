@@ -15,9 +15,11 @@ $fn = $MSub->input('fn');
 
 
 if($fn=='addCourse'){
+    $code = $MSub->input('code');
     $name = $MSub->input('name');
     $detail = $MSub->input('detail');
     $input = [
+        'code'=>$code,
         'name'=>$name,
         'detail'=>$detail
     ];
@@ -26,10 +28,12 @@ if($fn=='addCourse'){
 }
 
 elseif($fn=='editCourse'){
+    $code = $MSub->input('code');
     $name = $MSub->input('name');
     $detail = $MSub->input('detail');
     $id = $MSub->input('course_id');
     $input = [
+        'code'=>$code,
         'name'=>$name,
         'detail'=>$detail
     ];

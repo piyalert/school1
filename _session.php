@@ -21,9 +21,11 @@ $menuAbout = '';
 $menuGrade = '';
 $menuCheck = '';
 $menuVisiting='';
+$menuPortfolio='';
 
 
 $SESSION_user_id = isset($_SESSION['id'])?$_SESSION['id']:0;
 $SESSION_user_username = isset($_SESSION['username'])?$_SESSION['username']:'';
 $SESSION_user_img_path = (isset($_SESSION['img_path']) && $_SESSION['img_path']!='')?$_SESSION['img_path']:'/school/upload/user.png';
 $SESSION_user_status = isset($_SESSION['status'])?$_SESSION['status']:'';
+$SESSION_user_gender = isset($_SESSION['gender'])?$_SESSION['gender']:'';

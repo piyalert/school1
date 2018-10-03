@@ -1,14 +1,14 @@
 <?php
 require_once __DIR__ . "/_session.php";
 
-require_once __DIR__ . "/controller/register.php";
-
 $menuAction = 'user';
 $menuSub = 'register';
 
 $disabled = '';
 if ($SESSION_user_status != 'teacher') $disabled='disabled';
 
+
+require_once __DIR__ . "/controller/register.php";
 ?>
 
 <head>
