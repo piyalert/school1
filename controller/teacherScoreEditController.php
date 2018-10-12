@@ -18,6 +18,8 @@ if($fn=='addUpdateGrade'){
     for($i=0;$i<$countInput;$i++){
         $course_id = $MG->input('courseId'.$i);
         $grade = $MG->input('grade'.$i);
+        $score_exam = $MG->input('score_exam'.$i);
+        $center_exam = $MG->input('center_exam'.$i);
         $final_exam = $MG->input('final_exam'.$i);
 
         $input = [
@@ -25,6 +27,8 @@ if($fn=='addUpdateGrade'){
             'student_id'=>$studentId,
             'year'=> $year,
             'score'=>$grade,
+            'score_exam'=>$score_exam,
+            'center_exam'=>$center_exam,
             'final_exam'=>$final_exam
         ];
 

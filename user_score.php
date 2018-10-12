@@ -54,7 +54,7 @@ require_once __DIR__."/controller/userScoreController.php";
                 <th scope="row"> <?=($k+1);?> </th>
                 <td><?=$item2['name']?></td>
                 <td><?=$item2['detail']?></td>
-                <td><?=$item2['final_exam']?></td>
+                <td><?=$item2['sum_score']?></td>
                 <td><?=$item2['grade'];?></td>
             </tr>
             <?php endforeach; ?>
