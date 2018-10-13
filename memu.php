@@ -319,6 +319,43 @@
                     </ul>
                 </li>
 
+                <!-- ตรวจสุขภาพ -->
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Health">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMultiHealth"
+                       data-parent="#exampleHealth">
+                        <i class="fa fa-user-circle"></i>
+                        <span class="nav-link-text">ตรวจสุขภาพ</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse <?php if ($menuAction == 'health') echo 'show'; ?>"
+                        id="collapseMultiHealth">
+                        <li class="<?PHP echo ($menuHealth == '10') ? 'active' : ''; ?>">
+                            <a href="teacher_health.php?class=10">อนุบาล 1</a>
+                        </li>
+                        <li class="<?PHP echo ($menuHealth == '20') ? 'active' : ''; ?>">
+                            <a href="teacher_health.php?class=20">อนุบาล 2</a>
+                        </li>
+                        <li class="<?PHP echo ($menuHealth == '1') ? 'active' : ''; ?>">
+                            <a href="teacher_health.php?class=1">ประถมศึกษาปีที่ 1</a>
+                        </li>
+                        <li class="<?PHP echo ($menuHealth == '2') ? 'active' : ''; ?>">
+                            <a href="teacher_health.php?class=2">ประถมศึกษาปีที่ 2</a>
+                        </li>
+                        <li class="<?PHP echo ($menuHealth == '3') ? 'active' : ''; ?>">
+                            <a href="teacher_health.php?class=3">ประถมศึกษาปีที่ 3</a>
+                        </li>
+                        <li class="<?PHP echo ($menuHealth == '4') ? 'active' : ''; ?>">
+                            <a href="teacher_health.php?class=4">ประถมศึกษาปีที่ 4</a>
+                        </li>
+                        <li class="<?PHP echo ($menuHealth == '5') ? 'active' : ''; ?>">
+                            <a href="teacher_health.php?class=5">ประถมศึกษาปีที่ 5</a>
+                        </li>
+                        <li class="<?PHP echo ($menuHealth == '6') ? 'active' : ''; ?>">
+                            <a href="teacher_health.php?class=6">ประถมศึกษาปีที่ 6</a>
+                        </li>
+                    </ul>
+                </li>
+
+
                 <!-- เพิ่มข่าวประกาศ -->
                 <li class="nav-item <?PHP echo ($menuAction == 'news') ? 'active' : ''; ?>" data-toggle="tooltip"
                 data-placement="right" title="Link">
@@ -361,6 +398,15 @@
                         <span class="nav-link-text"> เยี่ยมบ้าน </span>
                     </a>
                 </li>
+
+                <li class="nav-item <?PHP echo ($menuAction == 'health') ? 'active' : ''; ?>" data-toggle="tooltip"
+                    data-placement="right" title="Link">
+                    <a class="nav-link" href="user_healthlist.php">
+                        <i class="fa fa-user-circle"></i>
+                        <span class="nav-link-text"> ตรวจสุขภาพ </span>
+                    </a>
+                </li>
+
                 <li class="nav-item <?PHP echo ($menuAction == 'portfolio') ? 'active' : ''; ?>" data-toggle="tooltip"
                     data-placement="right" title="Link">
                     <a class="nav-link" href="user_portfoliolist.php">
@@ -405,8 +451,8 @@
                     <i class="fa fa-fw fa-building-o"></i> ครุภัณฑ์
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item <?php if ($menuAction == 'student') echo 'active'; ?>">
+                <a class="nav-link" href="aboutStudent.php">
                     <i class="fa fa-fw fa-group"></i> นักเรียน
                 </a>
             </li>

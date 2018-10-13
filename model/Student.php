@@ -183,6 +183,41 @@ WHERE $this_db.class = :class AND $this_db.year = :year";
 
     }
 
+    function aboutStudent($class , $year){
+        //set parameter
+        $this_db = $this->DB;
+        $this_user = $this->FKDB;
+
+        //connect DB
+        $this->connect();
+        $sql = "select sum(if(u.gender='m',1,0)) as sum_m  , sum(if(u.gender='f',1,0)) as sum_f from $this_db s 
+        left join $this_user u on s.user_id = u.id
+        where s.class=:class and s.year=:year
+        group by s.class";
+        $params= array(':class'=> $class , ':year'=>$year);
+        $result = $this->query($sql,$params);
+        //close DB
+        $this->close();
+
+
+        if(intval($class)==10){
+            $strClass='อนุบาล1';
+        }elseif (intval($class)==20){
+            $strClass='อนุบาล2';
+        }else{
+            $strClass='ชั้นประถมศึกษาปีที่ '.$class;
+        }
+
+        $sumM =0;
+        $sumF =0;
+        if(isset($result['sum_m'])){
+            $sumM = $result['sum_m'];
+            $sumF = $result['sum_f'];
+        }
+
+        return ['class'=>$strClass,'sum_f'=>$sumF, 'sum_m'=>$sumM];
+    }
+
 
 
 

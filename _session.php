@@ -22,6 +22,7 @@ $menuGrade = '';
 $menuCheck = '';
 $menuVisiting='';
 $menuPortfolio='';
+$menuHealth = '';
 
 
 $SESSION_user_id = isset($_SESSION['id'])?$_SESSION['id']:0;

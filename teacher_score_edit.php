@@ -56,9 +56,12 @@ require_once __DIR__."/controller/teacherScoreEditController.php";
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">วิชา</th>
-                            <th scope="col" style="width: 20%">คะแนน</th>
-                            <th scope="col" style="width: 20%">เกรด</th>
+                            <th scope="col" style="width: 25%">วิชา</th>
+                            <th scope="col">คะแนนเก็บ</th>
+                            <th scope="col">คะแนนกลางภาค</th>
+                            <th scope="col">คะแนนปลายภาค</th>
+                            <th scope="col">รวม</th>
+                            <th scope="col">เกรด</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -68,7 +71,16 @@ require_once __DIR__."/controller/teacherScoreEditController.php";
                                 <th scope="row"><?php echo ($key+1);?></th>
                                 <td> <?php echo $item['name'];?> (<small><?php echo $item['detail'];?> </small>) </td>
                                 <td>
+                                    <input type="text" name="score_exam<?php echo $key;?>" class="form-control" value="<?php echo $item['score_exam'];?>">
+                                </td>
+                                <td>
+                                    <input type="text" name="center_exam<?php echo $key;?>" class="form-control" value="<?php echo $item['center_exam'];?>">
+                                </td>
+                                <td>
                                     <input type="text" name="final_exam<?php echo $key;?>" class="form-control" value="<?php echo $item['final_exam'];?>">
+                                </td>
+                                <td>
+                                    <?php echo $item['sum_score'];?>
                                 </td>
                                 <td>
                                     <input type="text" name="courseId<?php echo $key;?>" value="<?php echo $item['id'];?>" hidden>

@@ -180,7 +180,14 @@ class Grade extends _DBPDO
         $listGrade = [];
         foreach ($arrGrade as $item){
             $key = $item['course_id'].''.$item['student_id'];
-            $listGrade[$key]= ['score'=>$item['score'] , 'final_exam'=>$item['final_exam']];
+
+            $se = $item['score_exam'];
+            $ce = $item['center_exam'];
+            $fe = $item['final_exam'];
+            $sum = (is_numeric($se)?$se:0) + (is_numeric($ce)?$ce:0) + (is_numeric($fe)?$fe:0);
+            $sum = ($sum==0)?'':$sum;
+
+            $listGrade[$key]= ['score'=>$item['score'] , 'final_exam'=>$sum ];
         }
 
         //student grade
@@ -272,11 +279,22 @@ class Grade extends _DBPDO
         foreach ($arrSubject as $k=>$item){
             $key =  $item['id'];
             if(isset($listGrade[$key])){
+                $se = $listGrade[$key]['score_exam'];
+                $ce = $listGrade[$key]['center_exam'];
+                $fe = $listGrade[$key]['final_exam'];
                 $arrSubject[$k]['grade'] = $listGrade[$key]['score'];
-                $arrSubject[$k]['final_exam'] = $listGrade[$key]['final_exam'];
+                $arrSubject[$k]['score_exam'] = $se;
+                $arrSubject[$k]['center_exam'] = $ce;
+                $arrSubject[$k]['final_exam'] = $fe;
+                $sum = (is_numeric($se)?$se:0) + (is_numeric($ce)?$ce:0) + (is_numeric($fe)?$fe:0);
+                $sum = ($sum==0)?'':$sum;
+                $arrSubject[$k]['sum_score'] = $sum;
             }else{
                 $arrSubject[$k]['grade'] = '';
+                $arrSubject[$k]['score_exam'] = '';
+                $arrSubject[$k]['center_exam'] = '';
                 $arrSubject[$k]['final_exam'] = '';
+                $arrSubject[$k]['sum_score'] = '';
             }
 
         }
