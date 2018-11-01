@@ -40,6 +40,7 @@ require_once __DIR__."/controller/teacherHealthListController.php";
     </div>
     <hr>
 
+    <?php include(__DIR__.'/_alert.php'); ?>
 
     <div class="text-right mr-5" style="padding-bottom: 20px;">
         <a type="button" class="btn btn-success" href="teacher_healthEdit.php?id=0&class=<?php echo $menuHealth;?>&uid=<?php echo $user_id;?>">
