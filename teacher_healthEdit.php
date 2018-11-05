@@ -21,8 +21,6 @@ require_once __DIR__."/controller/teacherHealthEditController.php";
 
 <head>
     <?php include(__DIR__ . "/head.php"); ?>
-    <!-- css froala -->
-    <?php include( __DIR__."/_froalaCss.php"); ?>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -43,37 +41,85 @@ require_once __DIR__."/controller/teacherHealthEditController.php";
         <li class="breadcrumb-item active"> ตรวจสุขภาพ </li>
     </ol>
 
-    <div class="container-fluid">
+    <form class="container-fluid" method="post">
         <!-- Card Columns Example Social Feed-->
 
         <div class="mb-0 mt-4">
 
+            <?php include(__DIR__.'/_alert.php'); ?>
+
             <div class="form-group">
                 <label for="inputTitle">หัวข้อ</label>
-                <input type="text" class="form-control" id="inputTitle" value="<?php echo $VISITING_TITLE; ?>">
+                <input type="text" class="form-control" id="inputTitle" name="title" value="<?php echo $VISITING_TITLE; ?>">
             </div>
 
             <div class="form-group">
                 <label for="inputDateAt">วันที่</label>
-                <input type="date" class="form-control" id="inputDateAt" value="<?php echo $VISITING_DATE; ?>">
+                <input type="date" class="form-control" id="inputDateAt" name="date_at" value="<?php echo $VISITING_DATE; ?>">
             </div>
-
 
             <div class="form-group">
-                <label for="username">รายละเอียด </label>
-                <div id="editor">
-                    <div id='edit'> <?php echo $VISITING_DETAIL; ?> </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="inputHeight">ส่วนสูง</label>
+                        <input class="form-control" id="inputHeight" name="height" type="text"
+                               placeholder="ส่วนสูง" value="<?php echo $VISITING_HEIGHT; ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputWeight">น้ำหนัก</label>
+                        <input class="form-control" id="inputWeight" name="weight" type="text"
+                               placeholder="น้ำหนัก" value="<?php echo $VISITING_WEIGHT; ?>">
+                    </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="inputCongenitalDisease">โรคประจำตัว</label>
+                <input type="text" class="form-control" id="inputCongenitalDisease" name="congenital_disease" value="<?php echo $VISITING_CONGENITAL_DISEASE; ?>">
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="inputDisabled">สมรรถภาพทางร่างกาย</label>
+                        <select  class="form-control" id="inputDisabled" name="disabled" >
+                            <option value="N">ปกติ</option>
+                            <option value="Y" <?php echo $VISITING_DISABLED_NOTE=='Y'?'selected':''; ?> >พิการ</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputDisabledNote">พิการทางด้านใด</label>
+                        <input class="form-control" id="inputDisabledNote" name="disabled_note" type="text"
+                               placeholder="พิการทางด้านใด" value="<?php echo $VISITING_DISABLED_NOTE; ?>">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputTooth">สุขภาพฟัน</label>
+                <div id="inputTooth">
+                    <input type="checkbox" name="fillings" value="Y" <?php echo $VISITING_FILLINGS=='Y'?'checked':''; ?> > <span class="pr-5"> อุดฟัน</span>
+                    <input type="checkbox" name="scaling" value="Y" <?php echo $VISITING_SCALING=='Y'?'checked':''; ?> >  <span class="pr-5"> ขูดหินปูน</span>
+                    <input type="checkbox" name="extraction" value="Y" <?php echo $VISITING_EXTRACTION=='Y'?'checked':''; ?> > ถอนฟัน
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputDetail"> หมายเหตุ </label>
+                <textarea id="inputDetail" class="form-control" name="detail"><?php echo $VISITING_DETAIL; ?></textarea>
+            </div>
+
 
         </div>
 
         <div class="text-center" style="padding-top: 20px; padding-bottom: 30px;">
             <input id="about_id" name="about_id" value="<?php echo $VISITING_ID; ?>" hidden>
-            <button type="button" class="btn btn-success" onclick="saveAbout();" >บันทึก</button>
+            <input name="fn" value="insertUpdate" hidden>
+            <button type="submit" class="btn btn-success" >บันทึก</button>
+            <button type="button" class="btn btn-danger" onclick="setModalDelete('deleteHealth','<?php echo $VISITING_TITLE; ?>','<?php echo $VISITING_ID; ?>');" >delete</button>
         </div>
 
-    </div>
+    </form>
 
 
     <div class="value-attr" hidden>
@@ -90,65 +136,5 @@ require_once __DIR__."/controller/teacherHealthEditController.php";
 <footer class="sticky-footer">
     <?php include(__DIR__ . "/footer.php"); ?>
 
-    <!-- froala script -->
-    <?php include( __DIR__."/_froalaScript.php"); ?>
-
 </footer>
-
-<script>
-    $(function() {
-        $('#edit').froalaEditor({
-            heightMin: 250,
-        });
-    });
-
-    function saveAbout() {
-        var detail = $('#edit').froalaEditor("html.get");
-        var id = $('#about_id').val();
-        var user_id = $('#input_user_id').val();
-        var date = $('#inputDateAt').val();
-        var title = $('#inputTitle').val();
-        var classroom = $('#input_class').val();
-        if(id==0){
-            var req = $.ajax({
-                type: 'POST',
-                url: './controller/service.php',
-                data: {
-                    fn: 'insertHealth',
-                    user_id:user_id,
-                    title: title,
-                    date_at: date,
-                    detail: detail,
-                },
-                dataType: 'JSON'
-            });
-        }else{
-            var req = $.ajax({
-                type: 'POST',
-                url: './controller/service.php',
-                data: {
-                    fn: 'updateHealth',
-                    user_id:user_id,
-                    title: title,
-                    date_at: date,
-                    detail: detail,
-                    id: id
-                },
-                dataType: 'JSON'
-            });
-        }
-
-        req.done(function (res) {
-            if(res.status){
-                alert('save data complete...');
-                document.location = "teacher_healthlist.php?uid="+user_id+"&class="+classroom;
-            }else{
-                alert('save data false!!!!');
-            }
-        });
-
-
-    }
-
-
-</script>
+<?php include(__DIR__.'/_modalDeleteConfirm.php');?>
