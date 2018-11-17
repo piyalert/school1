@@ -219,7 +219,8 @@ class Grade extends _DBPDO
             $arrStudent[$k]['seq'] = ($k+1);
             $arrStudent[$k]['gpa']= $gCount>0?($gSum/$gCount):'';
             $arrStudent[$k]['sum_score']=$pSum;
-            $arrStudent[$k]['sort'] = intval(intval($arrStudent[$k]['gpa']*100).''.$pSum);
+            $sort = intval($arrStudent[$k]['gpa']);
+            $arrStudent[$k]['sort'] = intval(($sort*100).''.$pSum);
 
             $arrStudent[$k]['grade'] = $g;
         }
@@ -446,7 +447,7 @@ class Grade extends _DBPDO
             $arrStudent[$k]['seq'] = ($k+1);
             $arrStudent[$k]['gpa']= $gCount>0?($gSum/$gCount):'';
             $arrStudent[$k]['sum_score']=$pSum;
-            $arrStudent[$k]['sort'] = intval(intval($arrStudent[$k]['gpa']*100).''.$pSum);
+            $arrStudent[$k]['sort'] = intval((intval($arrStudent[$k]['gpa'])*100).''.$pSum);
 
         }
 

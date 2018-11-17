@@ -19,8 +19,8 @@ require_once __DIR__ . "/controller/indexController.php";
     <div class="container-fluid">
         <!-- Card Columns Example Social Feed-->
 
-        <div style="height: 150px;" class="bg-dark">
-
+        <div style="height: 150px;" class="">
+            <img src="./pictures/banner.jpg" width="810" height="150" alt="">
         </div>
 
         <div class="row">
@@ -50,7 +50,7 @@ require_once __DIR__ . "/controller/indexController.php";
             </div>
             <div class="col-3">
                 <div style="height: 150px;">
-
+                 <img src="./pictures/rig.jpg" width="250" height="800" alt="">
                 </div>
             </div>
         </div>
