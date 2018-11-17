@@ -9,8 +9,18 @@
 
 require_once __DIR__.'/../model/User.php';
 require_once __DIR__.'/../model/Grade.php';
+require_once __DIR__.'/../model/Portfolio.php';
+require_once __DIR__.'/../model/Visiting.php';
+require_once __DIR__.'/../model/Health.php';
+require_once __DIR__.'/../model/Check.php';
+require_once __DIR__.'/../model/Saving.php';
 $MUser = new User();
 $MG = new Grade();
+$MPortfolio = new Portfolio();
+$MVisiting = new Visiting();
+$MHealth = new Health();
+$MC = new Check();
+$MS = new Saving();
 
 $user_id = $MUser->input('id');
 
@@ -48,6 +58,11 @@ $note_change_school='';
 $home_birth='';
 
 $GRADE = [];
+$PORTFOLIOS = [];
+$VISITINGS = [];
+$HEALTHS = [];
+$CHECKS = [];
+$SAVINGS = [];
 $searchUser = false;
 if($user_id!=''){
     $searchUser = true;
@@ -91,6 +106,34 @@ if($user_id!=''){
     if(isset($result)){
         $GRADE = $result;
     }
+
+
+    $result = $MPortfolio->selectThisAll(['user_id'=>$user_id]);
+    if(count($result)>0){
+        $PORTFOLIOS=$result;
+    }
+
+    $result = $MVisiting->selectThisAll(['user_id'=>$user_id]);
+    if(count($result)>0){
+        $VISITINGS=$result;
+    }
+
+    $result = $MHealth->selectThisAll(['user_id'=>$user_id]);
+    if(count($result)>0){
+        $HEALTHS=$result;
+    }
+
+
+    $result = $MC->selectGroupYear($user_id);
+    if(count($result)>0){
+        $CHECKS=$result;
+    }
+
+    $result = $MS->selectGroupYear($user_id);
+    if(count($result)>0){
+        $SAVINGS=$result;
+    }
+
 
 
 }

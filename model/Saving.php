@@ -284,4 +284,25 @@ class Saving extends _DBPDO
         return $result;
     }
 
+    function selectGroupYear($user_id){
+        //set parameter
+        $this_db = $this->DB;
+
+        //connect DB
+        $this->connect();
+        $sql = "select s.year ,
+sum(if(STRCMP(s.event,\"deposit\") = 0 ,s.balance,0)) as sum_deposit,
+sum(if(STRCMP(s.event,\"withdraw\") = 0 ,s.balance,0)) as sum_withdraw
+ from $this_db s 
+ where s.user_id = :id
+ group by s.year";
+        $params = [':id'=>$user_id];
+        $result = $this->queryAll($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+    }
+
 }

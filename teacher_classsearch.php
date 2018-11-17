@@ -43,6 +43,10 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
 
     <hr>
 
+    <div>
+        <h2 class="pl-5"> <?php echo $name.' '.$surname;?> </h2>
+    </div>
+
     <div class="container-fluid" <?php echo  $searchUser?'':'hidden';?> >
         <!-- Card Columns Example Social Feed-->
 
@@ -52,6 +56,21 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-grade" role="tab" aria-controls="pills-grade" aria-selected="false">เกรด</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-saving" role="tab" aria-controls="pills-grade" aria-selected="false">เงินออม</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-check" role="tab" aria-controls="pills-grade" aria-selected="false">เข้าเรียน</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-portfolio" role="tab" aria-controls="pills-grade" aria-selected="false">ผลงาน</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-visiting" role="tab" aria-controls="pills-grade" aria-selected="false">เยี่ยมบ้าน</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-health" role="tab" aria-controls="pills-grade" aria-selected="false">สุขภาพ</a>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
@@ -204,6 +223,136 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
                 <?php endforeach; ?>
 
             </div>
+            <div class="tab-pane fade" id="pills-saving" role="tabpanel" aria-labelledby="pills-grade-tab">
+                <table id="table_saving" class="table table-striped table-bordered" style="width:100%;">
+                    <thead style="font-size: 12px;">
+                    <tr>
+                        <th>#</th>
+                        <th>ปีการศึกษา</th>
+                        <th>ยอดฝาก</th>
+                        <th>ยอดถอน</th>
+                        <th>คงเหลือ</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($SAVINGS as $key=>$item): ?>
+                        <tr>
+                            <td><?php echo ($key+1);?></td>
+                            <td><?php echo $item['year']+543;?></td>
+                            <td><?php echo $item['sum_deposit'];?></td>
+                            <td><?php echo $item['sum_withdraw'];?></td>
+                            <td><?php echo $item['sum_deposit']-$item['sum_withdraw'];?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="pills-check" role="tabpanel" aria-labelledby="pills-grade-tab">
+                <table id="table_check" class="table table-striped table-bordered" style="width:100%;">
+                    <thead style="font-size: 12px;">
+                    <tr>
+                        <th>#</th>
+                        <th>ปีการศึกษา</th>
+                        <th>มาเรียน</th>
+                        <th>ขาด</th>
+                        <th>ลา</th>
+                        <th>มาสาย</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($CHECKS as $key=>$item): ?>
+                        <tr>
+                            <td><?php echo ($key+1);?></td>
+                            <td><?php echo $item['year']+543;?></td>
+                            <td><?php echo $item['sum_com'];?></td>
+                            <td><?php echo $item['sum_missing'];?></td>
+                            <td><?php echo $item['sum_leave'];?></td>
+                            <td><?php echo $item['sum_late'];?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="pills-portfolio" role="tabpanel" aria-labelledby="pills-grade-tab">
+                <div class="container-fluid">
+                    <!-- Card Columns Example Social Feed-->
+                    <table id="table_portfolio" class="table table-striped table-bordered" style="width:100%;">
+                        <thead style="font-size: 12px;">
+                        <tr>
+                            <th>#</th>
+                            <th>วันที่</th>
+                            <th>หัวเรื่อง</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($PORTFOLIOS as $key=>$item): ?>
+                            <tr>
+                                <td><?php echo ($key+1);?></td>
+                                <td><?php echo date('d/m/Y',strtotime($item['date_at']));?></td>
+                                <td><?php echo $item['title'];?></td>
+                                <td>
+                                    <a href="teacher_portfolioEdit.php?id=<?php echo $item['id'];?>&class=<?php echo $menuPortfolio;?>&uid=<?php echo $user_id;?>"><i class="fa fa-pencil"></i> edit</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-visiting" role="tabpanel" aria-labelledby="pills-grade-tab">
+                <div class="container-fluid">
+                    <!-- Card Columns Example Social Feed-->
+                    <table id="table_visiting" class="table table-striped table-bordered" style="width:100%;">
+                        <thead style="font-size: 12px;">
+                        <tr>
+                            <th>#</th>
+                            <th>วันที่</th>
+                            <th>หัวเรื่อง</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($VISITINGS as $key=>$item): ?>
+                            <tr>
+                                <td><?php echo ($key+1);?></td>
+                                <td><?php echo date('d/m/Y',strtotime($item['date_at']));?></td>
+                                <td><?php echo $item['title'];?></td>
+                                <td>
+                                    <a href="teacher_visitingEdit.php?id=<?php echo $item['id'];?>&class=<?php echo $menuVisiting;?>&uid=<?php echo $user_id;?>"><i class="fa fa-pencil"></i> edit</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-health" role="tabpanel" aria-labelledby="pills-grade-tab">
+                <table id="table_health" class="table table-striped table-bordered" style="width:100%;">
+                    <thead style="font-size: 12px;">
+                    <tr>
+                        <th>#</th>
+                        <th>วันที่</th>
+                        <th>หัวเรื่อง</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($HEALTHS as $key=>$item): ?>
+                        <tr>
+                            <td><?php echo ($key+1);?></td>
+                            <td><?php echo date('d/m/Y',strtotime($item['date_at']));?></td>
+                            <td><?php echo $item['title'];?></td>
+                            <td>
+                                <a href="user_healthview.php?id=<?php echo $item['id'];?>"><i class="fa fa-eye"></i> รายละเอียด</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 
@@ -301,5 +450,17 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
     function clickSelect(res) {
         $('#modal_user_id').attr('value',$(res).val());
     }
+
+    $(document).ready(function() {
+        $('#table_portfolio').DataTable();
+        $('#table_visiting').DataTable();
+        $('#table_health').DataTable();
+        $('#table_check').DataTable();
+        $('#table_saving').DataTable();
+    } );
+
+
+
+
 
 </script>

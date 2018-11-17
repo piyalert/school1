@@ -228,5 +228,30 @@ class Check extends _DBPDO
         return $data_return;
     }
 
+    /* group by year sum all */
+    function selectGroupYear($user_id){
+        //set parameter
+        $this_db = $this->DB;
+        $this_student = $this->FKStudent;
+
+        //connect DB
+        $this->connect();
+        $sql = "select c.year , sum(if(STRCMP(c.check_status,\"come\") = 0 ,1,0)) as sum_com ,
+sum(if(STRCMP(c.check_status,\"missing\") = 0 ,1,0)) as sum_missing,
+sum(if(STRCMP(c.check_status,\"leave\") = 0 ,1,0)) as sum_leave,
+sum(if(STRCMP(c.check_status,\"late\") = 0 ,1,0)) as sum_late
+from $this_db  c 
+left join $this_student s on c.student_id = s.id
+where s.user_id = :id";
+        $params = [':id'=>$user_id];
+        $result = $this->queryAll($sql,$params);
+        //close DB
+        $this->close();
+
+
+        return $result;
+
+    }
+
 
 }

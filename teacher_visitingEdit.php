@@ -40,7 +40,7 @@ require_once __DIR__."/controller/teacherVisitingEditController.php";
                 <?php echo $USER_NAME; ?> <small>(<?php echo $USER_USERNAME; ?>)</small>
             </a>
         </li>
-        <li class="breadcrumb-item active"> เยี้ยมบ้าน </li>
+        <li class="breadcrumb-item active"> เยี่ยมบ้าน </li>
     </ol>
 
     <div class="container-fluid">
