@@ -120,7 +120,6 @@ class User extends _DBPDO
         return $result;
     }
 
-
     function searchAttr($attr,$value){
         $this_db = $this->DB;
         //set parameter

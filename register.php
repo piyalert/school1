@@ -35,7 +35,7 @@ require_once __DIR__ . "/controller/register.php";
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                <strong>Warning!</strong>
+                <strong>Success.</strong>
                 <p><?php echo $_SESSION['success']; ?></p>
             </div>
             <?php unset($_SESSION['success']);
@@ -75,6 +75,41 @@ require_once __DIR__ . "/controller/register.php";
 
             </div>
 
+            <div class="text-right mb-1" <?php echo ($passwordCheck)?'hidden':''; ?>>
+                <button class="btn btn-warning btn-sm" onclick="changePassword();">Change Password</button>
+            </div>
+            <form id="changePassword" class="bg-warning p-2" method="post" hidden >
+                <div class="text-center">
+                    <h4>Change Password</h4>
+                </div>
+                <div class="form-group">
+                    <label for="EPassword">รหัสผ่านเดิม<strong class="text-danger">**</strong></label>
+                    <input class="form-control" name="EOPassword" type="password" aria-describedby="nameHelp"
+                           placeholder="รหัสผ่านเดิม" value="" required>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="exampleInputPassword1">รหัสผ่าน <strong class="text-danger">**</strong></label>
+                            <input class="form-control password" name="Epassword" type="password" placeholder="รหัสผ่าน" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleConfirmPassword">ยืนยันรหัสผ่าน <strong class="text-danger">**</strong></label>
+                            <input class="form-control confirmPassword" name="EconfirmPassword" type="password" placeholder="ยืนยันรหัสผ่าน" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <input name="Efn" value="changePassword" hidden>
+                    <button class="btn btn-info" type="submit">Edit</button>
+                    <button class="btn btn-danger" type="button" onclick="changePasswordClose();">Close</button>
+                </div>
+
+                <hr>
+            </form>
+
+
+
             <form action="/school/register.php" method="post">
 
                 <div class="form-group">
@@ -93,12 +128,12 @@ require_once __DIR__ . "/controller/register.php";
                     <div class="form-row">
                         <div class="col-md-6">
                             <label for="exampleInputPassword1">รหัสผ่าน <strong class="text-danger">**</strong></label>
-                            <input class="form-control" name="password" type="password" id="password"
+                            <input class="form-control password" name="password" type="password"
                                    placeholder="รหัสผ่าน" <?php if ($passwordCheck) echo 'required'; ?> >
                         </div>
                         <div class="col-md-6">
                             <label for="exampleConfirmPassword">ยืนยันรหัสผ่าน <strong class="text-danger">**</strong></label>
-                            <input class="form-control" name="confirmPassword" type="password" id="confirmPassword"
+                            <input class="form-control confirmPassword" name="confirmPassword" type="password"
                                    placeholder="ยืนยันรหัสผ่าน" <?php if ($passwordCheck) echo 'required'; ?> >
                         </div>
                     </div>
@@ -244,19 +279,27 @@ require_once __DIR__ . "/controller/register.php";
 <footer class="sticky-footer">
     <?php include(__DIR__ . "/footer.php"); ?>
     <script>
-        $("#password").change(function () {
-            $("#confirmPassword").val('');
+        $(".password").change(function () {
+            $(".confirmPassword").val('');
         });
-        $("#confirmPassword").change(function () {
-            var password = $("#password").val();
-            var confirm = $("#confirmPassword").val();
+        $(".confirmPassword").change(function () {
+            var password = $(".password").val();
+            var confirm = $(".confirmPassword").val();
             if (confirm != password) {
                 alert("Confirm password Error!!");
-                $("#password").val('');
-                $("#confirmPassword").val('');
+                $(".password").val('');
+                $(".confirmPassword").val('');
             }
 
         });
+
+        function changePassword() {
+            $("#changePassword").attr('hidden',false);
+        }
+        function changePasswordClose() {
+            $("#changePassword").attr('hidden',true);
+        }
+
 
         var ajax_upload;
         function uploadFile(input) {

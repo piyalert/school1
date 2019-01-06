@@ -48,6 +48,28 @@ $home_birth='';
 if ($fn=='edit'){
     $id = isset($_REQUEST['id'])?$_REQUEST['id']:'';
     $modelUser = new User();
+
+    //change password
+    $efn = isset($_REQUEST['Efn'])?$_REQUEST['Efn']:'';
+    if($efn=='changePassword'){
+        $old_pass = isset($_REQUEST['EOPassword'])?$_REQUEST['EOPassword']:'';
+        $new_pass = isset($_REQUEST['Epassword'])?$_REQUEST['Epassword']:'';
+        $old_pass = md5($old_pass);
+        $new_pass = md5($new_pass);
+        if($old_pass!=''&& $new_pass!=''){
+            $result = $modelUser->updateUser(['password'=>$new_pass],['id'=>$id,'password'=>$old_pass]);
+            if($result>0){
+                $_SESSION['success']="Update Password Success";
+                header("Location: /school/register.php?fn=edit&id=".$id);
+                exit();
+            }else{
+                $_SESSION['error']="รหัสผ่านไม่ถูกต้อง !!!! กรุณาตรวจสอบรหัสผ่านของท่านอีกครั้ง";
+                header("Location: /school/register.php?fn=edit&id=".$id);
+                exit();
+            }
+        }
+    }
+
     $user = $modelUser->selectById($id);
     if(count($user)){
         $username = $user['username'];
@@ -130,7 +152,7 @@ elseif ($fn=='insert'){
     $modelUser = new User();
     $input = [
         'username'=> $username,
-        'password'=> $password,
+        'password'=> md5($password),
         'name'=> $name,
         'surname'=> $surname,
         'id_card'=> $id_card,
@@ -253,6 +275,7 @@ elseif ($fn=='update'){
         exit();
     }
 }
+
 
 
 
