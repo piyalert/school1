@@ -78,6 +78,8 @@ require_once __DIR__."/controller/userManage.php";
 <?php include( __DIR__."/footer.php"); ?>
 </footer>
 
+<?php include(__DIR__.'/_modalDeleteConfirm.php');?>
+
 <script>
     $(document).ready(function() {
         $('#example').DataTable();

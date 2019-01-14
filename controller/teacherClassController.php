@@ -22,7 +22,7 @@ if($fn=="editParent"){
     $result = $MStudent->editStudent(['parent'=>$parent], ['id'=>$student_id]);
 }
 elseif($fn=="deleteStudent"){
-    $student_id = $MStudent->input("student_id");
+    $student_id = $MStudent->input("delete_id");
     $result = $MStudent->deleteStudent($student_id);
 }
 

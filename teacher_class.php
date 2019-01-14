@@ -81,13 +81,11 @@ require_once __DIR__."/controller/teacherClassController.php";
                                     <i class="fa fa-pencil"></i> edit
                                 </button>
                             </div>
-                            <form class="mb-2" method="post">
-                                <input name="student_id" value="<?php echo $item['student_id'];?>" hidden>
-                                <input name="fn" value="deleteStudent" hidden>
-                                <button class="btn btn-link" style="color: red;" type="submit">
+                            <div class="mb-2">
+                                <button class="btn btn-link text-danger" onclick="setModalDelete('deleteStudent','<?php echo $item['name'].' '.$item['surname']; ?>','<?php echo $item['student_id']; ?>');">
                                     <i class="fa fa-trash"></i> delete
                                 </button>
-                            </form>
+                            </div>
 
                         </div>
                     </td>
@@ -183,6 +181,8 @@ require_once __DIR__."/controller/teacherClassController.php";
 <footer class="sticky-footer">
     <?php include(__DIR__ . "/footer.php"); ?>
 </footer>
+
+<?php include(__DIR__.'/_modalDeleteConfirm.php');?>
 
 <script>
     $(document).ready(function() {

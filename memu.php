@@ -363,7 +363,17 @@
                     <i class="fa fa-list-alt"></i>
                     <span class="nav-link-text"> ข่าว/ประกาศ </span>
                 </a>
-            </li>
+                </li>
+
+                <!-- เอกสาร -->
+                <li class="nav-item <?PHP echo ($menuAction == 'document') ? 'active' : ''; ?>" data-toggle="tooltip"
+                    data-placement="right" title="Link">
+                    <a class="nav-link" href="document-list.php">
+                        <i class="fa fa-list-alt"></i>
+                        <span class="nav-link-text"> เอกสารดาวโหลด </span>
+                    </a>
+                </li>
+
 
 
             <?php else: ?>

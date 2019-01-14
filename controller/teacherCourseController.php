@@ -16,7 +16,7 @@ $SUBJECTLIST = [];
 $fn = $MC->input('fn','');
 
 if($fn=='deleteCourse'){
-    $id = $MC->input('course_id');
+    $id = $MC->input('delete_id');
     $result = $MC->deleteCourse($id);
 }
 
