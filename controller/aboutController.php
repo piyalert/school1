@@ -9,7 +9,7 @@ require_once __DIR__."/../model/About.php";
 $MA = new About();
 
 $detail = '';
-$result  = $MA->selectLast($menuAction);
+$result  = $MA->selectLast('item');
 if(isset($result['id'])){
  $detail = $result['detail'];
 }

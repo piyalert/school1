@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__.'/_session.php';
 
-
-$menuAction = 'item';
+$menuAction = 'about';
+$menuAbout = 'itemshow';
 
 require_once __DIR__."/controller/aboutController.php";
 ?>

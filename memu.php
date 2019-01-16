@@ -34,8 +34,11 @@
                         <li class="<?PHP echo ($menuAbout == 'teacher') ? 'active' : ''; ?>">
                             <a href="aboutTeacherEdit.php">ข้อมูลครู</a>
                         </li>
+                        <li class="<?PHP echo ($menuAbout == 'itemshow') ? 'active' : ''; ?>">
+                            <a href="aboutItem.php">ครุภัณฑ์</a>
+                        </li>
                         <li class="<?PHP echo ($menuAbout == 'item') ? 'active' : ''; ?>">
-                            <a href="aboutItemEdit.php">ข้อมูลครุภัณฑ์</a>
+                            <a href="aboutItemEdit.php">เพิ่มข้อมูลครุภัณฑ์</a>
                         </li>
                     </ul>
                 </li>
@@ -454,11 +457,6 @@
             <li class="nav-item <?php if ($menuAction == 'teacher') echo 'active'; ?>">
                 <a class="nav-link" href="aboutTeacher.php">
                     <i class="fa fa-fw fa-graduation-cap"></i> ครู
-                </a>
-            </li>
-            <li class="nav-item <?php if ($menuAction == 'item') echo 'active'; ?>">
-                <a class="nav-link" href="aboutItem.php">
-                    <i class="fa fa-fw fa-building-o"></i> ครุภัณฑ์
                 </a>
             </li>
             <li class="nav-item <?php if ($menuAction == 'student') echo 'active'; ?>">
