@@ -23,6 +23,8 @@ require_once __DIR__."/controller/userManage.php";
   <div class="content-wrapper">
     <div class="container-fluid">
           <!-- Card Columns Example Social Feed-->
+        <?php require_once __DIR__.'/_alert.php';?>
+
           <div class="mb-0 mt-4">
             <i class="fa fa-user"></i> ข้อมูลสมาชิก</div>
           <hr class="mt-2">

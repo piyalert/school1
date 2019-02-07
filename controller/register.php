@@ -42,6 +42,8 @@ $address_birth='';
 $old_school='';
 $note_change_school='';
 $home_birth='';
+$old_subject='';
+$old_grade = '';
 
 
 
@@ -102,6 +104,8 @@ if ($fn=='edit'){
         $old_school=$user['old_school'];
         $note_change_school=$user['note_change_school'];
         $home_birth=$user['home_birth'];
+        $old_subject=$user['old_subject'];
+        $old_grade = $user['old_grade'];
 
     }
     
@@ -135,6 +139,8 @@ elseif ($fn=='insert'){
     $old_school= isset($_REQUEST['old_school'])?$_REQUEST['old_school']:'';
     $note_change_school= isset($_REQUEST['note_change_school'])?$_REQUEST['note_change_school']:'';
     $home_birth = isset($_REQUEST['home_birth'])?$_REQUEST['home_birth']:'';
+    $old_grade = isset($_REQUEST['old_grade'])?$_REQUEST['old_grade']:'';
+    $old_subject = isset($_REQUEST['old_subject'])?$_REQUEST['old_subject']:'';
 
 
     if($birthday!==''){
@@ -177,7 +183,9 @@ elseif ($fn=='insert'){
         'address_birth'=>$address_birth,
         'old_school'=>$old_school,
         'note_change_school'=>$note_change_school,
-        'home_birth'=>$home_birth
+        'home_birth'=>$home_birth,
+        'old_subject'=>$old_subject,
+        'old_grade'=>$old_grade,
 
     ];
     $result = $modelUser->insertUser($input);
@@ -218,6 +226,10 @@ elseif ($fn=='update'){
     $old_school= isset($_REQUEST['old_school'])?$_REQUEST['old_school']:'';
     $note_change_school= isset($_REQUEST['note_change_school'])?$_REQUEST['note_change_school']:'';
     $home_birth = isset($_REQUEST['home_birth'])?$_REQUEST['home_birth']:'';
+    $old_grade = isset($_REQUEST['old_grade'])?$_REQUEST['old_grade']:'';
+    $old_subject = isset($_REQUEST['old_subject'])?$_REQUEST['old_subject']:'';
+
+
 
     $id = isset($_REQUEST['id'])?$_REQUEST['id']:'';
     if($birthday!==''){
@@ -260,6 +272,8 @@ elseif ($fn=='update'){
         'old_school'=>$old_school,
         'note_change_school'=>$note_change_school,
         'home_birth'=>$home_birth,
+        'old_subject'=>$old_subject,
+        'old_grade'=>$old_grade,
     ];
     $result = $modelUser->updateUser($input,['id'=>$id]);
     if($result>0){

@@ -162,7 +162,7 @@ require_once __DIR__ . "/controller/register.php";
 
                 <div class="form-group">
                     <label for="exampleInputBirthday">วันเกิด <strong class="text-danger">**</strong></label>
-                    <input class="form-control" name="birthday" type="date" value="<?php echo $birthday; ?>" required>
+                    <input id="exampleinputbirthday" class="form-control" name="birthday" type="date" value="<?php echo $birthday; ?>" required>
                 </div>
 
                 <div class="form-group">
@@ -193,7 +193,7 @@ require_once __DIR__ . "/controller/register.php";
                 <div class="form-group">
                     <label for="dataFatherId">ข้อมูลบิดา</label>
                     <textarea id="dataFatherId" class="form-control" name="data_father" type="text"
-                              placeholder="ที่อยู่" <?php echo $disabled;?>><?php echo $data_father; ?></textarea>
+                              placeholder="รายละเอียดทั่วไป เช่น อาชีพ,ที่อยู่ ฯลฯ" <?php echo $disabled;?>><?php echo $data_father; ?></textarea>
                 </div>
 
                 <hr>
@@ -206,7 +206,7 @@ require_once __DIR__ . "/controller/register.php";
                 <div class="form-group">
                     <label for="dataMotherId">ข้อมูลมารดา</label>
                     <textarea id="dataMotherId" class="form-control" name="data_mother" type="text"
-                              placeholder="ที่อยู่" <?php echo $disabled;?>><?php echo $data_mother; ?></textarea>
+                              placeholder="รายละเอียดทั่วไป เช่น อาชีพ,ที่อยู่ ฯลฯ" <?php echo $disabled;?>><?php echo $data_mother; ?></textarea>
                 </div>
 
                 <hr>
@@ -257,6 +257,18 @@ require_once __DIR__ . "/controller/register.php";
                               placeholder="บ้านเกิด" <?php echo $disabled;?> ><?php echo $home_birth; ?></textarea>
                 </div>
 
+                <div class="home_birth form-group">
+                    <label for="old_subjectId">มีคุณวิชามาเพียงไร</label>
+                    <textarea id="old_subjectId" class="form-control" name="old_subject" type="text"
+                              placeholder="คุณวิชา" <?php echo $disabled;?> ><?php echo $old_subject; ?></textarea>
+                </div>
+
+                <div class="home_birth form-group">
+                    <label for="old_gradeId">รายงานการเรียนเดิม</label>
+                    <textarea id="old_gradeId" class="form-control" name="old_grade" type="text"
+                              placeholder="รายงานการเกรียนเดิม" <?php echo $disabled;?> ><?php echo $old_grade; ?></textarea>
+                </div>
+
 
                 <input id="path_upload" name="img_path" value="<?php echo $img_path; ?>" hidden>
 
@@ -279,6 +291,7 @@ require_once __DIR__ . "/controller/register.php";
 <footer class="sticky-footer">
     <?php include(__DIR__ . "/footer.php"); ?>
     <script>
+
         $(".password").change(function () {
             $(".confirmPassword").val('');
         });
