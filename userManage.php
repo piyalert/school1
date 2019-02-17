@@ -40,6 +40,7 @@ require_once __DIR__."/controller/userManage.php";
                       <th>Birthday</th>
                       <th>Phone</th>
                       <th>Address</th>
+                      <th>Status</th>
                       <th>Action</th>
                   </tr>
                   </thead>
@@ -53,6 +54,7 @@ require_once __DIR__."/controller/userManage.php";
                             <td><?php echo date('d/m/Y',strtotime($item['birthday']));?></td>
                             <td><?php echo $item['phone'];?></td>
                             <td><?php echo $item['address'];?></td>
+                            <td><?php echo $item['learning'];?></td>
                             <td>
                                 <a href="/school/register.php?fn=edit&id=<?php echo $item['id'];?>">
                                     <i class="fa fa-pencil"></i> edit

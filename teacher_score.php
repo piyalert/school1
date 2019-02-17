@@ -11,10 +11,8 @@ $UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : $SCHOOL_YEAR;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
 $year = date("Y");
 
-if ($menuGrade == 10) {
-    $className = "อนุบาล 1";
-} elseif ($menuGrade == 20) {
-    $className = "อนุบาล 2";
+if ($menuGrade >= 10) {
+    $className = "อนุบาล ".($menuGrade/10);
 } else {
     $className = "ชั้นประถมศึกษาปีที่ " . $menuGrade;
 }

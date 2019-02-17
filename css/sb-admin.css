@@ -460,6 +460,10 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   max-width: 40rem;
 }
 
+.card-index {
+  max-width: 60rem;
+}
+
 footer.sticky-footer {
   position: absolute;
   right: 0;

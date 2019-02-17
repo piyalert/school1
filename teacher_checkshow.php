@@ -14,10 +14,8 @@ $date = new DateTime();
 $menuAction = 'check';
 $menuCheck = isset($_REQUEST['class']) ? $_REQUEST['class'] : '1';
 $student_id = isset($_REQUEST['student_id']) ? $_REQUEST['student_id'] : '1';
-if ($menuCheck == 10) {
-    $className = "อนุบาล 1";
-} elseif ($menuCheck == 20) {
-    $className = "อนุบาล 2";
+if ($menuCheck >= 10) {
+    $className = "อนุบาล ".($menuCheck/10);
 } else {
     $className = "ประถมศึกษาปีที่ " . $menuCheck;
 }

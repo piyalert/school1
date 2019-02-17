@@ -8,7 +8,11 @@ $UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : 2561;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
 $year = date("Y");
 
-$className = "ประถมศึกษาปีที่ " . $menuCourse;
+if($menuCourse>=10){
+    $className = "อนุบาล ".($menuCourse/10);
+}else{
+    $className = "ประถมศึกษาปีที่ " . $menuCourse;
+}
 
 require_once __DIR__."/controller/teacherCourseController.php";
 

@@ -79,6 +79,9 @@
                         <li class="<?PHP echo ($menuClass == '20') ? 'active' : ''; ?>">
                             <a href="teacher_class.php?class=20">อนุบาล 2</a>
                         </li>
+                        <li class="<?PHP echo ($menuClass == '30') ? 'active' : ''; ?>">
+                            <a href="teacher_class.php?class=30">อนุบาล 3</a>
+                        </li>
                         <li class="<?PHP echo ($menuClass == '1') ? 'active' : ''; ?>">
                             <a href="teacher_class.php?class=1">ประถมศึกษาปีที่ 1</a>
                         </li>
@@ -116,6 +119,9 @@
                         </li>
                         <li class="<?PHP echo ($menuCourse == '20') ? 'active' : ''; ?>">
                             <a href="teacher_course.php?class=20">อนุบาล 2</a>
+                        </li>
+                        <li class="<?PHP echo ($menuCourse == '30') ? 'active' : ''; ?>">
+                            <a href="teacher_course.php?class=30">อนุบาล 3</a>
                         </li>
                         <li class="<?PHP echo ($menuCourse == '1') ? 'active' : ''; ?>">
                             <a href="teacher_course.php?class=1">ประถมศึกษาปีที่ 1</a>
@@ -156,6 +162,9 @@
                         <li class="<?PHP echo ($menuSave == '20') ? 'active' : ''; ?>">
                             <a href="teacher_savelist.php?class=20">อนุบาล 2</a>
                         </li>
+                        <li class="<?PHP echo ($menuSave == '30') ? 'active' : ''; ?>">
+                            <a href="teacher_savelist.php?class=30">อนุบาล 3</a>
+                        </li>
                         <li class="<?PHP echo ($menuSave == '1') ? 'active' : ''; ?>">
                             <a href="teacher_savelist.php?class=1">ประถมศึกษาปีที่ 1</a>
                         </li>
@@ -194,6 +203,9 @@
                         <li class="<?PHP echo ($menuGrade == '20') ? 'active' : ''; ?>">
                             <a href="teacher_score.php?class=20">อนุบาล 2</a>
                         </li>
+                        <li class="<?PHP echo ($menuGrade == '30') ? 'active' : ''; ?>">
+                            <a href="teacher_score.php?class=30">อนุบาล 3</a>
+                        </li>
                         <li class="<?PHP echo ($menuGrade == '1') ? 'active' : ''; ?>">
                             <a href="teacher_score.php?class=1">ประถมศึกษาปีที่ 1</a>
                         </li>
@@ -228,6 +240,9 @@
                         </li>
                         <li class="<?PHP echo ($menuCheck == '20') ? 'active' : ''; ?>">
                             <a href="teacher_checkname.php?class=20">อนุบาล 2</a>
+                        </li>
+                        <li class="<?PHP echo ($menuCheck == '30') ? 'active' : ''; ?>">
+                            <a href="teacher_checkname.php?class=30">อนุบาล 3</a>
                         </li>
                         <li class="<?PHP echo ($menuCheck == '1') ? 'active' : ''; ?>">
                             <a href="teacher_checkname.php?class=1">ประถมศึกษาปีที่ 1</a>
@@ -265,6 +280,9 @@
                         <li class="<?PHP echo ($menuPortfolio == '20') ? 'active' : ''; ?>">
                             <a href="teacher_portfolio.php?class=20">อนุบาล 2</a>
                         </li>
+                        <li class="<?PHP echo ($menuPortfolio == '30') ? 'active' : ''; ?>">
+                            <a href="teacher_portfolio.php?class=30">อนุบาล 3</a>
+                        </li>
                         <li class="<?PHP echo ($menuPortfolio == '1') ? 'active' : ''; ?>">
                             <a href="teacher_portfolio.php?class=1">ประถมศึกษาปีที่ 1</a>
                         </li>
@@ -301,6 +319,9 @@
                         <li class="<?PHP echo ($menuVisiting == '20') ? 'active' : ''; ?>">
                             <a href="teacher_visiting.php?class=20">อนุบาล 2</a>
                         </li>
+                        <li class="<?PHP echo ($menuVisiting == '30') ? 'active' : ''; ?>">
+                            <a href="teacher_visiting.php?class=30">อนุบาล 3</a>
+                        </li>
                         <li class="<?PHP echo ($menuVisiting == '1') ? 'active' : ''; ?>">
                             <a href="teacher_visiting.php?class=1">ประถมศึกษาปีที่ 1</a>
                         </li>
@@ -336,6 +357,9 @@
                         </li>
                         <li class="<?PHP echo ($menuHealth == '20') ? 'active' : ''; ?>">
                             <a href="teacher_health.php?class=20">อนุบาล 2</a>
+                        </li>
+                        <li class="<?PHP echo ($menuHealth == '30') ? 'active' : ''; ?>">
+                            <a href="teacher_health.php?class=30">อนุบาล 3</a>
                         </li>
                         <li class="<?PHP echo ($menuHealth == '1') ? 'active' : ''; ?>">
                             <a href="teacher_health.php?class=1">ประถมศึกษาปีที่ 1</a>

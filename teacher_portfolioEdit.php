@@ -5,10 +5,8 @@ require_once __DIR__ . "/_loginTeacher.php";
 $menuAction = 'portfolio';
 $menuPortfolio = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
 
-if($menuPortfolio==10){
-    $className = "อนุบาล 1";
-}elseif ($menuPortfolio==20){
-    $className = "อนุบาล 2";
+if($menuPortfolio>=10){
+    $className = "อนุบาล ".($menuPortfolio/10);
 }else{
     $className = "ประถมศึกษาปีที่ " . $menuPortfolio;
 }

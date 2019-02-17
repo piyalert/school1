@@ -5,10 +5,8 @@ require_once __DIR__ . "/_loginTeacher.php";
 $menuAction = 'health';
 $menuHealth = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
 
-if($menuHealth==10){
-    $className = "อนุบาล 1";
-}elseif ($menuHealth==20){
-    $className = "อนุบาล 2";
+if($menuHealth>=10){
+    $className = "อนุบาล ".($menuHealth/10);
 }else{
     $className = "ประถมศึกษาปีที่ " . $menuHealth;
 }
@@ -50,12 +48,12 @@ require_once __DIR__."/controller/teacherHealthEditController.php";
 
             <div class="form-group">
                 <label for="inputTitle">หัวข้อ</label>
-                <input type="text" class="form-control" id="inputTitle" name="title" value="<?php echo $VISITING_TITLE; ?>">
+                <input type="text" class="form-control" id="inputTitle" name="title" value="<?php echo $VISITING_TITLE; ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="inputDateAt">วันที่</label>
-                <input type="date" class="form-control" id="inputDateAt" name="date_at" value="<?php echo $VISITING_DATE; ?>">
+                <input type="date" class="form-control" id="inputDateAt" name="date_at" value="<?php echo $VISITING_DATE; ?>" required>
             </div>
 
             <div class="form-group">
@@ -63,12 +61,12 @@ require_once __DIR__."/controller/teacherHealthEditController.php";
                     <div class="col-md-6">
                         <label for="inputHeight">ส่วนสูง</label>
                         <input class="form-control" id="inputHeight" name="height" type="text"
-                               placeholder="ส่วนสูง" value="<?php echo $VISITING_HEIGHT; ?>">
+                               placeholder="ส่วนสูง" value="<?php echo $VISITING_HEIGHT; ?>" required>
                     </div>
                     <div class="col-md-6">
                         <label for="inputWeight">น้ำหนัก</label>
                         <input class="form-control" id="inputWeight" name="weight" type="text"
-                               placeholder="น้ำหนัก" value="<?php echo $VISITING_WEIGHT; ?>">
+                               placeholder="น้ำหนัก" value="<?php echo $VISITING_WEIGHT; ?>" required>
                     </div>
                 </div>
             </div>

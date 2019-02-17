@@ -19,9 +19,9 @@ require_once __DIR__ . "/controller/register.php";
 <!-- Navigation-->
 <?php include(__DIR__ . "/memu.php"); ?>
 
-<div class="container">
+<div class="content-wrapper">
 
-    <div class="card card-register mx-auto mt-1">
+    <div class="card card-index mx-auto mt-1">
         <?php if (isset($_SESSION['error'])) { ?>
             <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span

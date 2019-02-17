@@ -4,7 +4,7 @@ require_once __DIR__.'/_session.php';
 
 $menuAction = 'teacher';
 
-require_once __DIR__."/controller/aboutController.php";
+require_once __DIR__."/controller/aboutTeacherController.php";
 ?>
 
 <head>

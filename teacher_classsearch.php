@@ -191,6 +191,16 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
                         <label>บ้านเกิด</label>
                         <textarea class="form-control" placeholder="บ้านเกิด" disabled><?php echo $home_birth; ?></textarea>
                     </div>
+                    <div class="home_birth form-group">
+                        <label>มีคุณวิชามาเพียงไร</label>
+                        <textarea class="form-control" placeholder="มีคุณวิชามาเพียงไร" disabled><?php echo $old_grade; ?></textarea>
+                    </div>
+                    <div class="home_birth form-group">
+                        <label>รายงานการเรียนเดิม</label>
+                        <textarea class="form-control" placeholder="รายงานการเรียนเดิม" disabled><?php echo $old_subject; ?></textarea>
+                    </div>
+
+
                 </div>
 
 

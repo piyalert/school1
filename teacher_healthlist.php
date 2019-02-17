@@ -5,10 +5,8 @@ require_once __DIR__ . "/_loginTeacher.php";
 $menuAction = 'health';
 $menuHealth = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
 
-if($menuHealth==10){
-    $className = "อนุบาล 1";
-}elseif ($menuHealth==20){
-    $className = "อนุบาล 2";
+if($menuHealth>=10){
+    $className = "อนุบาล ".($menuHealth/10);
 }else{
     $className = "ประถมศึกษาปีที่ " . $menuHealth;
 }

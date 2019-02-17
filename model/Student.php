@@ -145,6 +145,18 @@ class Student extends _DBPDO
 
     }
 
+    function selectQuery($sql){
+
+        //connect DB
+        $this->connect();
+        $result = $this->queryAll($sql,[]);
+        //close DB
+        $this->close();
+
+
+        return $result;
+    }
+
     function selectStudentLast($user_id){
         //set parameter
         $this_db = $this->DB;

@@ -56,6 +56,8 @@ $address_birth='';
 $old_school='';
 $note_change_school='';
 $home_birth='';
+$old_grade = '';
+$old_subject = '';
 
 $GRADE = [];
 $PORTFOLIOS = [];
@@ -99,6 +101,8 @@ if($user_id!=''){
         $old_school=$user['old_school'];
         $note_change_school=$user['note_change_school'];
         $home_birth=$user['home_birth'];
+        $old_grade = $user['old_grade'];
+        $old_subject = $user['old_subject'];
 
     }
 

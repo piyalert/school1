@@ -329,10 +329,8 @@ class Grade extends _DBPDO
             $class = $item['class'];
             $year = $item['year'];
 
-            if($class==10){
-                $class_str = 'ชั้นอนุบาล 1';
-            }elseif ($class==20){
-                $class_str = 'ชั้นอนุบาล 2';
+            if($class>=10){
+                $class_str = 'ชั้นอนุบาล '.($class/10);
             }else{
                 $class_str = 'ชั้นประถมศึกษาปีที่ '.$class;
             }

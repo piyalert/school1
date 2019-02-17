@@ -13,10 +13,8 @@ $year = date("Y");
 
 $StudentId = isset($_REQUEST['sid']) ? $_REQUEST['sid'] : 1;
 
-if ($menuGrade == 10) {
-    $className = "อนุบาล 1";
-} elseif ($menuGrade == 20) {
-    $className = "อนุบาล 2";
+if ($menuGrade >= 10) {
+    $className = "อนุบาล ".($menuGrade/10);
 } else {
     $className = "ชั้นประถมศึกษาปีที่ " . $menuGrade;
 }
