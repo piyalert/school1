@@ -12,7 +12,7 @@ if ($menuCheck >= 10) {
 }
 
 $UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : $SCHOOL_YEAR;
-$UrlYMD = isset($_REQUEST['ymd']) ? $_REQUEST['ymd'] : $date->format('Y-m-d');
+$UrlYMD = isset($_REQUEST['ymd']) ? dayTTE($_REQUEST['ymd']) : $date->format('Y-m-d');
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
 $year = date("Y");
 
@@ -47,7 +47,7 @@ require_once __DIR__.'/controller/teacherCheckNameController.php';
             </div>
             <div class="form-group ml-5">
                 <label class="mr-3" for="input_ymd"> วันที่ </label>
-                <input class="form-control" id="select_ymd" name="input_ymd" type="date" value="<?php echo $UrlYMD; ?>" onchange="changeYMD();">
+                <input class="datepicker form-control" id="select_ymd" name="input_ymd" type="text" value="<?php echo formatDate($UrlYMD); ?>" onchange="changeYMD();">
             </div>
             <div class="form-group ml-5">
                 <button class="btn btn-success" data-toggle="modal" data-target=".modal-add-holiday"> <i class="fa fa-plus"></i> เพิ่มวันหยุด</button>

@@ -24,7 +24,7 @@ require_once __DIR__."/controller/userHealthViewController.php";
 
           <div class="mb-0 mt-4">
               <p>ห้วข้อ : <strong> <?php echo $VISITING_TITLE; ?></strong></p>
-              <p>วันที่ : <strong> <?php echo $VISITING_DATE;?> </strong></p>
+              <p>วันที่ : <strong> <?php echo formatDate($VISITING_DATE);?> </strong></p>
           </div>
           <hr>
           <div class="mb-0">

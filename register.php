@@ -162,7 +162,8 @@ require_once __DIR__ . "/controller/register.php";
 
                 <div class="form-group">
                     <label for="exampleInputBirthday">วันเกิด <strong class="text-danger">**</strong></label>
-                    <input id="exampleinputbirthday" class="form-control" name="birthday" type="date" value="<?php echo $birthday; ?>" required>
+                    <input id="exampleinputbirthday" class="form-control datepicker" name="birthday"
+                           type="text" value="<?php echo formatDate($birthday); ?>" required>
                 </div>
 
                 <div class="form-group">
@@ -213,8 +214,8 @@ require_once __DIR__ . "/controller/register.php";
                 <h5> ข้อมูลทั่วไป </h5>
                 <div class="date_admission form-group">
                     <label for="dateAdmissionId">วันที่เข้าเรียน</label>
-                    <input id="dateAdmissionId" class="form-control" name="date_admission" type="date"
-                           value="<?php echo $date_admission; ?>" <?php echo $disabled;?>>
+                    <input id="dateAdmissionId" class="datepicker form-control" name="date_admission" type="text"
+                           value="<?php echo formatDate($date_admission); ?>" <?php echo $disabled;?>>
                 </div>
                 <div class="report_grade form-group">
                     <label for="reportGradeId">รายงานผลการเรียนเดิม</label>
@@ -223,8 +224,8 @@ require_once __DIR__ . "/controller/register.php";
                 </div>
                 <div class="date_issue form-group">
                     <label for="dateIssueId">วันที่จำหน่าย</label>
-                    <input id="dateIssueId" class="form-control" name="date_issue" type="date"
-                           value="<?php echo $date_issue; ?>" <?php echo $disabled;?> >
+                    <input id="dateIssueId" class="datepicker form-control" name="date_issue" type="text"
+                           value="<?php echo formatDate($date_issue); ?>" <?php echo $disabled;?> >
                 </div>
                 <div class="note_issue form-group">
                     <label for="note_issueId">เหตุที่จำหน่าย</label>
@@ -264,9 +265,9 @@ require_once __DIR__ . "/controller/register.php";
                 </div>
 
                 <div class="home_birth form-group">
-                    <label for="old_gradeId">รายงานการเรียนเดิม</label>
+                    <label for="old_gradeId">เดิมเรียนมาจากไหน</label>
                     <textarea id="old_gradeId" class="form-control" name="old_grade" type="text"
-                              placeholder="รายงานการเกรียนเดิม" <?php echo $disabled;?> ><?php echo $old_grade; ?></textarea>
+                              placeholder="เดิมเรียนมาจากไหน" <?php echo $disabled;?> ><?php echo $old_grade; ?></textarea>
                 </div>
 
 

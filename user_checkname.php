@@ -5,7 +5,7 @@ $date = new DateTime();
 
 $menuAction = 'check';
 $year = date("Y");
-$UrlYMD = isset($_REQUEST['ymd']) ? $_REQUEST['ymd'] : date("Y-m-d");
+$UrlYMD = isset($_REQUEST['ymd']) ? dayTTE($_REQUEST['ymd']) : date("Y-m-d");
 $user_id = $SESSION_user_id;
 //for calendar
 $this_date = date("Y-m", strtotime($UrlYMD)) . '-01';
@@ -66,7 +66,7 @@ require_once __DIR__.'/controller/userCheckNameController.php';
         <div class="form-inline">
             <div class="form-group ml-5">
                 <label class="mr-3" for="input_ymd"> วันที่ </label>
-                <input class="form-control" id="select_ymd" name="input_ymd" type="date" value="<?php echo $UrlYMD; ?>" onchange="changeYMD();">
+                <input class="datepicker form-control" id="select_ymd" name="input_ymd" type="text" value="<?php echo formatDate($UrlYMD); ?>" onchange="changeYMD();">
             </div>
         </div>
 

@@ -12,3 +12,5 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+<!-- Bootstrap datepicker CSS-->
+<link href="vendor/boostrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet">

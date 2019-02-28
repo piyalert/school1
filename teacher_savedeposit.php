@@ -8,7 +8,7 @@ $SAVELIST = [];
 $menuAction = 'saving';
 $menuSave = isset($_REQUEST['class']) ? $_REQUEST['class'] : 1;
 $UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : $SCHOOL_YEAR;
-$UrlYMD = isset($_REQUEST['ymd']) ? $_REQUEST['ymd'] : $date->format('Y-m-d');
+$UrlYMD = isset($_REQUEST['ymd']) ? dayTTE($_REQUEST['ymd']) : $date->format('Y-m-d');
 
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
 $year = date("Y");
@@ -63,7 +63,7 @@ require_once __DIR__."/controller/teacherSaveDepositController.php";
         </div>
         <div class="form-group ml-5">
             <label class="mr-3" for="input_ymd"> วันที่ฝากเงิน </label>
-            <input class="form-control" id="input_ymd" name="input_ymd" type="date" value="<?php echo $UrlYMD; ?>" onchange="changeYMDDeposit();">
+            <input class="datepicker form-control" id="input_ymd" name="input_ymd" type="text" value="<?php echo formatDate($UrlYMD); ?>" onchange="changeYMDDeposit();">
         </div>
     </div>
 
@@ -75,7 +75,7 @@ require_once __DIR__."/controller/teacherSaveDepositController.php";
             <tr>
                 <th>#</th>
                 <th>ชื่อ - สกุล</th>
-                <th id="deposit_ymd"><?php echo $UrlYMD ;?></th>
+                <th id="deposit_ymd"><?php echo formatDate($UrlYMD) ;?></th>
                 <th>Action</th>
 
             </tr>

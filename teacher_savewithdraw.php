@@ -8,9 +8,9 @@ $date = new DateTime();
 $SAVELIST = [];
 $menuAction = 'saving';
 $menuSave = isset($_REQUEST['class']) ? $_REQUEST['class'] : 1;
-$UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : 2561;
+$UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : $SCHOOL_YEAR;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
-$UrlYMD = isset($_REQUEST['ymd']) ? $_REQUEST['ymd'] : $date->format('Y-m-d');
+$UrlYMD = isset($_REQUEST['ymd']) ? dayTTE($_REQUEST['ymd']) : $date->format('Y-m-d');
 
 require_once __DIR__."/controller/teacherSaveWithdrawController.php";
 
@@ -42,7 +42,7 @@ require_once __DIR__."/controller/teacherSaveWithdrawController.php";
     <div class="form-inline">
         <div class="form-group ml-5">
             <label class="mr-3" for="input_ymd"> วันที่ถอนเงิน </label>
-            <input class="form-control" id="input_ymd" name="input_ymd" type="date" value="<?php echo $UrlYMD; ?>">
+            <input class="datepicker form-control" id="input_ymd" name="input_ymd" type="text" value="<?php echo formatDate($UrlYMD); ?>" onchange="changeYMDWithdraw();">
         </div>
     </div>
 
@@ -160,6 +160,12 @@ require_once __DIR__."/controller/teacherSaveWithdrawController.php";
         $('#user_id').attr('value',user_id);
 
         $('#modalWithdraw').modal();
+    }
+    function changeYMDWithdraw() {
+        var input_class = $('#input_class').val();
+        var input_year = $('#input_year').val();
+        var ymd = $('#input_ymd').val();
+        document.location = "teacher_savewithdraw.php?class="+input_class+"&year="+input_year+"&ymd="+ymd;
     }
     function checkWithdrawValue() {
         var max = $('#input_balance').attr('max');

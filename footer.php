@@ -21,3 +21,15 @@
     <!-- Custom scripts for this page-->
     <script src="js/sb-admin-datatables.min.js"></script>
 <!--    <script src="js/sb-admin-charts.min.js"></script>-->
+    <script src="vendor/boostrap-datepicker/js/bootstrap-datepicker-custom.js"></script>
+    <script src="vendor/boostrap-datepicker/locales/bootstrap-datepicker.th.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'dd/MM/yyyy',
+                todayBtn: true,
+                language: 'th',             //เปลี่ยน label ต่างของ ปฏิทิน ให้เป็น ภาษาไทย   (ต้องใช้ไฟล์ bootstrap-datepicker.th.min.js นี้ด้วย)
+                thaiyear: true              //Set เป็นปี พ.ศ.
+            });
+        });
+    </script>

@@ -45,7 +45,7 @@ require_once __DIR__."/controller/documentListController.php";
                         <td><?php echo ($key+1);?></td>
                         <td><?php echo $item['title'];?></td>
                         <td><?php echo $item['groups'];?></td>
-                        <td><?php echo date("d-m-Y",strtotime($item['date_at']));?></td>
+                        <td><?php echo formatDate($item['date_at']);?></td>
                         <td>
                             <?php
                             foreach ($item['files'] as $iFile){

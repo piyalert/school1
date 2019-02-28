@@ -107,6 +107,7 @@ if ($fn=='edit'){
         $old_subject=$user['old_subject'];
         $old_grade = $user['old_grade'];
 
+
     }
     
 }
@@ -143,16 +144,9 @@ elseif ($fn=='insert'){
     $old_subject = isset($_REQUEST['old_subject'])?$_REQUEST['old_subject']:'';
 
 
-    if($birthday!==''){
-        $cutBD = explode('-',$birthday);
-        $y= $cutBD[0];
-        $m= $cutBD[1];
-        $d= $cutBD[2];
-        if($y>2500){
-            $y = $y-543;
-        }
-        $birthday= $y.'-'.$m.'-'.$d;
-    }
+    $birthday =  dayTTE($birthday);
+    $date_admission = dayTTE($date_admission);
+    $date_issue = dayTTE($date_issue);
 
 
     $modelUser = new User();
@@ -229,19 +223,12 @@ elseif ($fn=='update'){
     $old_grade = isset($_REQUEST['old_grade'])?$_REQUEST['old_grade']:'';
     $old_subject = isset($_REQUEST['old_subject'])?$_REQUEST['old_subject']:'';
 
-
+    $birthday =  dayTTE($birthday);
+    $date_admission = dayTTE($date_admission);
+    $date_issue = dayTTE($date_issue);
 
     $id = isset($_REQUEST['id'])?$_REQUEST['id']:'';
-    if($birthday!==''){
-        $cutBD = explode('-',$birthday);
-        $y= $cutBD[0];
-        $m= $cutBD[1];
-        $d= $cutBD[2];
-        if($y>2500){
-            $y = $y-543;
-        }
-        $birthday= $y.'-'.$m.'-'.$d;
-    }
+
 
 
     $modelUser = new User();

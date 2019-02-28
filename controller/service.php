@@ -6,6 +6,13 @@
  * Time: 3:09 PM
  */
 
+function dayTTE($strDate){
+    if($strDate=='')return'';
+    $months= ["มกราคม"=>1, "กุมภาพันธ์"=>2, "มีนาคม"=>3, "เมษายน"=>4, "พฤษภาคม"=>5, "มิถุนายน"=>6, "กรกฎาคม"=>7, "สิงหาคม"=>8, "กันยายน"=>9, "ตุลาคม"=>10, "พฤศจิกายน"=>11, "ธันวาคม"=>12];
+    $cut = explode('/',$strDate);
+    return ($cut[2]-543).'-'.$months[$cut[1]].'-'.$cut[0];
+}
+
 $fn = isset($_REQUEST['fn'])?$_REQUEST['fn']:'';
 
 
@@ -180,6 +187,8 @@ elseif ($fn=='insertListSaving'){
     $list = $MS->input('list');
     $date = $MS->input('date');
 
+    $date = dayTTE($date);
+
     $result = $MS->insertSavingDepositList($active_user , $year , $date, $list);
     if($result > 0){
         echo json_encode([
@@ -209,6 +218,7 @@ elseif ($fn=='insertSaving'){
     $ymd = $MS->input('ymd');
     $type = $MS->input('type');
 
+    $ymd = dayTTE($ymd);
     if ($type=='withdraw'){
         $input = [
             'user_id'=>$user_id,
@@ -248,6 +258,7 @@ elseif ($fn=='searchSaving') {
     $user_id = $MS->input('user_id');
     $date = $MS->input('date');
 
+    $date = dayTTE($date);
     $result = $MS->selectSavingYMDUserId($user_id,$date);
     if (isset($result['id'])) {
         echo json_encode([

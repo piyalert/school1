@@ -16,11 +16,11 @@ require_once __DIR__ . "/controller/indexController.php";
 
 
 <div class="content-wrapper">
-    <div class="container-fluid">
+    <div class="container-fluid alert-danger">
         <!-- Card Columns Example Social Feed-->
 
-        <div style="height: 150px;" class="">
-            <img src="./pictures/banner.jpg" width="810" height="150" alt="">
+        <div style="height: 150px; border: solid 1px;" class="">
+            <img src="./pictures/banner.jpg" style="height: 150px; width: 100%;">
         </div>
 
         <div class="row">
@@ -48,7 +48,7 @@ require_once __DIR__ . "/controller/indexController.php";
 
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-3 text-right">
                 <div style="height: 150px;">
                  <img src="./pictures/rig.jpg" width="250" height="800" alt="">
                 </div>

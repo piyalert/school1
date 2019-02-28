@@ -113,7 +113,7 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
 
                     <div class="form-group">
                         <label>วันเกิด</label>
-                        <input class="form-control" type="date" value="<?php echo $birthday; ?>" disabled>
+                        <input class="form-control" type="text" value="<?php echo formatDate($birthday); ?>" disabled>
                     </div>
 
                     <div class="form-group">
@@ -157,7 +157,7 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
                     <h5> ข้อมูลทั่วไป </h5>
                     <div class="date_admission form-group">
                         <label>วันที่เข้าเรียน</label>
-                        <input class="form-control" type="date" value="<?php echo $date_admission; ?>" disabled>
+                        <input class="form-control" type="text" value="<?php echo formatDate($date_admission); ?>" disabled>
                     </div>
                     <div class="report_grade form-group">
                         <label>รายงานผลการเรียนเดิม</label>
@@ -165,7 +165,7 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
                     </div>
                     <div class="date_issue form-group">
                         <label>วันที่จำหน่าย</label>
-                        <input class="form-control" type="date" value="<?php echo $date_issue; ?>" disabled>
+                        <input class="form-control" type="text" value="<?php echo formatDate($date_issue); ?>" disabled>
                     </div>
                     <div class="note_issue form-group">
                         <label>เหตุที่จำหน่าย</label>
@@ -196,8 +196,8 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
                         <textarea class="form-control" placeholder="มีคุณวิชามาเพียงไร" disabled><?php echo $old_grade; ?></textarea>
                     </div>
                     <div class="home_birth form-group">
-                        <label>รายงานการเรียนเดิม</label>
-                        <textarea class="form-control" placeholder="รายงานการเรียนเดิม" disabled><?php echo $old_subject; ?></textarea>
+                        <label>เดิมเรียนมาจากไหน</label>
+                        <textarea class="form-control" placeholder="เดิมเรียนมาจากไหน" disabled><?php echo $old_subject; ?></textarea>
                     </div>
 
 
@@ -299,7 +299,7 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
                         <?php foreach ($PORTFOLIOS as $key=>$item): ?>
                             <tr>
                                 <td><?php echo ($key+1);?></td>
-                                <td><?php echo date('d/m/Y',strtotime($item['date_at']));?></td>
+                                <td><?php echo formatDate($item['date_at']);?></td>
                                 <td><?php echo $item['title'];?></td>
                                 <td>
                                     <a href="teacher_portfolioEdit.php?id=<?php echo $item['id'];?>&class=<?php echo $menuPortfolio;?>&uid=<?php echo $user_id;?>"><i class="fa fa-pencil"></i> edit</a>
@@ -327,7 +327,7 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
                         <?php foreach ($VISITINGS as $key=>$item): ?>
                             <tr>
                                 <td><?php echo ($key+1);?></td>
-                                <td><?php echo date('d/m/Y',strtotime($item['date_at']));?></td>
+                                <td><?php echo formatDate($item['date_at']);?></td>
                                 <td><?php echo $item['title'];?></td>
                                 <td>
                                     <a href="teacher_visitingEdit.php?id=<?php echo $item['id'];?>&class=<?php echo $menuVisiting;?>&uid=<?php echo $user_id;?>"><i class="fa fa-pencil"></i> edit</a>
@@ -353,7 +353,7 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
                     <?php foreach ($HEALTHS as $key=>$item): ?>
                         <tr>
                             <td><?php echo ($key+1);?></td>
-                            <td><?php echo date('d/m/Y',strtotime($item['date_at']));?></td>
+                            <td><?php echo formatDate($item['date_at']);?></td>
                             <td><?php echo $item['title'];?></td>
                             <td>
                                 <a href="user_healthview.php?id=<?php echo $item['id'];?>"><i class="fa fa-eye"></i> รายละเอียด</a>

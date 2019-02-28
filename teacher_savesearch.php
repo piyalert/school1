@@ -6,7 +6,7 @@ $date = new DateTime();
 
 $menuAction = 'saving';
 $menuSave = 0;
-$UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : 2561;
+$UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : $SCHOOL_YEAR;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
 $UrlYMD = isset($_REQUEST['ymd']) ? $_REQUEST['ymd'] : $date->format('Y-m-d');
 $year = $date->format('Y');
@@ -80,7 +80,7 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
 
                     <div class="form-group ml-2">
                         <label class="mr-3" for="deposit_ymd"> วันที่ฝากเงิน </label>
-                        <input class="form-control" id="input_ymd" name="date_at" type="date" value="<?php echo $UrlYMD; ?>" onchange="getDeposit();">
+                        <input class="form-control" id="input_ymd" name="date_at" type="text" value="<?php echo formatDate($UrlYMD); ?>" onchange="getDeposit();">
                     </div>
                 </div>
                 <div class="form-inline mt-2">
@@ -116,7 +116,7 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
 
                     <div class="form-group ml-2">
                         <label class="mr-3" for="withdraw_ymd"> วันที่ถอน </label>
-                        <input class="form-control" id="withdraw_ymd" name="date_at" type="date" value="<?php echo $UrlYMD; ?>">
+                        <input class="form-control" id="withdraw_ymd" name="date_at" type="text" value="<?php echo formatDate($UrlYMD); ?>">
                     </div>
                 </div>
                 <div class="form-inline mt-2">
@@ -161,8 +161,8 @@ require_once __DIR__."/controller/teacherSaveSearch.php";
             <?php foreach ($SAVELIST as $key=>$item): ?>
                 <tr>
                     <td><?php echo ($key+1);?></td>
-                    <td><?php echo $item['date_at'];?></td>
-                    <td><?php echo $item['year'];?></td>
+                    <td><?php echo formatDate($item['date_at']);?></td>
+                    <td><?php echo ($item['year']+543);?></td>
                     <td><?php echo $item['event'];?></td>
                     <td><?php echo $item['balance'];?></td>
                     <td>

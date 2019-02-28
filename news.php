@@ -44,7 +44,7 @@ require_once __DIR__."/controller/newsController.php";
                         <td class="text-center"><img src="<?php echo $item['img'];?>" style="width: 100px;"></td>
                         <td><?php echo $item['title'];?></td>
                         <td><?php echo $item['year']+543;?></td>
-                        <td><?php echo $item['create_at'];?></td>
+                        <td><?php echo formatDate($item['create_at']);?></td>
                         <td>
                             <a href="news_edit.php?id=<?php echo $item['id'];?>">
                                 <i class="fa fa-pencil"></i> edit

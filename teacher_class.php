@@ -4,7 +4,7 @@ require_once __DIR__ . "/_loginTeacher.php";
 
 $menuAction = 'class';
 $menuClass = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
-$UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : 2561;
+$UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : $SCHOOL_YEAR;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
 $year = date("Y");
 
@@ -69,7 +69,7 @@ require_once __DIR__."/controller/teacherClassController.php";
                     <td><?php echo $item['gender']=='m'?'ชาย':'หญิง';?></td>
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
                     <td><?php echo $item['id_card'];?></td>
-                    <td><?php echo date('d/m/Y',strtotime($item['birthday']));?></td>
+                    <td><?php echo formatDate($item['birthday']);?></td>
                     <td>
                         <div class="form-inline">
                             <div class="mb-2">
@@ -134,7 +134,7 @@ require_once __DIR__."/controller/teacherClassController.php";
                             <td><?php echo $item['gender'];?></td>
                             <td><?php echo $item['name'].' '.$item['surname'];?></td>
                             <td><?php echo $item['id_card'];?></td>
-                            <td><?php echo $item['birthday'];?></td>
+                            <td><?php echo formatDate($item['birthday']);?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

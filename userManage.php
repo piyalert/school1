@@ -51,7 +51,7 @@ require_once __DIR__."/controller/userManage.php";
                             <td><?php echo $item['id_card'];?></td>
                             <td><?php echo $item['name'].' '.$item['surname'];?></td>
                             <td><?php echo ($item['gender']=='f')?'หญิง':'ชาย';?></td>
-                            <td><?php echo date('d/m/Y',strtotime($item['birthday']));?></td>
+                            <td><?php echo formatDate($item['birthday']);?></td>
                             <td><?php echo $item['phone'];?></td>
                             <td><?php echo $item['address'];?></td>
                             <td><?php echo $item['learning'];?></td>
