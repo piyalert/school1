@@ -13,7 +13,7 @@ $MG = new Grade();
 
 $HEADER = [];
 $STUDENT = [];
-$result = $MG->selectGradeByClass($UrlYear , $menuGrade);
+$result = $MG->selectGradeByClass($UrlYear , $menuGrade );
 if(isset($result['header'])){
     $HEADER = $result['header'];
 }

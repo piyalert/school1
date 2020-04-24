@@ -35,7 +35,7 @@ if($fn=='addUpdateGrade'){
         $condition = [
             'course_id'=>$course_id,
             'student_id'=>$studentId,
-            'year'=> $year
+            'year'=> $year,
         ];
 
         $result = $MG->insertUpdateThis($input,$condition);
@@ -57,6 +57,6 @@ if(isset($result['grade'])){
 }
 if(isset($result['student'])){
     $STUDENT = $result['student'];
-
     $USERNAME = $STUDENT['name'].' '.$STUDENT['surname'];
+    $TEACHER = $STUDENT['class_teacher'];
 }

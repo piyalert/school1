@@ -17,6 +17,7 @@ $name = '';
 $surname ='';
 $id_card= '';
 $birthday='';
+$class_teacher='';
 $address= '';
 $phone='';
 $img_path='/school/upload/user.png';
@@ -80,6 +81,7 @@ if ($fn=='edit'){
         $surname = $user['surname'];
         $id_card= $user['id_card'];
         $birthday = $user['birthday'];
+        $class_teacher = $user['class_teacher'];
         $address= $user['address'];
         $phone= $user['phone'];
         $img_path= (strlen($user['img_path'])>10)?$user['img_path']:'/school/upload/user.png';
@@ -119,6 +121,7 @@ elseif ($fn=='insert'){
     $surname = isset($_REQUEST['surname'])?$_REQUEST['surname']:'';
     $id_card = isset($_REQUEST['id_card'])?$_REQUEST['id_card']:'';
     $birthday = isset($_REQUEST['birthday'])?$_REQUEST['birthday']:'';
+    $class_teacher = isset($_REQUEST['class_teacher'])?$_REQUEST['class_teacher']:'';
     $address = isset($_REQUEST['address'])?$_REQUEST['address']:'';
     $phone = isset($_REQUEST['phone'])?$_REQUEST['phone']:'';
     $img_path= isset($_REQUEST['img_path'])?$_REQUEST['img_path']:'';
@@ -157,6 +160,7 @@ elseif ($fn=='insert'){
         'surname'=> $surname,
         'id_card'=> $id_card,
         'birthday'=> $birthday,
+        'class_teacher'=> $class_teacher,
         'address'=> $address,
         'phone'=> $phone,
         'img_path'=> $img_path,
@@ -200,6 +204,7 @@ elseif ($fn=='update'){
     $id_card = isset($_REQUEST['id_card'])?$_REQUEST['id_card']:'';
     $birthday = isset($_REQUEST['birthday'])?$_REQUEST['birthday']:'';
     $address = isset($_REQUEST['address'])?$_REQUEST['address']:'';
+    $class_teacher = isset($_REQUEST['class_teacher'])?$_REQUEST['class_teacher']:'';
     $phone = isset($_REQUEST['phone'])?$_REQUEST['phone']:'';
     $img_path= isset($_REQUEST['img_path'])?$_REQUEST['img_path']:'';
     $gender= isset($_REQUEST['gender'])?$_REQUEST['gender']:'f';
@@ -238,6 +243,7 @@ elseif ($fn=='update'){
         'surname'=> $surname,
         'id_card'=> $id_card,
         'birthday'=> $birthday,
+        'class_teacher'=> $class_teacher,
         'address'=> $address,
         'phone'=> $phone,
         'img_path'=> $img_path,

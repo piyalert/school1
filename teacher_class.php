@@ -6,6 +6,7 @@ $menuAction = 'class';
 $menuClass = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
 $UrlYear = isset($_REQUEST['year']) ? $_REQUEST['year'] : $SCHOOL_YEAR;
 $UrlYear = $UrlYear>2500?$UrlYear-543:$UrlYear;
+
 $year = date("Y");
 
 if($menuClass>=10){
@@ -14,11 +15,31 @@ if($menuClass>=10){
     $className = "ประถมศึกษาปีที่ " . $menuClass;
 }
 
+//รายชื่อครูประจำชั้น
+if($menuClass==1){
+    $Teacher = 'นางเกษมณี คชมิตร ';
+}else if($menuClass==2){
+    $Teacher = 'นางสาวจรรยพร นูกอง';
+}else if($menuClass==3){
+    $Teacher = 'นางสาวจุฑานิภัคร  ไชยดี';
+}else if($menuClass==4){
+    $Teacher = 'นางสาวจุฑานิภัคร  ไชยดี';
+}else if($menuClass==5){
+    $Teacher = 'นางกิตติมา ราโชติ';
+}else if($menuClass==6){
+    $Teacher = 'นางเกษร กาละปัตย์';
+}else if($menuClass==10){
+    $Teacher = 'นางอุราลักษณ์  แก้วใส';
+}else if($menuClass==20){
+    $Teacher = 'นางอุราลักษณ์  แก้วใส';
+}else{
+    $Teacher = 'นางอุราลักษณ์  แก้วใส';
+}
+
 
 require_once __DIR__."/controller/teacherClassController.php";
 
 ?>
-
 
 <head>
     <?php include(__DIR__ . "/head.php"); ?>
@@ -33,7 +54,7 @@ require_once __DIR__."/controller/teacherClassController.php";
     <ol class="breadcrumb">
         <li class="breadcrumb-item active"><a
                     href="teacher_class.php?class=<?php echo $menuClass; ?>"><?php echo $className; ?></a></li>
-        <li class="breadcrumb-item active"> รายชื่อนักเรียน</li>
+        <li class="breadcrumb-item active"> รายชื่อนักเรียน</li> <br>  ครูประจำชั้น  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo $Teacher ?> 
     </ol>
 
     <div class="text-right mr-5" style="padding-bottom: 20px;">
@@ -66,7 +87,7 @@ require_once __DIR__."/controller/teacherClassController.php";
             <?php foreach ($STUDENTLISTS as $key=>$item): ?>
                 <tr>
                     <td><?php echo $key+1;?></td>
-                    <td><?php echo $item['gender']=='m'?'ชาย':'หญิง';?></td>
+                    <td><?php echo $item['gender']=='m'?'ชาย':'หญิง'; ?></td>
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
                     <td><?php echo $item['id_card'];?></td>
                     <td><?php echo formatDate($item['birthday']);?></td>
@@ -131,7 +152,7 @@ require_once __DIR__."/controller/teacherClassController.php";
                             <td>
                                 <input type="checkbox" aria-label="select" value="<?php echo $item['id'];?>" onchange="selectUser(this)">
                             </td>
-                            <td><?php echo $item['gender'];?></td>
+                            <td><?php echo $item['gender']; ?></td>
                             <td><?php echo $item['name'].' '.$item['surname'];?></td>
                             <td><?php echo $item['id_card'];?></td>
                             <td><?php echo formatDate($item['birthday']);?></td>

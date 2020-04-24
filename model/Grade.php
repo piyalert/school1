@@ -164,7 +164,7 @@ class Grade extends _DBPDO
 
 
         //student in class
-        $sql = "select u.name , u.surname , s.* from $this_db_student s  left join $this_db_user u on s.user_id = u.id where s.class=:class and s.year=:year";
+        $sql = "select u.name , u.surname , u.class_teacher , s.* from $this_db_student s  left join $this_db_user u on s.user_id = u.id where s.class=:class and s.year=:year";
         $params = [':class'=>$class, ':year'=>$year];
         $arrStudent = $this->queryAll($sql,$params);
 
@@ -257,7 +257,7 @@ class Grade extends _DBPDO
 
 
         //student in class
-        $sql = "select u.name , u.surname , s.* from $this_db_student s  left join $this_db_user u on s.user_id = u.id where s.class=:class and s.year=:year and s.id=:student_id";
+        $sql = "select u.name , u.surname , u.class_teacher , s.* from $this_db_student s  left join $this_db_user u on s.user_id = u.id where s.class=:class and s.year=:year and s.id=:student_id";
         $params = [':class'=>$class, ':year'=>$year , ':student_id'=>$student_id];
         $arrStudent = $this->query($sql,$params);
 

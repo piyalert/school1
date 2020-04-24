@@ -57,9 +57,9 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
             <li class="nav-item">
                 <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-grade" role="tab" aria-controls="pills-grade" aria-selected="false">เกรด</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-saving" role="tab" aria-controls="pills-grade" aria-selected="false">เงินออม</a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-check" role="tab" aria-controls="pills-grade" aria-selected="false">เข้าเรียน</a>
             </li>
@@ -69,9 +69,9 @@ require_once __DIR__."/controller/teacherClassSearchController.php";
             <li class="nav-item">
                 <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-visiting" role="tab" aria-controls="pills-grade" aria-selected="false">เยี่ยมบ้าน</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" id="pills-grade-tab" data-toggle="pill" href="#pills-health" role="tab" aria-controls="pills-grade" aria-selected="false">สุขภาพ</a>
-            </li>
+            </li> -->
         </ul>
         <div class="tab-content" id="pills-tabContent">
 

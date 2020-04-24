@@ -18,6 +18,10 @@ $result = $MStudent->aboutStudent('20',$UrlYear);
 if(count($result)>0){
     $STUDENTS[]=$result;
 }
+$result = $MStudent->aboutStudent('30',$UrlYear);
+if(count($result)>0){
+    $STUDENTS[]=$result;
+}
 $result = $MStudent->aboutStudent('1',$UrlYear);
 if(count($result)>0){
     $STUDENTS[]=$result;

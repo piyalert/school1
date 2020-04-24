@@ -216,7 +216,9 @@ WHERE $this_db.class = :class AND $this_db.year = :year";
             $strClass='อนุบาล1';
         }elseif (intval($class)==20){
             $strClass='อนุบาล2';
-        }else{
+        }elseif (intval($class)==30){
+            $strClass='อนุบาล3';
+         }else{
             $strClass='ชั้นประถมศึกษาปีที่ '.$class;
         }
 

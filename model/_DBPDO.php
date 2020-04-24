@@ -9,9 +9,9 @@
 class _DBPDO
 {
     private $servername = "localhost";
-    private $username = "root";
-    private $password = "1234";
-    private $dbname = "db_school";
+    private $username = "cite10_root";
+    private $password = "a123456789Z";
+    private $dbname = "cite10_school";
     private $conn = null;
     private $stmt = null;
 

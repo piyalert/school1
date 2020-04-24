@@ -65,7 +65,7 @@ require_once __DIR__."/controller/userScoreController.php";
                 $gpaS = $gpaC<=0?'-':($gpa/$gpaC);
             ?>
             <div class="text-right" style="width: 80%; margin: auto;">
-                อันดับ: <strong> <?php echo $seq; ?> </strong> GPA: <strong> <?php echo $gpaS; ?> </strong>
+                อันดับ: <strong> <?php echo $seq; ?> </strong> GPA: <strong> <?php echo round( $gpaS,2 ); ?> </strong>
             </div>
 
         <hr>

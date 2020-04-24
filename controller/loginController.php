@@ -13,7 +13,8 @@ $fn = $MUser->input('fn');
 if($fn=='login'){
     $username = $MUser->input('username');
     $password = $MUser->input('password');
-    $password = md5($password);
+   // $password = md5($password);
+   $password = $password;
     $result = $MUser->login($username,$password);
     if(isset($result['id'])){
         $_SESSION = $result;
