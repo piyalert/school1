@@ -42,9 +42,12 @@ require_once __DIR__."/controller/teacherCourseController.php";
             <?php endfor; ?>
         </select>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <?php if($LOGIN_STATUS=='teacher'):?>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg">
             <i class="fa fa-plus"></i> เพิ่มรายวิชา
         </button>
+        <?php endif;?>
+
     </div>
 
     <div class="container-fluid">
@@ -57,7 +60,9 @@ require_once __DIR__."/controller/teacherCourseController.php";
                 <th>วิชา</th>
                 <th>รายละเอียด</th>
                 <th>ปีการศึกษา</th>
+                <?php if($LOGIN_STATUS=='teacher'):?>
                 <th>Action</th>
+                <?php endif;?>
             </tr>
             </thead>
             <tbody>
@@ -68,11 +73,13 @@ require_once __DIR__."/controller/teacherCourseController.php";
                     <td><?php echo $item['name'];?></td>
                     <td><?php echo $item['detail'];?></td>
                     <td><?php echo $item['year']+543;?></td>
+                    <?php if($LOGIN_STATUS=='teacher'):?>
                     <td>
                         <button class="btn btn-link btn-sm text-danger"  onclick="setModalDelete('deleteCourse','<?php echo $item['name']; ?>','<?php echo $item['id']; ?>');">
                             <i class="fa fa-trash"></i> delete
                         </button>
                     </td>
+                    <?php endif;?>
                 </tr>
             <?php endforeach; ?>
             </tbody>

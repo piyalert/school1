@@ -50,6 +50,7 @@ require_once __DIR__ . "/controller/register.php";
                     <img id="src_image" src="<?php echo $img_path; ?>" alt="File Upload" class="img-rounded"
                          style="height: 100px;">
                 </div>
+
                 <div class="form-inline" id="show_progressBar_upload" hidden>
                     <div class="progress" style="float:left; width: 90%; margin-right: 5px;">
                         <div id="progressBar_upload" class="progress-bar" role="progressbar"
@@ -63,6 +64,8 @@ require_once __DIR__ . "/controller/register.php";
                         <span class="fa fa-remove" aria-hidden="true"></span>
                     </button>
                 </div>
+
+                <?php if($SESSION_user_status!='boss'):?>
                 <div class="text-center" style="padding-top: 20px;">
                     <div class="box-img-ready">
                         <label class="alert alert-dark" style="cursor: pointer" for="file_upload">
@@ -72,12 +75,14 @@ require_once __DIR__ . "/controller/register.php";
                         </label>
                     </div>
                 </div>
+                <?php endif;?>
 
             </div>
 
-            <div class="text-right mb-1" <?php echo ($passwordCheck)?'hidden':''; ?>>
+            <div class="text-right mb-1" <?php echo ($passwordCheck || $SESSION_user_status =='boss' )?'hidden':''; ?>>
                 <button class="btn btn-warning btn-sm" onclick="changePassword();">Change Password</button>
             </div>
+
             <form id="changePassword" class="bg-warning p-2" method="post" hidden >
                 <div class="text-center">
                     <h4>Change Password</h4>
@@ -117,14 +122,14 @@ require_once __DIR__ . "/controller/register.php";
                     <input type="radio" name="status" value="teacher" <?php if ($status == 'teacher') echo 'checked'; ?> <?php echo $disabled;?> > อาจารย์
                     <input type="radio" name="status" value="student" <?php if ($status == 'student') echo 'checked'; ?> <?php echo $disabled;?> > นักเรียน
                     <input type="radio" name="status" value="ateacher" <?php if ($status == 'other') echo 'checked'; ?> <?php echo $disabled;?> > ธุรการ
-                    <input type="radio" name="status" value="boss" <?php if ($status == 'other') echo 'checked'; ?> <?php echo $disabled;?> > ผู้อำนวยการ
+                    <input type="radio" name="status" value="boss" <?php if ($status == 'boss') echo 'checked'; ?> <?php echo $disabled;?> > ผู้อำนวยการ
                     <input type="radio" name="status" value="admin" <?php if ($status == 'other') echo 'checked'; ?> <?php echo $disabled;?> > ผู้ดูแลระบบ
                 </div>
 
                 <div class="form-group">
                     <label for="username">ชื่อผู้ใช้งาน <strong class="text-danger">**</strong></label>
                     <input class="form-control" name="username" type="text" aria-describedby="nameHelp"
-                           placeholder="ชื่อผู้ใช้งาน" value="<?php echo $username; ?>" required>
+                           placeholder="ชื่อผู้ใช้งาน" value="<?php echo $username; ?>" <?php echo $SESSION_user_status=='boss'?'readonly':'required'; ?>  >
                 </div>
 
                 <div class="form-group" <?php if (!$passwordCheck) echo 'hidden'; ?> >
@@ -147,12 +152,12 @@ require_once __DIR__ . "/controller/register.php";
                         <div class="col-md-6">
                             <label for="exampleInputName">ชื่อ <strong class="text-danger">**</strong></label>
                             <input class="form-control" name="name" type="text" aria-describedby="nameHelp"
-                                   placeholder="ชื่อ" value="<?php echo $name; ?>" required>
+                                   placeholder="ชื่อ" value="<?php echo $name; ?>" <?php echo $SESSION_user_status=='boss'?'readonly':'required'; ?>>
                         </div>
                         <div class="col-md-6">
                             <label for="exampleInputLastName">นามสกุล <strong class="text-danger">**</strong></label>
                             <input class="form-control" name="surname" type="text" aria-describedby="nameHelp"
-                                   placeholder="นามสกุล" value="<?php echo $surname; ?>" required>
+                                   placeholder="นามสกุล" value="<?php echo $surname; ?>" <?php echo $SESSION_user_status=='boss'?'readonly':'required'; ?>>
                         </div>
                     </div>
                 </div>
@@ -160,19 +165,19 @@ require_once __DIR__ . "/controller/register.php";
                 <div class="form-group">
                     <label for="exampleInputIdCard">รหัสบัตรประจำตัวประชาชน <strong class="text-danger">**</strong></label>
                     <input class="form-control" name="id_card" type="text" placeholder="รหัสบัตรประจำตัวประชาชน"
-                           value="<?php echo $id_card; ?>" required>
+                           value="<?php echo $id_card; ?>" <?php echo $SESSION_user_status=='boss'?'readonly':'required'; ?>>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputBirthday">วันเกิด <strong class="text-danger">**</strong></label>
                     <input id="exampleinputbirthday" class="form-control datepicker" name="birthday"
-                           type="text" value="<?php echo formatDate($birthday); ?>" required>
+                           type="text" value="<?php echo formatDate($birthday); ?>" <?php echo $SESSION_user_status=='boss'?'readonly':'required'; ?>>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputPhone">เบอร์โทร</label>
                     <input class="form-control" name="phone" type="text" placeholder="เบอร์โทร"
-                           value="<?php echo $phone; ?>">
+                           value="<?php echo $phone; ?>" <?php echo $SESSION_user_status=='boss'?'readonly':''; ?>>
                 </div>
 
                 <div class="form-group">
@@ -184,7 +189,7 @@ require_once __DIR__ . "/controller/register.php";
                 <div class="form-group">
                     <label for="exampleInputAddress">ที่อยู่</label>
                     <textarea class="form-control" name="address" type="text"
-                              placeholder="ที่อยู่"><?php echo $address; ?></textarea>
+                              placeholder="ที่อยู่" <?php echo $SESSION_user_status=='boss'?'readonly':''; ?>><?php echo $address; ?></textarea>
                 </div>
 
                 <div class="form-group">
@@ -286,9 +291,11 @@ require_once __DIR__ . "/controller/register.php";
                     <input name="fn" value="insert" hidden>
                     <button class="btn btn-primary btn-block mt-5" type="submit">Register</button>
                 <?php else: ?>
+                    <?php if($SESSION_user_status=='teacher'):?>
                     <input name="fn" value="update" hidden>
                     <input name="id" value="<?php echo $id; ?>" hidden>
                     <button class="btn btn-primary btn-block mt-5" type="submit">Edit</button>
+                    <?php endif;?>
                 <?php endif; ?>
             </form>
 

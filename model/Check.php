@@ -184,6 +184,19 @@ class Check extends _DBPDO
         return $data_return;
     }
 
+    //date
+    function dateFullThai($ymd){
+        $ThDay = array ( "อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์" );
+        $ThMonth = array ( "","มกรามก", "กุมภาพันธ์", "มีนาคม", "เมษายน","พฤษภาคม", "มิถุนายน", "กรกฏาคม", "สิงหาคม","กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม","" );
+
+        $d = date("d",strtotime($ymd));
+        $m = date("m",strtotime($ymd));
+        $y = date("Y",strtotime($ymd));
+        $w = date("w",strtotime($ymd));
+
+        return 'วัน'.($ThDay[$w]).' ที่ '.$d .' เดือน'.($ThMonth[intval($m)]). ' พ.ศ. '.($y+543);
+    }
+
 
     //teacher check show
     /* select name student */

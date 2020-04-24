@@ -50,6 +50,7 @@ require_once __DIR__."/controller/teacherScoreEditController.php";
 
         <div class="row justify-content-around">
             <div class="col-10">
+                <?php if($LOGIN_STATUS=='teacher'):?>
                 <form method="post">
                     <table class="table table-hover">
                         <thead>
@@ -129,6 +130,63 @@ require_once __DIR__."/controller/teacherScoreEditController.php";
                     </div>
 
                 </form>
+                <?php else:?>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">วิชา</th>
+                            <th scope="col">เกณฑ์</th>
+                            <th scope="col">รวม</th>
+                            <th scope="col">เกรด</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $gpa=0; foreach ($GRADE as $key=>$item): ?>
+
+                            <tr>
+                                <th scope="row"><?php echo ($key+1);?></th>
+                                <td> <?php echo $item['name'];?></td>
+                                <td> <?php echo $item['detail'];?> </td>
+                                <td>
+                                    <?php echo $item['sum_score'];?>
+                                </td>
+                                <td>
+                                    <?php
+                                    if(! is_numeric($item['grade'])) {
+                                        if ($item['sum_score'] >= 80) $item['grade'] = '4';
+                                        else if ($item['sum_score'] >= 75 and $item['sum_score'] < 80) $item['grade'] = '3.5';
+                                        else if ($item['sum_score'] >= 70 and $item['sum_score'] < 75) $item['grade'] = '3';
+                                        else if ($item['sum_score'] >= 65 and $item['sum_score'] < 70) $item['grade'] = '2.5';
+                                        else if ($item['sum_score'] >= 60 and $item['sum_score'] < 65) $item['grade'] = '2';
+                                        else if ($item['sum_score'] >= 55 and $item['sum_score'] < 60) $item['grade'] = '1.5';
+                                        else if ($item['sum_score'] >= 50 and $item['sum_score'] < 55) $item['grade'] = '1';
+                                        else $item['grade'] = '0';
+                                    }
+                                    $gpa+= $item['grade'];
+                                    echo $item['grade'];
+                                    ?>
+
+                                </td>
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                        <tr>
+                            <td class="text-right font-weight-bold" colspan="4"> GPA </td>
+                            <td>
+                                <?php
+                                if(count($GRADE)<=0)
+                                    echo '';
+                                else
+                                    echo number_format(($gpa/ count($GRADE)),2,'.',''); ?>
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                <?php endif;?>
             </div>
         </div>
 

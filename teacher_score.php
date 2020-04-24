@@ -50,14 +50,17 @@ require_once __DIR__."/controller/teacherScoreController.php";
         </div>
 
         <!-- Card Columns Example Social Feed-->
-        <table class="table table-striped table-bordered dataTable" style="width:100%;">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered dataTable" style="width:100%;">
             <thead style="font-size: 12px;">
             <tr>
                 <th>#</th>
                 <th>ชื่อ สกุล</th>
-                <?php foreach ($HEADER as $item): ?>
-                    <th><?=$item['name']?></th>
-                <?php endforeach; ?>
+                <?php if($LOGIN_STATUS=='teacher'):?>
+                    <?php foreach ($HEADER as $item): ?>
+                        <th><?=$item['name']?></th>
+                    <?php endforeach; ?>
+                <?php endif;?>
                 <th>GPA</th>
                 <th>อันดับ</th>
                 <th>Action</th>
@@ -69,9 +72,12 @@ require_once __DIR__."/controller/teacherScoreController.php";
                     <td><?php echo ($key+1);?></td>
                     <td><?php echo $item['name'].' '.$item['surname'];?></td>
 
+                    <?php if($LOGIN_STATUS=='teacher'):?>
                     <?php foreach ($item['grade'] as $i): ?>
                         <th><?php echo $i['score'];?> <small> <?php echo $i['final_exam']==''?'':'('.$i['final_exam'].')';?> </small></th>
                     <?php endforeach; ?>
+                    <?php endif;?>
+
                     <td>
                         <?php echo is_numeric($item['gpa'])?number_format($item['gpa'],2,'.',','):'';?>
                     </td>
@@ -80,15 +86,21 @@ require_once __DIR__."/controller/teacherScoreController.php";
                     </td>
 
                     <td>
+                        <?php if($LOGIN_STATUS=='teacher'): ?>
                         <a href="teacher_score_edit.php?sid=<?php echo $item['id'];?>&y=<?php echo $item['year'];?>&c=<?php echo $item['class'];?>">
                             <i class="fa fa-pencil"></i> edit
                         </a>
+                        <?php else:?>
+                            <a href="teacher_score_edit.php?sid=<?php echo $item['id'];?>&y=<?php echo $item['year'];?>&c=<?php echo $item['class'];?>">
+                                <i class="fa fa-eye"></i> View
+                            </a>
+                        <?php endif;?>
                     </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
-
+        </div>
 
     </div>
 </div>

@@ -49,9 +49,11 @@ require_once __DIR__.'/controller/teacherCheckNameController.php';
                 <label class="mr-3" for="input_ymd"> วันที่ </label>
                 <input class="datepicker form-control" id="select_ymd" name="input_ymd" type="text" value="<?php echo formatDate($UrlYMD); ?>" onchange="changeYMD();">
             </div>
+            <?php if($LOGIN_STATUS=='teacher'):?>
             <div class="form-group ml-5">
                 <button class="btn btn-success" data-toggle="modal" data-target=".modal-add-holiday"> <i class="fa fa-plus"></i> เพิ่มวันหยุด</button>
             </div>
+            <?php endif;?>
         </div>
 
         <div class="pt-3 pl-2">
@@ -71,12 +73,18 @@ require_once __DIR__.'/controller/teacherCheckNameController.php';
                 <th>#</th>
                 <th>ชื่อ-นามสกุล</th>
                 <th>เข้าเรียน</th>
+                <?php if($LOGIN_STATUS=='teacher'):?>
                 <th>ยังไม่เช็ค</th>
+                <?php endif;?>
                 <th>สาย</th>
                 <th>ลา</th>
                 <th>ขาดเรียน</th>
+                <?php if($LOGIN_STATUS=='teacher'):?>
                 <th>action</th>
                 <th>หมายเหตุ</th>
+                <?php else:?>
+                <th>action</th>
+                <?php endif;?>
             </tr>
             </thead>
             <tbody>
@@ -89,11 +97,14 @@ require_once __DIR__.'/controller/teacherCheckNameController.php';
                 <td><?php echo ($key+1) ;?></td>
                 <td><a href="teacher_checkshow.php?class=<?php echo $menuCheck;?>&ymd=<?php echo$UrlYMD ;?>&student_id=<?php echo $item['id']; ?>"><?php echo $item['name']." ".$item['surname'] ;?></a></td>
                 <td> <?php echo is_numeric($item['s_come'])?$item['s_come']:0 ;?></td>
+                <?php if($LOGIN_STATUS=='teacher'):?>
                 <td> <?php echo is_numeric($item['s_blank'])?$item['s_blank']:0 ;?> </td>
+                <?php endif;?>
                 <td> <?php echo is_numeric($item['s_late'])?$item['s_late']:0 ;?> </td>
                 <td> <?php echo is_numeric($item['s_leave'])?$item['s_leave']:0 ;?> </td>
                 <td> <?php echo is_numeric($item['s_missing'])?$item['s_missing']:0 ;?> </td>
 
+                <?php if($LOGIN_STATUS=='teacher'):?>
                 <td class="<?php echo $al_blank;?>">
                     <select class="custom-select" id="check_<?php echo $item['id']; ?>">
                         <option value="blank">non</option>
@@ -106,14 +117,23 @@ require_once __DIR__.'/controller/teacherCheckNameController.php';
                 <td>
                     <input class="form-control check_list" type="text" attr_student_id="<?php echo $item['id']; ?>" name="detail" value="-">
                 </td>
+                <?php else: ?>
+                <td>
+                    <a href="teacher_checkstat.php?uid=<?php echo $item['id'];?>">
+                        <i class="fa fa-eye"></i> View
+                    </a>
+                </td>
+                <?php endif;?>
             </tr>
             <?php endforeach;?>
             </tbody>
         </table>
 
-        <div class="text-center pt-5">
-            <button class="btn btn-success" onclick="saveChecked();">บันทึก</button>
+        <?php if($LOGIN_STATUS=='teacher'):?>
+        <div class="text-center pt-5 pb-5">
+            <button class="btn btn-success w-25" onclick="saveChecked();">บันทึก</button>
         </div>
+        <?php endif;?>
 
     </div>
 </body>

@@ -65,9 +65,11 @@ require_once __DIR__."/controller/teacherClassController.php";
             <?php endfor; ?>
         </select>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <?php if($LOGIN_STATUS=='teacher'):?>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg">
             <i class="fa fa-plus"></i> เพิ่มนักเรียน
         </button>
+        <?php endif;?>
     </div>
 
     <div class="container-fluid">
@@ -92,21 +94,27 @@ require_once __DIR__."/controller/teacherClassController.php";
                     <td><?php echo $item['id_card'];?></td>
                     <td><?php echo formatDate($item['birthday']);?></td>
                     <td>
-                        <div class="form-inline">
-                            <div class="mb-2">
-                                <button class="btn btn-link"
-                                        attr_parent="<?php echo $item['parent'];?>" attr_user_id="<?php echo $item['id'];?>"
-                                        onclick="editParent(this);" >
-                                    <i class="fa fa-pencil"></i> edit
-                                </button>
-                            </div>
-                            <div class="mb-2">
-                                <button class="btn btn-link text-danger" onclick="setModalDelete('deleteStudent','<?php echo $item['name'].' '.$item['surname']; ?>','<?php echo $item['student_id']; ?>');">
-                                    <i class="fa fa-trash"></i> delete
-                                </button>
-                            </div>
 
+                        <?php if($LOGIN_STATUS=='teacher'):?>
+                        <div class="form-inline">
+                            <button class="btn btn-link"
+                                    attr_parent="<?php echo $item['parent'];?>" attr_user_id="<?php echo $item['id'];?>"
+                                    onclick="editParent(this);" >
+                                <i class="fa fa-pencil"></i> edit
+                            </button>
+                            <button class="btn btn-link text-danger" onclick="setModalDelete('deleteStudent','<?php echo $item['name'].' '.$item['surname']; ?>','<?php echo $item['student_id']; ?>');">
+                                <i class="fa fa-trash"></i> delete
+                            </button>
                         </div>
+                        <?php elseif ($LOGIN_STATUS=='boss'):?>
+                            <button class="btn btn-link"
+                                    attr_parent="<?php echo $item['parent'];?>" attr_user_id="<?php echo $item['id'];?>"
+                                    onclick="editParent(this);" >
+                                <i class="fa fa-eye"></i> View
+                            </button>
+                        <?php endif;?>
+
+
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -276,5 +284,6 @@ require_once __DIR__."/controller/teacherClassController.php";
         var user_id = $(res).attr("attr_user_id");
         document.location = "register.php?fn=edit&id="+user_id;
     }
+
 
 </script>

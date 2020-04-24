@@ -6,7 +6,7 @@
  * Time: 20:47
  */
 $LOGIN_STATUS = isset($_SESSION['status'])?$_SESSION['status']:'';
-if($LOGIN_STATUS != 'teacher'){
+if($LOGIN_STATUS != 'teacher' && $LOGIN_STATUS!='boss'){
     header("Location: /school/index.php");
     exit();
 }
